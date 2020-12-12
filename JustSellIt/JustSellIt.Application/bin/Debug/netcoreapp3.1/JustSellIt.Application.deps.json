@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "JustSellIt.Application/1.0.0": {
+        "dependencies": {
+          "JustSellIt.Domain": "1.0.0"
+        },
+        "runtime": {
+          "JustSellIt.Application.dll": {}
+        }
+      },
+      "JustSellIt.Domain/1.0.0": {
+        "runtime": {
+          "JustSellIt.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JustSellIt.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JustSellIt.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

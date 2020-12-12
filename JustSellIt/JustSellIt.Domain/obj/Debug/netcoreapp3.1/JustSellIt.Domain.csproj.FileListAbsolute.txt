@@ -1,0 +1,9 @@
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\bin\Debug\netcoreapp3.1\JustSellIt.Domain.deps.json
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\bin\Debug\netcoreapp3.1\JustSellIt.Domain.dll
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\bin\Debug\netcoreapp3.1\JustSellIt.Domain.pdb
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.csprojAssemblyReference.cache
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.AssemblyInfo.cs
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.dll
+C:\Users\User\source\repos\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.pdb
