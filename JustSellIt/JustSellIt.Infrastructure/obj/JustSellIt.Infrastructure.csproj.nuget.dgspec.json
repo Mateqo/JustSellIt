@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj": {}
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
+        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
         "projectName": "JustSellIt.Domain",
-        "projectPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
+        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\obj\\",
+        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -61,14 +61,14 @@
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj": {
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj",
         "projectName": "JustSellIt.Infrastructure",
-        "projectPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj",
+        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Infrastructure\\obj\\",
+        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -88,8 +88,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj"
+              "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
+                "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj"
               }
             }
           }
@@ -103,6 +103,26 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

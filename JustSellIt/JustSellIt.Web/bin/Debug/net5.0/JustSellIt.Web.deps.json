@@ -1978,7 +1978,10 @@
       },
       "JustSellIt.Infrastructure/1.0.0": {
         "dependencies": {
-          "JustSellIt.Domain": "1.0.0"
+          "JustSellIt.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.1",
+          "Microsoft.EntityFrameworkCore": "5.0.1",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.1"
         },
         "runtime": {
           "JustSellIt.Infrastructure.dll": {}

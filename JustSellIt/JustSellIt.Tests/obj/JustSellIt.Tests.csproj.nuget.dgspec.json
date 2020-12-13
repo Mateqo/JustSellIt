@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj": {}
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj": {
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
+        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
         "projectName": "JustSellIt.Tests",
-        "projectPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
+        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Tests\\obj\\",
+        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

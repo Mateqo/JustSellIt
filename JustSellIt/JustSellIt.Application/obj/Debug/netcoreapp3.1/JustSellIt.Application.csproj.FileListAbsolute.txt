@@ -10,3 +10,15 @@ C:\Users\User\source\repos\JustSellIt\JustSellIt.Application\obj\Debug\netcoreap
 C:\Users\User\source\repos\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.csproj.CopyComplete
 C:\Users\User\source\repos\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.dll
 C:\Users\User\source\repos\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.pdb
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\bin\Debug\netcoreapp3.1\JustSellIt.Application.deps.json
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\bin\Debug\netcoreapp3.1\JustSellIt.Application.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\bin\Debug\netcoreapp3.1\JustSellIt.Application.pdb
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\bin\Debug\netcoreapp3.1\JustSellIt.Domain.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\bin\Debug\netcoreapp3.1\JustSellIt.Domain.pdb
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.csprojAssemblyReference.cache
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.AssemblyInfoInputs.cache
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.AssemblyInfo.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.csproj.CoreCompileInputs.cache
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.csproj.CopyComplete
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Application\obj\Debug\netcoreapp3.1\JustSellIt.Application.pdb

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h8cPi/H4CoU5Lxi3CZf6VZUdRKuZleHTfvgxUJVG4/QXF74lWNidcXdJ/XGlP/YXwYll/muZsfayAWEsgs+70w==",
+  "dgSpecHash": "eQFoN2GETKNTYul2kFkU6OJePvVm1RXNfhootUAUYB4AyOyZHMtzqlHMcP/GWaRXJbJU5gMP7tL2ASqfih5VvA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
+  "projectFilePath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\coverlet.collector\\1.3.0\\coverlet.collector.1.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.codecoverage\\16.7.1\\microsoft.codecoverage.16.7.1.nupkg.sha512",

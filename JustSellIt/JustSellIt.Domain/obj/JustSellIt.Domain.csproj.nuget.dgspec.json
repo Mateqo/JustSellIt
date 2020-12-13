@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {}
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
+        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
         "projectName": "JustSellIt.Domain",
-        "projectPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
+        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\JustSellIt\\JustSellIt.Domain\\obj\\",
+        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
