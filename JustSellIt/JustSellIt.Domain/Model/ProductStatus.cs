@@ -4,14 +4,19 @@ using System.Text;
 
 namespace JustSellIt.Domain.Model
 {
-        public enum ProductStatus
-        {
-            BeforeNew=-1, //default status before create
-            Draft=0,  
-            ForVeryfication=10, 
-            Published=20,
-            Rejected=30,
-            Deleted=40
-        }
-    
+    public class ProductStatus
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
+        //Our Status:
+        //BeforeNew default status before create
+        //Draft  
+        //ForVeryfication
+        //Published
+        //Rejected
+        //Deleted
+    }
+
 }

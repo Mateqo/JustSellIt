@@ -13,6 +13,8 @@ namespace JustSellIt.Infrastructure
         public DbSet<Category> Categories { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<OwnerContact> OwnersContact { get; set; }
+        public DbSet<ProductStatus> ProductStatuses { get; set; }
+        public DbSet<Sex> Sex { get; set; }
 
         public Context(DbContextOptions options) : base(options)
         {

@@ -9,10 +9,11 @@ namespace JustSellIt.Domain.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string AvatarImage { get; set; }
-        public Sex Sex { get; set; }
+        public int SexId { get; set; }
         public string City { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+        public virtual Sex Sex { get; set; }
         public OwnerContact OwnerContact { get; set; }
     }
 }

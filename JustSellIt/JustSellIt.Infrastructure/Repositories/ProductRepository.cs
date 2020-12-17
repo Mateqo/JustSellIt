@@ -21,7 +21,7 @@ namespace JustSellIt.Infrastructure.Repositories
             var item = _context.Products.Find(productId);
             if(item!=null)
             {
-                item.ProductStatus = ProductStatus.Deleted;
+                item.ProductStatusId = _context.ProductStatuses.FirstOrDefault(x => x.Name == "Deleted").Id;
                 _context.SaveChanges();
 
                 return true;

@@ -4,9 +4,14 @@ using System.Text;
 
 namespace JustSellIt.Domain.Model
 {
-    public enum Sex
+    public class Sex
     {
-        Male=0,
-        Female=1
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public virtual ICollection<Owner> Owners { get; set; }
+        //Our Sex:
+        //Male=0,
+        //Female=1
     }
 }

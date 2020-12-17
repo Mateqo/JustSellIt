@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JustSellIt.Domain.Model
+namespace JustSellIt.Application.ViewModels.Product
 {
-    public class Product
+    public class NewOrEditProductVm
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -14,10 +14,5 @@ namespace JustSellIt.Domain.Model
         public int OwnerId { get; set; }
         public int ProductStatusId { get; set; }
         public bool StorePolicy { get; set; }
-        public string RejectionReason { get; set; }
-
-        public virtual Category Category { get; set; }
-        public virtual ProductStatus ProductStatus { get; set; }
-        public virtual Owner  Owner { get; set; }
     }
 }
