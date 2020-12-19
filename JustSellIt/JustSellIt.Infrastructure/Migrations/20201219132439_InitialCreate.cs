@@ -60,19 +60,29 @@ namespace JustSellIt.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Owners",
+                name: "ProductStatuses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AvatarImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Sex = table.Column<int>(type: "int", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Owners", x => x.Id);
+                    table.PrimaryKey("PK_ProductStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sex",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sex", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -182,6 +192,28 @@ namespace JustSellIt.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Owners",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AvatarImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SexId = table.Column<int>(type: "int", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Owners", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Owners_Sex_SexId",
+                        column: x => x.SexId,
+                        principalTable: "Sex",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OwnersContact",
                 columns: table => new
                 {
@@ -210,10 +242,10 @@ namespace JustSellIt.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    ProductStatus = table.Column<int>(type: "int", nullable: false),
+                    ProductStatusId = table.Column<int>(type: "int", nullable: false),
                     StorePolicy = table.Column<bool>(type: "bit", nullable: false),
                     RejectionReason = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -230,6 +262,12 @@ namespace JustSellIt.Infrastructure.Migrations
                         name: "FK_Products_Owners_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "Owners",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductStatuses_ProductStatusId",
+                        column: x => x.ProductStatusId,
+                        principalTable: "ProductStatuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -274,6 +312,11 @@ namespace JustSellIt.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Owners_SexId",
+                table: "Owners",
+                column: "SexId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OwnersContact_OwnerRef",
                 table: "OwnersContact",
                 column: "OwnerRef",
@@ -288,6 +331,11 @@ namespace JustSellIt.Infrastructure.Migrations
                 name: "IX_Products_OwnerId",
                 table: "Products",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductStatusId",
+                table: "Products",
+                column: "ProductStatusId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -324,6 +372,12 @@ namespace JustSellIt.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Owners");
+
+            migrationBuilder.DropTable(
+                name: "ProductStatuses");
+
+            migrationBuilder.DropTable(
+                name: "Sex");
         }
     }
 }

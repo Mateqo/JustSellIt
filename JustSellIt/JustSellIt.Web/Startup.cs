@@ -1,3 +1,4 @@
+using JustSellIt.Application;
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.Services;
 using JustSellIt.Infrastructure;
@@ -31,8 +32,10 @@ namespace JustSellIt.Web
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
-            services.AddTransient<IProductService, ProductService>();
+            services.AddAplication();
+            services.AddInfrastructure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

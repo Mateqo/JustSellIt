@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Product;
 using JustSellIt.Domain.Interface;
+using JustSellIt.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +23,31 @@ namespace JustSellIt.Application.Services
         }
         public int Add(NewOrEditProductVm product)
         {
-            
+            return 1;
         }
 
-        public ListProductForListVm GetAllProduct()
+        public ListProductForListVm GetAllProduct(SearchProductVm searchProduct)
         {
-            var products = _productRepo.GetAllProducts().ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+            if (!searchProduct.ActualPage.HasValue)
+            {
+                searchProduct.ActualPage = 1;
+            }
+            if (searchProduct.SearchString is null)
+            {
+                searchProduct.SearchString = String.Empty;
+            }
+
+            var products = _productRepo.GetAllProducts().Where(x=>x.Title.StartsWith(searchProduct.SearchString))
+                .ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+
+            var productToShow = products.Skip((int)(searchProduct.PageSize * (searchProduct.ActualPage - 1))).Take(searchProduct.PageSize).ToList();
 
             var productList = new ListProductForListVm()
             {
-                Products = products,
+                PageSize = searchProduct.PageSize,
+                ActualPage = searchProduct.ActualPage,
+                SearchString = searchProduct.SearchString,
+                Products = productToShow,
                 Count = products.Count
             };
 

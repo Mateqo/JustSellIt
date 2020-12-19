@@ -7,7 +7,7 @@ namespace JustSellIt.Application.Interfaces
 {
     public interface IProductService
     {
-        ListProductForListVm GetAllProduct();
+        ListProductForListVm GetAllProduct(SearchProductVm searchProduct);
         int Add(NewOrEditProductVm product);
         ProductDetailsVm GetProductDetails(int productId);
     }

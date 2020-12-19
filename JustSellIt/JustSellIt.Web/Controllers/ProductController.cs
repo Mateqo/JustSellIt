@@ -1,4 +1,5 @@
 ﻿using JustSellIt.Application.Interfaces;
+using JustSellIt.Application.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,29 @@ namespace JustSellIt.Web.Controllers
             _productService = productService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
+            SearchProductVm searchProduct = new SearchProductVm();
+            var model = _productService.GetAllProduct(searchProduct);
 
-            return View();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Index(SearchProductVm searchProduct)
+        {          
+            var model = _productService.GetAllProduct(searchProduct);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult ViewProduct(int productId)
+        {
+            var model = _productService.GetProductDetails(productId);
+
+            return View(model);
         }
     }
 }

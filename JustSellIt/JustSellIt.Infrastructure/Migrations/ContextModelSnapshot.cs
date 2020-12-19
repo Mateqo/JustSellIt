@@ -50,10 +50,12 @@ namespace JustSellIt.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Sex")
+                    b.Property<int>("SexId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SexId");
 
                     b.ToTable("Owners");
                 });
@@ -98,10 +100,10 @@ namespace JustSellIt.Infrastructure.Migrations
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductStatus")
+                    b.Property<int>("ProductStatusId")
                         .HasColumnType("int");
 
                     b.Property<string>("RejectionReason")
@@ -119,7 +121,39 @@ namespace JustSellIt.Infrastructure.Migrations
 
                     b.HasIndex("OwnerId");
 
+                    b.HasIndex("ProductStatusId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("JustSellIt.Domain.Model.ProductStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductStatuses");
+                });
+
+            modelBuilder.Entity("JustSellIt.Domain.Model.Sex", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sex");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -322,6 +356,17 @@ namespace JustSellIt.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("JustSellIt.Domain.Model.Owner", b =>
+                {
+                    b.HasOne("JustSellIt.Domain.Model.Sex", "Sex")
+                        .WithMany("Owners")
+                        .HasForeignKey("SexId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sex");
+                });
+
             modelBuilder.Entity("JustSellIt.Domain.Model.OwnerContact", b =>
                 {
                     b.HasOne("JustSellIt.Domain.Model.Owner", "Owner")
@@ -347,9 +392,17 @@ namespace JustSellIt.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("JustSellIt.Domain.Model.ProductStatus", "ProductStatus")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
 
                     b.Navigation("Owner");
+
+                    b.Navigation("ProductStatus");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -413,6 +466,16 @@ namespace JustSellIt.Infrastructure.Migrations
                     b.Navigation("OwnerContact");
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("JustSellIt.Domain.Model.ProductStatus", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("JustSellIt.Domain.Model.Sex", b =>
+                {
+                    b.Navigation("Owners");
                 });
 #pragma warning restore 612, 618
         }
