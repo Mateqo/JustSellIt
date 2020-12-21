@@ -59,9 +59,16 @@ namespace JustSellIt.Infrastructure.Repositories
             return categories;
         }
 
+        public IQueryable<ProductStatus> GetAllStatuses()
+        {
+            var statuses = _context.ProductStatuses;
+
+            return statuses;
+        }
+
         public IQueryable<Product> GetAllProducts()
         {
-            var products = _context.Products.Where(x => x.ProductStatus.Name == "Published");
+            var products = _context.Products.Where(x => x.ProductStatus.Name != "Deleted");
 
             return products;
         }

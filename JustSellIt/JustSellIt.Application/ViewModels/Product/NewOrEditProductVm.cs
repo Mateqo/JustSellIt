@@ -1,10 +1,11 @@
-﻿using System;
+﻿using JustSellIt.Application.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace JustSellIt.Application.ViewModels.Product
 {
-    public class NewOrEditProductVm
+    public class NewOrEditProductVm :IMapFrom<JustSellIt.Domain.Model.Product>
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -14,5 +15,10 @@ namespace JustSellIt.Application.ViewModels.Product
         public int OwnerId { get; set; }
         public int ProductStatusId { get; set; }
         public bool StorePolicy { get; set; }
+
+        public void Mapping(MappingProfile profile)
+        {
+            profile.CreateMap<NewOrEditProductVm, JustSellIt.Domain.Model.Product>();
+        }
     }
 }

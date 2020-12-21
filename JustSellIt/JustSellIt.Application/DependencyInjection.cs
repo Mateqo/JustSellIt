@@ -14,6 +14,7 @@ namespace JustSellIt.Application
         public static IServiceCollection AddAplication(this IServiceCollection services)
         {
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IStatusService, StatusService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;

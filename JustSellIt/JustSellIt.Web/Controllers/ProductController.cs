@@ -11,10 +11,12 @@ namespace JustSellIt.Web.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IStatusService _statusService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IStatusService statusService)
         {
             _productService = productService;
+            _statusService = statusService;
         }
 
         [HttpGet]
@@ -40,6 +42,25 @@ namespace JustSellIt.Web.Controllers
             var model = _productService.GetProductDetails(productId);
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AddProduct()
+        {
+            NewOrEditProductVm newProduct = new NewOrEditProductVm() 
+            { 
+                ProductStatusId = _statusService.GetIdBeforeNew() 
+            };
+
+            return View(newProduct);
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct(NewOrEditProductVm model)
+        {
+            var id = _productService.AddProduct(model);
+
+            return RedirectToAction("Index");
         }
     }
 }

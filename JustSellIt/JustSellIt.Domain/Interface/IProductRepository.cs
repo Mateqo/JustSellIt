@@ -13,6 +13,7 @@ namespace JustSellIt.Domain.Interface
         IQueryable<Product> GetProductsByCategoryId(int categoryId);
         Product GetProductById(int productId);
         IQueryable<Category> GetAllCategory();
+        IQueryable<ProductStatus> GetAllStatuses();
         IQueryable<Product> GetAllProducts();
         IQueryable<Owner> GetAllOwners();
 
