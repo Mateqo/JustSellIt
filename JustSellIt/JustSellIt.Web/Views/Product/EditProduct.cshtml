@@ -1,20 +1,18 @@
 ﻿@model JustSellIt.Application.ViewModels.Product.NewOrEditProductVm
 
 @{
-    ViewData["Title"] = "AddProduct";
+    ViewData["Title"] = "EditProduct";
 }
 
-<h1>AddProduct</h1>
+<h1>EditProduct</h1>
 
 <h4>NewOrEditProductVm</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddProduct">
+        <form asp-action="EditProduct">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <input type="hidden" asp-for="Id" />
-            </div>
+                <input type="hidden" asp-for="Id"/>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
@@ -51,7 +49,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

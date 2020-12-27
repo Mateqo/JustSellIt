@@ -10,5 +10,8 @@ namespace JustSellIt.Application.Interfaces
         ListProductForListVm GetAllProduct(SearchProductVm searchProduct);
         int AddProduct(NewOrEditProductVm product);
         ProductDetailsVm GetProductDetails(int productId);
+        NewOrEditProductVm GetProductForEdit(int id);
+        void UpdateProduct(NewOrEditProductVm model);
+        void DeleteProduct(int id);
     }
 }

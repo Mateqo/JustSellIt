@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "6zslz/qvsHh9HNbZYLtmb7F5+j/XvO7bjUn49vCm1E/fdY7O0DCh2znOmQiGTsBVoJR2nx5fM1XgvJQzZX837w==",
+  "dgSpecHash": "/72a28N4WEb6fDpZ6gbjBeXrn/zUTgnpgLeJDz4KstbH6sOP4mac4d9smtEBQoyULNAgMhyXUWqXAXHwNr573w==",
   "success": true,
   "projectFilePath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Application\\JustSellIt.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\fluentvalidation\\9.3.0\\fluentvalidation.9.3.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.3.0\\fluentvalidation.aspnetcore.9.3.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.3.0\\fluentvalidation.dependencyinjectionextensions.9.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

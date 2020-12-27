@@ -61,5 +61,30 @@ namespace JustSellIt.Application.Services
 
             return productVM;
         }
+
+        public NewOrEditProductVm GetProductForEdit(int id)
+        {
+            var product = _productRepo.GetProductById(id);
+            var productVM= _mapper.Map<NewOrEditProductVm>(product);
+
+            return productVM;
+        }
+
+        public void UpdateProduct(NewOrEditProductVm model)
+        {
+            var product = _mapper.Map<Product>(model);
+            _productRepo.UpdateProduct(product);
+        }
+
+        public void DeleteProduct(NewOrEditProductVm model)
+        {
+            var product = _mapper.Map<Product>(model);
+            _productRepo.UpdateProduct(product);
+        }
+
+        public void DeleteProduct(int id)
+        {
+            _productRepo.DeleteProduct(id);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using JustSellIt.Application.Mapping;
+﻿using FluentValidation;
+using JustSellIt.Application.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +19,19 @@ namespace JustSellIt.Application.ViewModels.Product
 
         public void Mapping(MappingProfile profile)
         {
-            profile.CreateMap<NewOrEditProductVm, JustSellIt.Domain.Model.Product>();
+            profile.CreateMap<NewOrEditProductVm, JustSellIt.Domain.Model.Product>().ReverseMap();
+        }
+
+    }
+
+    public class NewOrEditProductValidation:AbstractValidator<NewOrEditProductVm>
+    {
+        public NewOrEditProductValidation()
+        {
+            RuleFor(x => x.Id).NotNull();
+            RuleFor(x => x.Title).Length(2,20).WithMessage("Nieprawidłowa długość");
+            RuleFor(x => x.Title).NotNull().WithMessage("Nieprawidłowa długość");
+            RuleFor(x => x.Description).MaximumLength(60);
         }
     }
 }

@@ -27,6 +27,7 @@ namespace JustSellIt.Web.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Witamy w HomeController");
             return View();
         }
 

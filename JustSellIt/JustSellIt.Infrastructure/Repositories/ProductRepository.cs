@@ -80,5 +80,12 @@ namespace JustSellIt.Infrastructure.Repositories
             return owners;
         }
 
+        public void UpdateProduct(Product product)
+        {
+            _context.Attach(product);
+            _context.Entry(product).Property("Title").IsModified = true;
+            _context.Entry(product).Property("Description").IsModified = true;
+            _context.SaveChanges();
+        }
     }
 }
