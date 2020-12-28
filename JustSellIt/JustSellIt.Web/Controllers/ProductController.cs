@@ -53,7 +53,7 @@ namespace JustSellIt.Web.Controllers
                 ProductStatusId = _statusService.GetIdBeforeNew()
             };
 
-            return View(newProduct);
+            return View("AddOrEditProduct",newProduct);
         }
 
         [HttpPost]

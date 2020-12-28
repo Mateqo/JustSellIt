@@ -1,0 +1,25 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&display=swap');
+
+:root {
+    --main-color: #36486b;
+    --bg-color: #f2f4f5;
+    --font-color: #406367;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.navbar {
+    background-color: var(--main-color) !important;
+}
+
+.form-control:active, .form-control:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+    background-color: var(--bg-color);
+    border-color: #ced4da;
+    border-bottom: 5px solid var(--main-color);
+}
+

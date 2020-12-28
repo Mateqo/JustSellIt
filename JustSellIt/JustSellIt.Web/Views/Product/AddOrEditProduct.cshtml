@@ -1,0 +1,87 @@
+﻿@model JustSellIt.Application.ViewModels.Product.NewOrEditProductVm
+
+@{
+    ViewData["Title"] = "AddProduct";
+}
+
+<div class="add-title form-inline mt-4">
+    <i class="fas fa-tag form-inline"></i><h1 class="ml-4">Dodaj ogłoszenie!</h1>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-12 mt-3">
+        <form asp-action="AddProduct">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="add-section">
+                <div class="add-subtitle">
+                    <span>Dodaj tytuł</span>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="add-caption">
+                        <label class="control-label">Tytuł<span class="add-required">*</span></label>
+                    </div>
+                    <input asp-for="Title" class="form-control add-field" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <div class="add-caption">
+                        <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                    </div>
+                    <input asp-for="CategoryId" class="form-control add-field" />
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="add-section mt-4">
+                <div class="add-subtitle">
+                    <span>Dobierz cenę</span>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="add-caption">
+                        <label class="control-label">Cena<span class="add-required">*</span></label>
+                    </div>
+                    <input asp-for="Price" class="form-control add-field" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="add-section mt-4">
+                <div class="add-subtitle">
+                    <span>Wprowadź opis</span>
+                </div>
+                <div class="form-group col-md-8">
+                    <div class="add-caption">
+                        <label class="control-label">Opis<span class="add-required">*</span></label>
+                    </div>
+                    <textarea asp-for="Description" class="form-control add-field" rows="5" style="resize: horizontal;"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="OwnerId" />
+            <input type="hidden" asp-for="ProductStatusId" />
+
+            <div class="form-group form-check mt-4">
+                <label class="form-check-label">
+                    <input class="form-check-input add-checkbox" asp-for="StorePolicy" /> <span class="add-storePolicy">Wyrażam zgodę na używanie przez Grupę JustSellIt środków komunikacji elektronicznej oraz telekomunikacyjnych urządzeń końcowych w celu przesyłania mi informacji handlowych oraz prowadzenia marketingu (np. newsletter) przez Grupę JustSellIt, podmioty powiązane i partnerów biznesowych. Moja zgoda obejmuje numery telefonów i adresy e-mail wykorzystywane podczas korzystania z usług Grupy JustSellIT. Wyrażoną zgodę można wycofać lub ograniczyć w dowolnej chwili za pomocą odpowiednich ustawień konta lub zgłaszając nam takie żądanie.</span><span class="add-required">*</span>
+                </label>
+            </div>
+
+            <div class="form-group mt-4 mr-4 float-right">
+                <input type="submit" value="Dodaj" class="btn add-btn" />
+                <input type="submit" value="Zapisz jako wersja robocza" class="btn add-btn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/js/autosize.min.js"></script>
+<script type="text/javascript">
+
+    autosize(document.querySelectorAll('textarea'));
+
+</script>

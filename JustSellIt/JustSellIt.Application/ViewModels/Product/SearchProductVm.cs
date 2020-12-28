@@ -6,7 +6,7 @@ namespace JustSellIt.Application.ViewModels.Product
 {
     public class SearchProductVm
     {
-        public int PageSize { get; set; } = 2;
+        public int PageSize { get; set; } = SystemConfiguration.DefaultPageSize;
         public int? ActualPage { get; set; }
         public string SearchString { get; set; }
     }

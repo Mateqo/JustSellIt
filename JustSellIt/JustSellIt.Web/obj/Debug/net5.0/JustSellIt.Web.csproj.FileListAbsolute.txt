@@ -896,7 +896,6 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Product\ViewProduct.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Product\AddProduct.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\FluentValidation.dll
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
@@ -908,3 +907,4 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Serilog.Sinks.Async.dll
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Serilog.Sinks.File.dll
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Serilog.Sinks.RollingFile.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Product\AddOrEditProduct.cshtml.g.cs
