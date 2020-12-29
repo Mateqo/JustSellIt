@@ -16,49 +16,85 @@
             <input type="hidden" asp-for="Id" />
 
             <div class="add-section">
-                <div class="add-subtitle">
-                    <span>Dodaj tytuł</span>
-                </div>
-                <div class="form-group col-md-4">
-                    <div class="add-caption">
-                        <label class="control-label">Tytuł<span class="add-required">*</span></label>
-                    </div>
-                    <input asp-for="Title" class="form-control add-field" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+                <div class="add-subtitle mt-2 mb-2">
+                    <i class="fas fa-dolly" style="font-size:30px;"></i>
+                    <span>Informacje o produkcie</span>
+                    <hr />
                 </div>
 
-                <div class="form-group col-md-3">
-                    <div class="add-caption">
-                        <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="col-md-12">
+                            <div class="add-caption">
+                                <label class="control-label">Tytuł<span class="add-required">*</span></label>
+                            </div>
+                            <input asp-for="Title" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Dobierz odpowiedni tytuł do swojego produktu. Prosimy, nie pisz WIELKIMI LITERAMI." />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="add-caption">
+                                <label class="control-label">Cena<span class="add-required">*</span></label>
+                            </div>
+                            <input asp-for="Price" class="form-control add-field" autocomplete="off" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <span class="add-switchtext">Do negocjacji</span>
+                            <label class="switch ml-4">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
                     </div>
-                    <input asp-for="CategoryId" class="form-control add-field" />
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
-                </div>
-            </div>
-            
-            <div class="add-section mt-4">
-                <div class="add-subtitle">
-                    <span>Dobierz cenę</span>
-                </div>
-                <div class="form-group col-md-4">
-                    <div class="add-caption">
-                        <label class="control-label">Cena<span class="add-required">*</span></label>
+
+                    <div class="col-md-7">
+                        <div class="col-md-12">
+                            <div class="add-caption">
+                                <label class="control-label">Opis<span class="add-required">*</span></label>
+                            </div>
+                            <textarea asp-for="Description" class="form-control add-field" rows="8" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Opisz szczegółowo, co oferujesz. To ważne, ponieważ dobrze opisane oferty dostają więcej odpowiedzi. Nie używaj wulgaryzmów i WIELKICH LITER."></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
                     </div>
-                    <input asp-for="Price" class="form-control add-field" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="add-section mt-4">
-                <div class="add-subtitle">
-                    <span>Wprowadź opis</span>
+                <div class="add-subtitle mt-2 mb-2">
+                    <i class="fas fa-user" style="font-size:30px;"></i>
+                    <span>Dane sprzedawcy</span>
+                    <hr />
                 </div>
-                <div class="form-group col-md-8">
-                    <div class="add-caption">
-                        <label class="control-label">Opis<span class="add-required">*</span></label>
+                <div class="row ml-1">
+                    <div class="col-md-4">
+                        <div class="add-caption">
+                            <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                        </div>
+                        <input asp-for="CategoryId" class="form-control add-field" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
-                    <textarea asp-for="Description" class="form-control add-field" rows="5" style="resize: horizontal;"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
+                    <div class="col-md-4">
+                        <div class="add-caption">
+                            <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                        </div>
+                        <input asp-for="CategoryId" class="form-control add-field" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="add-caption">
+                            <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                        </div>
+                        <input asp-for="CategoryId" class="form-control add-field" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="add-caption">
+                            <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                        </div>
+                        <input asp-for="CategoryId" class="form-control add-field" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
 
@@ -79,9 +115,15 @@
     </div>
 </div>
 
-<script src="~/js/autosize.min.js"></script>
-<script type="text/javascript">
+@section Scripts {
+    <script src="~/js/autosize.min.js"></script>
+    <script type="text/javascript">
 
-    autosize(document.querySelectorAll('textarea'));
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
 
-</script>
+        autosize(document.querySelectorAll('textarea'));
+
+    </script>
+}
