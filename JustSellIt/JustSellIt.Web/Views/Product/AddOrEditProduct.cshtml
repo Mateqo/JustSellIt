@@ -28,23 +28,42 @@
                             <div class="add-caption">
                                 <label class="control-label">Tytuł<span class="add-required">*</span></label>
                             </div>
-                            <input asp-for="Title" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Dobierz odpowiedni tytuł do swojego produktu. Prosimy, nie pisz WIELKIMI LITERAMI." />
+                            <input placeholder="Produkt" asp-for="Title" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Dobierz odpowiedni tytuł do swojego produktu. Prosimy, nie pisz WIELKIMI LITERAMI." />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12 col-sm-12 add-price mt-3">
                             <div class="add-caption">
                                 <label class="control-label">Cena<span class="add-required">*</span></label>
                             </div>
-                            <input asp-for="Price" class="form-control add-field" autocomplete="off" />
+                            <div class="input-group">
+                                <input placeholder="1 000,00" asp-for="Price" class="form-control add-field" autocomplete="off" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text">zł</span>
+                                </div>
+                            </div>
                             <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
-                        <div class="col-md-6 mt-4">
-                            <span class="add-switchtext">Do negocjacji</span>
+                        <div class="col-md-12 mt-5">
+                            <span class="add-text">Do negocjacji</span>
                             <label class="switch ml-4">
                                 <input type="checkbox">
                                 <span class="slider round"></span>
                             </label>
+                        </div>
+
+                        <div class="col-md-12 mt-5 btn-status">
+                            <span class="add-text">Stan<span class="add-required">*</span></span>
+                            <input type="button" id="new" value="Nowe" class="ml-3 btn btn-unchecked" onclick="setNew(this)" />
+                            <input type="button" id="used" value="Używane" class="ml-3 btn btn-unchecked" onclick="setUsed(this)" />
+                        </div>
+
+                        <div class="col-md-12 mt-5">
+                            <span class="add-text">Kategoria<span class="add-required">*</span></span>
+                            <div class="add-category mt-1">
+                                <img alt="Categories" src="~/images/categories.png" />
+                                <span class="ml-4">Wybierz kategorię...</span>
+                            </div>
                         </div>
                     </div>
 
@@ -53,8 +72,19 @@
                             <div class="add-caption">
                                 <label class="control-label">Opis<span class="add-required">*</span></label>
                             </div>
-                            <textarea asp-for="Description" class="form-control add-field" rows="8" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Opisz szczegółowo, co oferujesz. To ważne, ponieważ dobrze opisane oferty dostają więcej odpowiedzi. Nie używaj wulgaryzmów i WIELKICH LITER."></textarea>
+                            <textarea placeholder="Sprzedam produkt..." asp-for="Description" class="form-control add-field" rows="7" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Opisz szczegółowo, co oferujesz. To ważne, ponieważ dobrze opisane oferty dostają więcej odpowiedzi. Nie używaj wulgaryzmów i WIELKICH LITER."></textarea>
                             <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="mt-4">
+                            <span class="add-text ml-3">Zdjęcia</span>
+                            <div class="col-md-12 mt-2 row ml-0">
+                                <div class="add-upload-main col-md-4"><span>To będzie twoje zdjęcie główne</span></div>
+                                <div class="add-upload col-md-4 offset-md-1"><i class="fas fa-camera"></i></div>
+                            </div>
+                            <div class="col-md-12 mt-5 row ml-0">
+                                <div class="add-upload col-md-4"><i class="fas fa-camera"></i></div>
+                                <div class="add-upload col-md-4  offset-md-1"><i class="fas fa-camera"></i></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -63,37 +93,36 @@
             <div class="add-section mt-4">
                 <div class="add-subtitle mt-2 mb-2">
                     <i class="fas fa-user" style="font-size:30px;"></i>
-                    <span>Dane sprzedawcy</span>
+                    <span>Dane kontaktowe</span>
                     <hr />
                 </div>
-                <div class="row ml-1">
-                    <div class="col-md-4">
+                <div class="add-user-profile">
+                    <img src="~/images/man.png" alt="avatar"/>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
-                            <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                            <label class="control-label">lokalizacja<span class="add-required">*</span></label>
                         </div>
-                        <input asp-for="CategoryId" class="form-control add-field" />
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <input value="wrocław" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Wpisz nazwe miejscowości, a następnie wybierz ją z listy. "/>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
-                            <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                            <label class="control-label">imię<span class="add-required">*</span></label>
                         </div>
-                        <input asp-for="CategoryId" class="form-control add-field" />
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <input value="jan" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twoje imię możesz zmienić w ustawieniach."/>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
-                            <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                            <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
                         </div>
-                        <input asp-for="CategoryId" class="form-control add-field" />
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twój adres e-mail możesz zmienić w ustawieniach."/>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
-                            <label class="control-label">Wybierz kategorię<span class="add-required">*</span></label>
+                            <label class="control-label">Numer telefonu<span class="add-required">*</span></label>
                         </div>
-                        <input asp-for="CategoryId" class="form-control add-field" />
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <input value="667384853" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Podaj swój numer telefonu, aby inni użytkownicy mogli sie z tobą skontaktować."/>
                     </div>
                 </div>
             </div>
@@ -122,6 +151,15 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
+        function setNew(button) {
+            $(button).addClass("btn-checked")
+            $("#used").removeClass("btn-checked")
+        }
+        function setUsed(button) {
+            $(button).addClass("btn-checked")
+            $("#new").removeClass("btn-checked")
+        }
 
         autosize(document.querySelectorAll('textarea'));
 

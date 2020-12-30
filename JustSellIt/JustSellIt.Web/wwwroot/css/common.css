@@ -4,6 +4,7 @@
     --main-color: #36486b;
     --bg-color: #f2f4f5;
     --font-color: #406367;
+    --second-color: #92a8d1;
 }
 
 body {
@@ -76,7 +77,7 @@ body {
     transition: .4s;
 }
 
-    .slider:before {
+.slider:before {
         position: absolute;
         content: "";
         height: 26px;
@@ -109,4 +110,31 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/*---------------------------------GROUPTEXT*/
+
+.input-group-text {
+    border-radius: 0 0 .25rem .25rem;
+    color:var(--main-color);
+}
+/*---------------------------------BUTTON CHECKED*/
+
+.btn-status input {
+    background-color: var(--second-color);
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-checked{
+    background-color:var(--main-color) !important;
+}
+
+.btn:hover{
+    color:white;
+}
+
+.btn:focus {
+    box-shadow: none !important;
 }
