@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using JustSellIt.Application.Mapping;
+using JustSellIt.Domain.Model;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +18,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int OwnerId { get; set; }
         public int ProductStatusId { get; set; }
         public bool StorePolicy { get; set; }
+        public List<CategoryProductVm> Categories { get; set; }
 
         public void Mapping(MappingProfile profile)
         {

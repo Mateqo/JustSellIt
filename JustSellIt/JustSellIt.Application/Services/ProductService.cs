@@ -4,6 +4,7 @@ using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Product;
 using JustSellIt.Domain.Interface;
 using JustSellIt.Domain.Model;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,11 @@ namespace JustSellIt.Application.Services
         public void DeleteProduct(int id)
         {
             _productRepo.DeleteProduct(id);
+        }
+
+        public List<CategoryProductVm> GetAllCategory()
+        {          
+            return _productRepo.GetAllCategory().ProjectTo<CategoryProductVm>(_mapper.ConfigurationProvider).ToList();
         }
     }
 }

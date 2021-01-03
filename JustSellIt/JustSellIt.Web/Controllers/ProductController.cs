@@ -50,7 +50,8 @@ namespace JustSellIt.Web.Controllers
         {
             NewOrEditProductVm newProduct = new NewOrEditProductVm()
             {
-                ProductStatusId = _statusService.GetIdBeforeNew()
+                ProductStatusId = _statusService.GetIdBeforeNew(),
+                Categories = _productService.GetAllCategory()
             };
 
             return View("AddOrEditProduct",newProduct);

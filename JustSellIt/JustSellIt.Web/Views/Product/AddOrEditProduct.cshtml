@@ -44,7 +44,7 @@
                             </div>
                             <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
-                        <div class="col-md-12 mt-5">
+                        <div class="col-md-12 mt-5 add-negotiate">
                             <span class="add-text">Do negocjacji</span>
                             <label class="switch ml-4">
                                 <input type="checkbox">
@@ -52,7 +52,7 @@
                             </label>
                         </div>
 
-                        <div class="col-md-12 mt-5 btn-status">
+                        <div class="col-md-12 mt-5 add-status btn-status">
                             <span class="add-text">Stan<span class="add-required">*</span></span>
                             <input type="button" id="new" value="Nowe" class="ml-3 btn btn-unchecked" onclick="setNew(this)" />
                             <input type="button" id="used" value="Używane" class="ml-3 btn btn-unchecked" onclick="setUsed(this)" />
@@ -60,9 +60,9 @@
 
                         <div class="col-md-12 mt-5">
                             <span class="add-text">Kategoria<span class="add-required">*</span></span>
-                            <div class="add-category mt-1">
-                                <img alt="Categories" src="~/images/categories.png" />
-                                <span class="ml-4">Wybierz kategorię...</span>
+                            <div class="add-category mt-1" data-toggle="modal" data-target="#selectCategoryModal">
+                                <img id="categoryImg" alt="Categories" src="/images/categories/categories.png" />
+                                <span class="ml-lg-4">Wybierz kategorię...</span>
                             </div>
                         </div>
                     </div>
@@ -77,13 +77,13 @@
                         </div>
                         <div class="mt-4">
                             <span class="add-text ml-3">Zdjęcia</span>
-                            <div class="col-md-12 mt-2 row ml-0">
-                                <div class="add-upload-main col-md-4"><span>To będzie twoje zdjęcie główne</span></div>
-                                <div class="add-upload col-md-4 offset-md-1"><i class="fas fa-camera"></i></div>
+                            <div class="col-12 mt-2 row ml-0">
+                                <div class="add-upload-main col-4"><span>To będzie twoje zdjęcie główne</span></div>
+                                <div class="add-upload col-4 offset-1"><i class="fas fa-camera"></i></div>
                             </div>
-                            <div class="col-md-12 mt-5 row ml-0">
-                                <div class="add-upload col-md-4"><i class="fas fa-camera"></i></div>
-                                <div class="add-upload col-md-4  offset-md-1"><i class="fas fa-camera"></i></div>
+                            <div class="col-md-12 mt-5 row ml-0 add-images">
+                                <div class="add-upload col-4"><i class="fas fa-camera"></i></div>
+                                <div class="add-upload col-4  offset-1"><i class="fas fa-camera"></i></div>
                             </div>
                         </div>
                     </div>
@@ -97,32 +97,32 @@
                     <hr />
                 </div>
                 <div class="add-user-profile">
-                    <img src="~/images/man.png" alt="avatar"/>
+                    <img src="/images/sex/man.png" alt="avatar" />
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
                             <label class="control-label">lokalizacja<span class="add-required">*</span></label>
                         </div>
-                        <input value="wrocław" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Wpisz nazwe miejscowości, a następnie wybierz ją z listy. "/>
+                        <input value="Wrocław" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Wpisz nazwe miejscowości, a następnie wybierz ją z listy. " />
                     </div>
                     <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
                             <label class="control-label">imię<span class="add-required">*</span></label>
                         </div>
-                        <input value="jan" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twoje imię możesz zmienić w ustawieniach."/>
+                        <input value="Jan" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twoje imię możesz zmienić w ustawieniach." />
                     </div>
                     <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
                             <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
                         </div>
-                        <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twój adres e-mail możesz zmienić w ustawieniach."/>
+                        <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twój adres e-mail możesz zmienić w ustawieniach." />
                     </div>
                     <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
                             <label class="control-label">Numer telefonu<span class="add-required">*</span></label>
                         </div>
-                        <input value="667384853" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Podaj swój numer telefonu, aby inni użytkownicy mogli sie z tobą skontaktować."/>
+                        <input value="667384853" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Podaj swój numer telefonu, aby inni użytkownicy mogli sie z tobą skontaktować." />
                     </div>
                 </div>
             </div>
@@ -136,9 +136,33 @@
                 </label>
             </div>
 
-            <div class="form-group mt-4 mr-4 float-right">
-                <input type="submit" value="Dodaj" class="btn add-btn" />
-                <input type="submit" value="Zapisz jako wersja robocza" class="btn add-btn" />
+            <div class="form-group mt-4 mr-4 float-md-right">
+                <input type="submit" value="Dodaj" class="btn add-btn mb-3" />
+                <input type="submit" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" />
+            </div>
+
+            <div id="selectCategoryModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Wybierz kategorię</h4><i class="fas fa-times-circle" data-dismiss="modal" style="cursor:pointer; font-size:24px;"></i>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-inline">
+                                @{ foreach (var category in @Model.Categories)
+                                    {
+                                        <div class="col-3 text-center mt-4 add-modal-category" data-name="@category.Name" data-img="@category.Image" onclick="selectCategory(this);">
+                                            <div class="add-category-image" style="background-color:@category.ColorHex;">
+                                                <img src="/images/categories/@category.Image" />
+                                            </div>
+                                            <p>@category.Name</p>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -159,6 +183,13 @@
         function setUsed(button) {
             $(button).addClass("btn-checked")
             $("#new").removeClass("btn-checked")
+        }
+
+        function selectCategory(category) {
+            $('#selectCategoryModal').modal('hide')
+            $('.add-category span').text($(category).data('name'))
+            $('#categoryImg').attr("src", "/images/categories/" + $(category).data('img'))
+
         }
 
         autosize(document.querySelectorAll('textarea'));

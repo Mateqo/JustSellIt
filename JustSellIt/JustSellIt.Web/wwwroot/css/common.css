@@ -12,6 +12,10 @@ body {
     font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
+.modal{
+    color:var(--main-color);
+}
+
 .navbar {
     background-color: var(--main-color) !important;
 }
@@ -51,6 +55,15 @@ body {
     border-bottom-color: #3567f1;
 }
 
+@media only screen and (max-width: 767px) {
+    .tooltip-inner{
+        display:none;
+    }
+    .bs-tooltip-auto[x-placement^=bottom] .arrow::before,
+    .bs-tooltip-right .arrow::before {
+        display:none;
+    }
+}
 /*---------------------------------SWITCH*/
 
 .switch {
@@ -59,11 +72,11 @@ body {
     height: 34px;
 }
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 
 .slider {
     position: absolute;
@@ -77,7 +90,7 @@ body {
     transition: .4s;
 }
 
-.slider:before {
+    .slider:before {
         position: absolute;
         content: "";
         height: 26px;
@@ -101,22 +114,22 @@ input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-    background-color:white;
+    background-color: white;
 }
 
 .slider.round {
     border-radius: 34px;
 }
 
-.slider.round:before {
-    border-radius: 50%;
-}
+    .slider.round:before {
+        border-radius: 50%;
+    }
 
 /*---------------------------------GROUPTEXT*/
 
 .input-group-text {
     border-radius: 0 0 .25rem .25rem;
-    color:var(--main-color);
+    color: var(--main-color);
 }
 /*---------------------------------BUTTON CHECKED*/
 
@@ -127,12 +140,12 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
-.btn-checked{
-    background-color:var(--main-color) !important;
+.btn-checked {
+    background-color: var(--main-color) !important;
 }
 
-.btn:hover{
-    color:white;
+.btn:hover {
+    color: white;
 }
 
 .btn:focus {
