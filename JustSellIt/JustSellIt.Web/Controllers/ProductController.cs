@@ -1,4 +1,5 @@
 ﻿using JustSellIt.Application.Interfaces;
+using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Application.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JustSellIt.Web.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly IProductService _productService;
         private readonly IStatusService _statusService;
@@ -61,9 +62,18 @@ namespace JustSellIt.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(NewOrEditProductVm model)
         {
-            model.ProductStatusId = _statusService.GetIdForVeryfication();
-            _productService.AddProduct(model);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                model.ProductStatusId = _statusService.GetIdForVeryfication();
+                _productService.AddProduct(model);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                model.Categories = _productService.GetAllCategory();
+                SetMessage("Uzupełnij wymagane pola",MessageType.Error);
+                return View("AddOrEditProduct", model);
+            }
         }
 
         [HttpGet]

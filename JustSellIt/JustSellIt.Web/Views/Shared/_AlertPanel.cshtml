@@ -1,0 +1,25 @@
+﻿@{
+    string GetCss(JustSellIt.Application.ViewModels.Base.MessageType type)
+    {
+        switch (type)
+        {
+            case JustSellIt.Application.ViewModels.Base.MessageType.Success:
+                return "alert-success";
+            case JustSellIt.Application.ViewModels.Base.MessageType.Info:
+                return "alert-info";
+            case JustSellIt.Application.ViewModels.Base.MessageType.Warning:
+                return "alert-warning";
+            case JustSellIt.Application.ViewModels.Base.MessageType.Error:
+                return "alert-danger";
+            default:
+                return String.Empty;
+        };
+    }
+}
+
+@if (TempData["SM"] != null)
+{
+    <div class="alert @GetCss((JustSellIt.Application.ViewModels.Base.MessageType)TempData["SMT"])">
+        @TempData["SM"]
+    </div>
+}

@@ -151,3 +151,4 @@ input:checked + .slider:before {
 .btn:focus {
     box-shadow: none !important;
 }
+

@@ -167,3 +167,8 @@ Error Number:547,State:0,Class:16
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-01-03T20:21:51.8966263+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-01-03T20:21:51.9120283+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-01-03T20:21:51.9141536+01:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-01-03T20:21:52.3955015+01:00 8000035a-0006-fc00-b63f-84710c7967bb [INF] Witamy w HomeController (a3bde603)
+2021-01-03T20:21:59.7870512+01:00 800000e7-0003-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)

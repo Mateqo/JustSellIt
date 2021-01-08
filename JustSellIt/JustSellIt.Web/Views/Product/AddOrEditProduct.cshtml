@@ -9,6 +9,8 @@
 </div>
 <hr />
 
+<partial name="_AlertPanel" />
+
 <div class="row">
     <div class="col-md-12 mt-3">
         <form asp-action="AddProduct">
@@ -64,6 +66,8 @@
                                 <img id="categoryImg" alt="Categories" src="/images/categories/categories.png" />
                                 <span class="ml-lg-4">Wybierz kategorię...</span>
                             </div>
+                            <input type="hidden" asp-for="CategoryId" />
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -151,8 +155,8 @@
                             <div class="form-inline">
                                 @{ foreach (var category in @Model.Categories)
                                     {
-                                        <div class="col-3 text-center mt-4 add-modal-category" data-name="@category.Name" data-img="@category.Image" onclick="selectCategory(this);">
-                                            <div class="add-category-image" style="background-color:@category.ColorHex;">
+                                        <div class="col-6 col-sm-3 text-center mt-4 add-modal-category" data-name="@category.Name" data-img="@category.Image" onclick="selectCategory(this);">
+                                            <div class="add-category-image" style="background-color:@category.ColorHex;display:inline-block;">
                                                 <img src="/images/categories/@category.Image" />
                                             </div>
                                             <p>@category.Name</p>

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace JustSellIt.Application.ViewModels.Product
 {
@@ -13,7 +14,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
         public int CategoryId { get; set; }
         public int OwnerId { get; set; }
         public int ProductStatusId { get; set; }
@@ -32,9 +33,31 @@ namespace JustSellIt.Application.ViewModels.Product
         public NewOrEditProductValidation()
         {
             RuleFor(x => x.Id).NotNull();
-            RuleFor(x => x.Title).Length(2,20).WithMessage("Nieprawidłowa długość");
-            RuleFor(x => x.Title).NotNull().WithMessage("Nieprawidłowa długość");
-            RuleFor(x => x.Description).MaximumLength(60);
+
+            RuleFor(x => x.Title).NotNull().WithMessage("Tytył jest wymagany");
+            RuleFor(x => x.Title).MinimumLength(3).WithMessage("Minimalna długość to 3");
+            RuleFor(x => x.Title).MaximumLength(20).WithMessage("Maksymalna długosć to 20");
+
+            RuleFor(x => x.Description).NotNull().WithMessage("Opis jest wymagany");
+            RuleFor(x => x.Description).MinimumLength(3).WithMessage("Minimalna długość to 10");
+            RuleFor(x => x.Description).MaximumLength(100).WithMessage("Maksymalna długosć to 600");
+
+            RuleFor(x => x.Price).NotEmpty().WithMessage("Cena jest wymagana");
+            RuleFor(x => x.Price).Must(BeAValidPrice).WithMessage("Nieprawidłowy format ceny");
+
+            RuleFor(x => x.CategoryId).NotNull().WithMessage("Wybierz kategorię");
+
+            RuleFor(x => x.StorePolicy).NotNull().WithMessage("Wymagana jest akceptacja regulaminu");
+            RuleFor(x => x.StorePolicy).Equal(true).WithMessage("Wymagana jest akceptacja regulaminu");
+        }
+
+        private bool BeAValidPrice(decimal price)
+        {
+            Regex properPrice = new Regex(@"^\d+(,\d{2})?$");
+            if (properPrice.IsMatch(price.ToString()))
+                return true;
+            else
+                return false;
         }
     }
 }
