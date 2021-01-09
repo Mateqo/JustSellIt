@@ -10,6 +10,10 @@ namespace JustSellIt.Domain.Model
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal? Price { get; set; }
+        public bool IsNegotiate { get; set; }
+        public bool IsNew { get; set; }
+        public string Location { get; set; }
+        public string PhoneContact { get; set; }
         public int CategoryId { get; set; }
         public int OwnerId { get; set; }
         public int ProductStatusId { get; set; }

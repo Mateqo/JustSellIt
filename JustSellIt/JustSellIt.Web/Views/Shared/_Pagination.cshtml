@@ -1,0 +1,227 @@
+﻿
+
+<nav>
+    <div class="pagination">
+
+        @{ var lastIndex = Math.Ceiling(Model.Count / (double)Model.PageSize);
+            var step = 5;
+
+            if (lastIndex == 1)
+            {
+                <a class="page active-page disabled only-one-page" href="#" onclick="PagerClick(1)">1</a>
+            }
+            else
+            {
+                //LEFT SIDE PAGINATION
+                if (Model.ActualPage != 1)
+                {
+                    <a class="previous" href="#" onclick="PagerClick(@Model.ActualPage-1)"><i class="fas fa-backward"></i></a>
+                    <a class="page first-page" href="#" onclick="PagerClick(1)">1</a>
+                }
+                else
+                {
+                    <a class="page active-page disabled first-page" href="#" onclick="PagerClick(1)">1</a>
+                }
+
+                //CENTER PAGINATION
+                if (Model.ActualPage < 6)
+                {
+
+                    if (Model.ActualPage + 4 < lastIndex)
+                    {
+                        @for (int i = 2; i <= Model.ActualPage + 3; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                        <a class="page" href="#" onclick="PagerClick(@Model.ActualPage+@step)">...</a>
+                    }
+                    else if (Model.ActualPage + 3 < lastIndex)
+                    {
+                        @for (int i = 2; i <= Model.ActualPage + 3; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                    else if (Model.ActualPage + 3 == lastIndex)
+                    {
+                        @for (int i = 2; i <= Model.ActualPage + 2; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                    else if (Model.ActualPage + 2 == lastIndex)
+                    {
+                        @for (int i = 2; i <= Model.ActualPage + 1; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                    else if (Model.ActualPage + 1 == lastIndex)
+                    {
+                        @for (int i = 2; i <= Model.ActualPage; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                    else if (Model.ActualPage == lastIndex)
+                    {
+                        @for (int i = 2; i <= Model.ActualPage - 1; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (Model.ActualPage + 4 < lastIndex)
+                    {
+                        <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
+                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage + 3; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                        <a class="page" href="#" onclick="PagerClick(@Model.ActualPage+@step)">...</a>
+                    }
+                    else if (Model.ActualPage + 3 < lastIndex)
+                    {
+                        <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
+                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage + 3; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                    else if (Model.ActualPage + 3 == lastIndex)
+                    {
+                        <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
+                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage + 2; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                    else if (Model.ActualPage + 2 == lastIndex)
+                    {
+                        <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
+                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage + 1; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                    else if (Model.ActualPage + 1 == lastIndex)
+                    {
+                        <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
+                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                    else if (Model.ActualPage == lastIndex)
+                    {
+                        <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
+                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage - 1; i++)
+                        {
+                            if (i != Model.ActualPage)
+                            {
+                                <a class="page" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                            else
+                            {
+                                <a class="page active-page disabled" href="#" onclick="PagerClick(@i)">@i</a>
+                            }
+                        }
+                    }
+                }
+
+
+
+                //RIGHT SIDE PAGINATION
+                if (Model.ActualPage != lastIndex)
+                {
+                    <a class="page last-page" href="#" onclick="PagerClick(@lastIndex)">@lastIndex</a>
+                    <a class="next" href="#" onclick="PagerClick(@Model.ActualPage+1)"><i class="fas fa-forward"></i></a>
+                }
+                else
+                {
+                    <a class="page active-page disabled last-page" href="#" onclick="PagerClick(@lastIndex)">@lastIndex</a>
+                }
+            }
+
+        }
+    </div>
+</nav>

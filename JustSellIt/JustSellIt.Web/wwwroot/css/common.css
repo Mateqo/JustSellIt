@@ -12,8 +12,8 @@ body {
     font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
-.modal{
-    color:var(--main-color);
+.modal {
+    color: var(--main-color);
 }
 
 .navbar {
@@ -56,12 +56,13 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
-    .tooltip-inner{
-        display:none;
+    .tooltip-inner {
+        display: none;
     }
+
     .bs-tooltip-auto[x-placement^=bottom] .arrow::before,
     .bs-tooltip-right .arrow::before {
-        display:none;
+        display: none;
     }
 }
 /*---------------------------------SWITCH*/
@@ -151,4 +152,70 @@ input:checked + .slider:before {
 .btn:focus {
     box-shadow: none !important;
 }
+/*---------------------------------PAGINATION*/
 
+.pagination {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+    .pagination .page {
+        position: relative;
+        display: block;
+        padding: 0.5rem 0.75rem;
+        line-height: 1.25;
+        color: white;
+        border: 1px solid #f2f4f5;
+        background-color: var(--main-color);
+        transition: .4s;
+    }
+
+    .pagination .first-page {
+        border-radius: 0.25rem 0 0 0.25rem;
+    }
+
+    .pagination .last-page {
+        border-radius: 0 0.25rem 0.25rem 0;
+    }
+
+    .pagination .only-one-page {
+        border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;
+    }
+
+    .pagination .page:hover {
+        background-color: var(--second-color);
+    }
+
+    .pagination .active-page {
+        background-color: var(--second-color) !important;
+    }
+
+        .pagination .active-page:hover {
+            cursor: default;
+        }
+
+    .pagination .previous {
+        font-size: 20px;
+        margin-right: 10px;
+        margin-top: 3px;
+        color: var(--main-color);
+        transition: .4s;
+    }
+
+        .pagination .previous:hover {
+            color: var(--second-color);
+        }
+
+    .pagination .next {
+        font-size: 20px;
+        margin-left: 10px;
+        margin-top: 3px;
+        color: var(--main-color);
+        transition: .4s;
+    }
+
+        .pagination .next:hover {
+            color: var(--second-color);
+        }

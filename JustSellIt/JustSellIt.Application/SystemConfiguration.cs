@@ -6,6 +6,6 @@ namespace JustSellIt.Application
 {
     public static class SystemConfiguration
     {
-        public static int DefaultPageSize = 2;
+        public static int DefaultPageSize = 4;
     }
 }

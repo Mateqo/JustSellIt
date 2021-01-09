@@ -49,24 +49,43 @@
                         <div class="col-md-12 mt-5 add-negotiate">
                             <span class="add-text">Do negocjacji</span>
                             <label class="switch ml-4">
-                                <input type="checkbox">
+                                <input type="checkbox" asp-for="IsNegotiate">
                                 <span class="slider round"></span>
                             </label>
                         </div>
 
                         <div class="col-md-12 mt-5 add-status btn-status">
-                            <span class="add-text">Stan<span class="add-required">*</span></span>
-                            <input type="button" id="new" value="Nowe" class="ml-3 btn btn-unchecked" onclick="setNew(this)" />
-                            <input type="button" id="used" value="Używane" class="ml-3 btn btn-unchecked" onclick="setUsed(this)" />
+                            <span class="add-text">Stan</span>
+                            @if (Model.IsNew)
+                            {
+                                <input type="button" id="used" value="Używane" class="ml-3 btn btn-unchecked" onclick="setUsed(this)" />
+                                <input type="button" id="new" value="Nowe" class="ml-3 btn btn-checked" onclick="setNew(this)" />
+                            }
+                            else
+                            {
+                                <input type="button" id="used" value="Używane" class="ml-3 btn btn-checked" onclick="setUsed(this)" />
+                                <input type="button" id="new" value="Nowe" class="ml-3 btn btn-unchecked" onclick="setNew(this)" />
+                            }
+                            <input id="status" type="hidden" class="form-check-input add-checkbox" asp-for="IsNew" />
                         </div>
 
                         <div class="col-md-12 mt-5">
                             <span class="add-text">Kategoria<span class="add-required">*</span></span>
                             <div class="add-category mt-1" data-toggle="modal" data-target="#selectCategoryModal">
-                                <img id="categoryImg" alt="Categories" src="/images/categories/categories.png" />
-                                <span class="ml-lg-4">Wybierz kategorię...</span>
+                                @if (Model.CategoryImage != null)
+                                {
+                                    <img id="categoryImg" alt="Categories" src="@Model.CategoryImage" />
+                                    <span class="ml-lg-4">@Model.CategoryName</span>
+                                }
+                                else
+                                {
+                                    <img id="categoryImg" alt="Categories" src="/images/categories/categories.png" />
+                                    <span class="ml-lg-4">Wybierz kategorię...</span>
+                                }
                             </div>
-                            <input type="hidden" asp-for="CategoryId" />
+                            <input id="category" type="hidden" asp-for="CategoryId" />
+                            <input id="categoryImage" type="hidden" asp-for="CategoryImage" />
+                            <input id="categoryName" type="hidden" asp-for="CategoryName" />
                             <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                     </div>
@@ -106,38 +125,47 @@
                 <div class="row mb-4">
                     <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
-                            <label class="control-label">lokalizacja<span class="add-required">*</span></label>
+                            <label class="control-label">Lokalizacja<span class="add-required">*</span></label>
                         </div>
-                        <input value="Wrocław" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Wpisz nazwe miejscowości, a następnie wybierz ją z listy. " />
+                        @*TO DO - pobrać deafultowe miasto od użytkownika*@
+                        @{ var locationValue = Model.Location ?? "Wrocław"; }
+                        <input asp-for="Location" value="@locationValue" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Wpisz nazwe miejscowości, a następnie wybierz ją z listy. " />
+                        <span asp-validation-for="Location" class="text-danger"></span>
                     </div>
                     <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
-                            <label class="control-label">imię<span class="add-required">*</span></label>
+                            <label class="control-label">Imię<span class="add-required">*</span></label>
                         </div>
+                        @*TO DO - na sztywno póki co*@
                         <input value="Jan" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twoje imię możesz zmienić w ustawieniach." />
                     </div>
                     <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
                             <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
                         </div>
+                        @*TO DO - na sztywno póki co*@
                         <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twój adres e-mail możesz zmienić w ustawieniach." />
                     </div>
                     <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
                             <label class="control-label">Numer telefonu<span class="add-required">*</span></label>
                         </div>
-                        <input value="667384853" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Podaj swój numer telefonu, aby inni użytkownicy mogli sie z tobą skontaktować." />
+                        @*TO DO - pobrać deafultowy numer od użytkownika*@
+                        @{ var phoneValue = Model.PhoneContact ?? "666486954"; }
+                        <input asp-for="PhoneContact" value="@phoneValue" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Podaj swój numer telefonu, aby inni użytkownicy mogli sie z tobą skontaktować." />
+                        <span asp-validation-for="PhoneContact" class="text-danger"></span>
                     </div>
                 </div>
             </div>
-
-            <input type="hidden" asp-for="OwnerId" />
+            @*TO DO - owner na sztywno póki co*@
+            <input type="hidden" asp-for="OwnerId" value="5" />
             <input type="hidden" asp-for="ProductStatusId" />
 
             <div class="form-group form-check mt-4">
                 <label class="form-check-label">
                     <input class="form-check-input add-checkbox" asp-for="StorePolicy" /> <span class="add-storePolicy">Wyrażam zgodę na używanie przez Grupę JustSellIt środków komunikacji elektronicznej oraz telekomunikacyjnych urządzeń końcowych w celu przesyłania mi informacji handlowych oraz prowadzenia marketingu (np. newsletter) przez Grupę JustSellIt, podmioty powiązane i partnerów biznesowych. Moja zgoda obejmuje numery telefonów i adresy e-mail wykorzystywane podczas korzystania z usług Grupy JustSellIT. Wyrażoną zgodę można wycofać lub ograniczyć w dowolnej chwili za pomocą odpowiednich ustawień konta lub zgłaszając nam takie żądanie.</span><span class="add-required">*</span>
                 </label>
+                <span asp-validation-for="StorePolicy" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-4 mr-4 float-md-right">
@@ -155,9 +183,9 @@
                             <div class="form-inline">
                                 @{ foreach (var category in @Model.Categories)
                                     {
-                                        <div class="col-6 col-sm-3 text-center mt-4 add-modal-category" data-name="@category.Name" data-img="@category.Image" onclick="selectCategory(this);">
+                                        <div class="col-6 col-sm-3 text-center mt-4 add-modal-category" data-name="@category.Name" data-img="@category.Image" data-id="@category.Id" onclick="selectCategory(this);">
                                             <div class="add-category-image" style="background-color:@category.ColorHex;display:inline-block;">
-                                                <img src="/images/categories/@category.Image" />
+                                                <img alt="@category.Name Image"src="/images/categories/@category.Image" />
                                             </div>
                                             <p>@category.Name</p>
                                         </div>
@@ -181,19 +209,23 @@
         })
 
         function setNew(button) {
-            $(button).addClass("btn-checked")
-            $("#used").removeClass("btn-checked")
+            $(button).addClass("btn-checked");
+            $("#used").removeClass("btn-checked");
+            $('#status').val("true")
         }
         function setUsed(button) {
-            $(button).addClass("btn-checked")
-            $("#new").removeClass("btn-checked")
+            $(button).addClass("btn-checked");
+            $("#new").removeClass("btn-checked");
+            $('#status').val("false")
         }
 
         function selectCategory(category) {
             $('#selectCategoryModal').modal('hide')
             $('.add-category span').text($(category).data('name'))
             $('#categoryImg').attr("src", "/images/categories/" + $(category).data('img'))
-
+            $('#category').val($(category).data('id'))
+            $('#categoryImage').val("/images/categories/" + $(category).data('img'))
+            $('#categoryName').val($(category).data('name'))
         }
 
         autosize(document.querySelectorAll('textarea'));

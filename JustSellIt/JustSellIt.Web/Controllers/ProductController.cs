@@ -66,6 +66,7 @@ namespace JustSellIt.Web.Controllers
             {
                 model.ProductStatusId = _statusService.GetIdForVeryfication();
                 _productService.AddProduct(model);
+                SetMessage("Ogłoszenie dodane", MessageType.Success);
                 return RedirectToAction("Index");
             }
             else

@@ -4,7 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Lista ogłoszeń</h1>
+<hr />
+
+<partial name="_AlertPanel" />
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -52,25 +55,12 @@
             }
         </tbody>
     </table>
-    <div class="row">
-        @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
-        {
-        <div class="inline-block" style="border:1px solid black">
-            @if (i != Model.ActualPage)
-            {
-                <a href="#" onclick="PagerClick(@i)">@i </a>
-            }
-            else
-            {
-                <a href="#" onclick="PagerClick(@i)">@i (obecna) </a>
-            }
-        </div>
-        }
-        <input type="hidden" asp-for="ActualPage" id="actualPage" />
-        <input type="hidden" asp-for="PageSize" id="pageSize" />
-    </div>
-</form>
 
+    <partial name="_Pagination" />
+
+    <input type="hidden" asp-for="ActualPage" id="actualPage" />
+    <input type="hidden" asp-for="PageSize" id="pageSize" />
+</form>
 
 @section Scripts
 {
