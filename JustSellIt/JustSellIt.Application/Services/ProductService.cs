@@ -49,7 +49,8 @@ namespace JustSellIt.Application.Services
                 ActualPage = searchProduct.ActualPage,
                 SearchString = searchProduct.SearchString,
                 Products = productToShow,
-                Count = products.Count
+                Count = products.Count,
+                Categories=GetAllCategory()
             };
 
             return productList;

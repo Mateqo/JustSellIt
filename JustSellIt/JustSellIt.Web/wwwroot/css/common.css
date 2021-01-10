@@ -169,7 +169,7 @@ input:checked + .slider:before {
         color: white;
         border: 1px solid #f2f4f5;
         background-color: var(--main-color);
-        transition: .4s;
+        transition: .3s;
     }
 
     .pagination .first-page {
@@ -201,7 +201,7 @@ input:checked + .slider:before {
         margin-right: 10px;
         margin-top: 3px;
         color: var(--main-color);
-        transition: .4s;
+        transition: .3s;
     }
 
         .pagination .previous:hover {
@@ -213,9 +213,80 @@ input:checked + .slider:before {
         margin-left: 10px;
         margin-top: 3px;
         color: var(--main-color);
-        transition: .4s;
+        transition: .3s;
     }
 
         .pagination .next:hover {
             color: var(--second-color);
         }
+
+/*---------------------------------SEARCH*/
+
+.search {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+}
+
+.btn-search {
+    margin: 0;
+    color: #fff;
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+    border-radius: 0 0.25rem 0.25rem 0;
+    height: 60px;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+    .btn-search:hover {
+        color: #fff;
+        background-color: var(--second-color);
+        border-color: var(--second-color);
+    }
+
+.input-search-title {
+    border-radius: 0.25rem 0 0 0.25rem;
+    color: var(--main-color);
+    font-weight: bold;
+    margin: 0;
+    height: 60px;
+    border: none;
+}
+
+    .input-search-title:active, .input-search-title:focus, .input-search-location:active, .input-search-location:focus {
+        outline: 0 !important;
+        box-shadow: none !important;
+        background-color: white;
+        color: var(--main-color);
+        border: none;
+        font-weight: bold;
+    }
+
+.btn-search i {
+    color: white;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.input-search-location {
+    color: var(--main-color);
+    font-weight: bold;
+    margin: 0;
+    height: 60px;
+    border: none;
+    border-radius: 0;
+}
+
+.input-icon {
+    background-color: white;
+    color: var(--main-color);
+    padding: 20px 10px 0 20px;
+    font-size: 20px;
+}
+
+.input-group-append {
+    border-left: 2px solid var(--bg-color);
+}

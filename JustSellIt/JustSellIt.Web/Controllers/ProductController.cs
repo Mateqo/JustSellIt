@@ -25,6 +25,7 @@ namespace JustSellIt.Web.Controllers
         public IActionResult Index()
         {
             SearchProductVm searchProduct = new SearchProductVm();
+
             var model = _productService.GetAllProduct(searchProduct);
 
             return View(model);

@@ -12,6 +12,6 @@ namespace JustSellIt.Application.ViewModels.Product
         public int? ActualPage { get; set; }
         public string SearchString { get; set; }
         public int Count { get; set; }
-        public IEnumerable<SelectListItem> Categories { get; set; }
+        public List<CategoryProductVm> Categories { get; set; }
     }
 }

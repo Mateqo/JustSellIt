@@ -4,21 +4,48 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Lista ogłoszeń</h1>
-<hr />
 
-<partial name="_AlertPanel" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+
+
 <form asp-action="Index" asp-controller="Product" method="post">
-    <div class="row">
-        <input type="text" asp-for="SearchString" id="searchString" />
-        <input type="submit" id="submitSearch" value="wyszukaj" />
+
+    <div class="search mt-4">
+        <div class="input-group">
+            <i class="fas fa-search input-icon"></i>
+            <input type="text" asp-for="SearchString" id="searchString" class="form-control input-search-title" autocomplete="off" placeholder="Tutaj wpisz co cię interesuje..." />
+            <div class="input-group-append">
+                <i class="fas fa-map-marker-alt input-icon"></i>
+                <input type="text" placeholder="Cała Polska" class="form-control input-search-location" />
+            </div>
+            <div class="input-group-append">
+                <button type="submit" id="submitSearch" value="Szukaj" class="btn btn-search">Szukaj <i class="fas fa-search"></i></button>
+            </div>
+        </div>
     </div>
 
-    <table class="table">
+        <div class="category mt-5 pt-4 pb-5">
+
+            <h1 class="add-title" style="font-weight:bold;">Kategorie główne</h1>
+
+            <div class="row mt-4">
+                @{foreach (var category in Model.Categories)
+                    {
+                        <div class="col-6 col-sm-3 col-md-2 mt-4 category-item">
+                            <div class="category-item-img" style="background-color:@category.ColorHex;">
+                                <img src="/images/categories/@category.Image" alt="@category.Name" />
+                            </div>
+                            <div class="mt-3">
+                                <span>@category.Name</span>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+    <table class="table mt-5">
         <thead>
             <tr>
                 <th>
