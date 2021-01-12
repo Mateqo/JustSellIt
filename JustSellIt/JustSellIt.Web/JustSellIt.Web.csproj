@@ -22,4 +22,8 @@
     <ProjectReference Include="..\JustSellIt.Infrastructure\JustSellIt.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\other\" />
+  </ItemGroup>
+
 </Project>

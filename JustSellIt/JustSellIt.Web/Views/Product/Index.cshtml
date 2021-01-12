@@ -5,10 +5,6 @@
 }
 
 
-
-
-
-
 <form asp-action="Index" asp-controller="Product" method="post">
 
     <div class="search mt-4">
@@ -24,6 +20,10 @@
             </div>
         </div>
     </div>
+
+    <div class="row-full">
+
+
 
         <div class="category mt-5 pt-4 pb-5">
 
@@ -44,49 +44,31 @@
                 }
             </div>
         </div>
+    </div>
 
-    <table class="table mt-5">
-        <thead>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Title
-                </th>
-                <th>
-                    Description
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Products)
+    <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Najnowsze ogłoszenia</h1>
+
+    <div class="row">
+        @{foreach (var product in Model.Products)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "ViewProduct", new { productId = item.Id }) |
-                        @Html.ActionLink("Delete", "DeleteProduct", new { id = item.Id })
-                    </td>
-                </tr>
+                <div class="col-md-3 mt-4">
+                    <div class="tile">
+                        <img src="/images/other/none.png" alt="Image product" class="img-fluid " />
+                        <hr />
+                        <h3>Rowe górski</h3>
+                        <span>Wrocław</span><span>18.02.2021</span>
+                        <h4>747 zł</h4>
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
             }
-        </tbody>
-    </table>
+        }
+    </div>
 
-    <partial name="_Pagination" />
+   <div class="text-center mt-5 mb-4">
+       <input type="submit" value="Zobacz wszystkie" class="btn btn-submit"/>
+   </div>
 
-    <input type="hidden" asp-for="ActualPage" id="actualPage" />
-    <input type="hidden" asp-for="PageSize" id="pageSize" />
 </form>
 
 @section Scripts

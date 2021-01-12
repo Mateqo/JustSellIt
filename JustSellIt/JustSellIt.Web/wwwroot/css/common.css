@@ -10,6 +10,7 @@
 body {
     background-color: var(--bg-color);
     font-family: 'Barlow Semi Condensed', sans-serif;
+    overflow-x: hidden;
 }
 
 .modal {
@@ -28,6 +29,45 @@ body {
     border-bottom: 5px solid var(--main-color);
 }
 
+
+.btn-submit {
+    color: var(--main-color);
+    font-size: 22px;
+    transition: 0.4s;
+    font-weight: 400;
+    background-color: white;
+    border: solid 3px var(--main-color);
+    padding: 15px 30px 15px 30px;
+}
+
+    .btn-submit:hover {
+        color: var(--main-color) !important;
+        padding: 10px 30px 10px 30px;
+        border: solid 8px var(--main-color);
+    }
+
+.btn-submit-sm {
+    color: var(--main-color);
+    font-size: 20px;
+    transition: 0.4s;
+    font-weight: 400;
+    background-color: white;
+    padding: 8px 30px 8px 30px;
+    border: solid 3px var(--main-color);
+}
+
+    .btn-submit-sm:hover {
+        color: var(--main-color) !important;
+        padding: 5px 27px 5px 27px;
+        border: solid 6px var(--main-color);
+    }
+
+.row-full {
+    width: 100vw;
+    position: relative;
+    margin-left: -50vw;
+    left: 50%;
+}
 /*---------------------------------TOOLTIP*/
 
 .tooltip-inner {
@@ -239,12 +279,13 @@ input:checked + .slider:before {
     font-size: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    transition: 0.3s;
 }
 
     .btn-search:hover {
         color: #fff;
-        background-color: var(--second-color);
-        border-color: var(--second-color);
+        background-color: #55678a;
+        border-color: #55678a;
     }
 
 .input-search-title {
