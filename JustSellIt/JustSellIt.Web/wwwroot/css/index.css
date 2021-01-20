@@ -2,17 +2,18 @@
     background-color: white;
     text-align: center;
     box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    margin-top:35px;
 }
 
-    .category img {
-        max-height: 60px;
-        max-width: 60px;
-    }
+.category img {
+    max-height: 60px;
+    max-width: 60px;
+}
 
-    .category span {
-        font-weight: bold;
-        color: var(--main-color);
-    }
+.category span {
+    font-weight: bold;
+    color: var(--main-color);
+}
 
 .category-item {
     cursor: pointer;
@@ -37,8 +38,8 @@
 
     .tile:hover {
         cursor: pointer;
-        transform:scale(1.1);
-        z-index:1000;
+        transform: scale(1.1);
+        z-index: 1000;
     }
 
     .tile span {
@@ -69,6 +70,15 @@
     }
 
         .tile i:hover {
+            position: absolute;
+            right: 40px;
+            bottom: 27px;
             color: #d71e1e;
             cursor: pointer;
+        }
+
+        .tile .img-fluid{
+            display:flex;
+            margin-right:auto;
+            margin-left:auto;
         }

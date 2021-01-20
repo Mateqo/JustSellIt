@@ -5,6 +5,7 @@
     --bg-color: #f2f4f5;
     --font-color: #406367;
     --second-color: #92a8d1;
+    --border-color: #dee2e6;
 }
 
 body {
@@ -33,7 +34,7 @@ body {
 .btn-submit {
     color: var(--main-color);
     font-size: 22px;
-    transition: 0.4s;
+    transition: 0.2s;
     font-weight: 400;
     background-color: white;
     border: solid 3px var(--main-color);
@@ -49,7 +50,7 @@ body {
 .btn-submit-sm {
     color: var(--main-color);
     font-size: 20px;
-    transition: 0.4s;
+    transition: 0.2s;
     font-weight: 400;
     background-color: white;
     padding: 8px 30px 8px 30px;
@@ -267,13 +268,14 @@ input:checked + .slider:before {
     padding: 0;
     text-align: center;
     box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    margin-top: 35px;
 }
 
 .btn-search {
     margin: 0;
     color: #fff;
     background-color: var(--main-color);
-    border-color: var(--main-color);
+    border: none !important;
     border-radius: 0 0.25rem 0.25rem 0;
     height: 60px;
     font-size: 20px;
@@ -328,6 +330,49 @@ input:checked + .slider:before {
     font-size: 20px;
 }
 
-.input-group-append {
-    border-left: 2px solid var(--bg-color);
+.location-search {
+    border-left: 2px solid var(--border-color);
+}
+
+
+@media (max-width: 767px) {
+
+    .location-search {
+        border: none;
+        display: contents;
+    }
+
+        .location-search input {
+            padding-left: 60px;
+            padding-right: 140px;
+        }
+
+        .location-search i {
+            position: absolute;
+            top: 60px;
+            left: 0;
+        }
+
+    .search-confirm {
+        position: absolute;
+        top: 60px;
+        right: 0;
+    }
+
+    .btn-search {
+        border-radius: 0;
+    }
+
+    .input-search-title {
+        padding-bottom: -10px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+        .input-search-title:hover, .input-search-title:active, .input-search-title:focus {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+    .icon-border {
+        border-bottom: 1px solid var(--border-color);
+    }
 }
