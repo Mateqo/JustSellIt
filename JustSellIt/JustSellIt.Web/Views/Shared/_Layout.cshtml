@@ -9,25 +9,20 @@
     <link href="~/css/common.css" rel="stylesheet" />
     <link href="~/css/addOrEdit.css" rel="stylesheet" />
     <link href="~/css/index.css" rel="stylesheet" />
+    <link href="~/css/footer.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/5891e1dd9e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">JustSellIt</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><span></span>JustSellIt</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -41,8 +36,36 @@
     </div>
 
     <footer class="border-top footer text-muted">
+        <div class="footer-social-media">
+            <i class="fab fa-facebook fb"></i>
+            <i class="fab fa-instagram insta"></i>
+            <i class="fab fa-whatsapp whats"></i>
+        </div>
         <div class="container">
-            &copy; 2020 - JustSellIt.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-lg-4 footer-about offset-sm-0 offset-1">
+                    <h3>JustSellIt</h3>
+                    <div class="border-about"></div>
+                    <p class="mt-3">JustSellIt to darmowe ogłoszenia lokalne. Szybko znajdziesz tu ciekawe ogłoszenia i łatwo skontaktujesz się z ogłoszeniodawcą. Jeśli chcesz coś sprzedać - w prosty sposób dodasz bezpłatne ogłoszenia. Chcesz coś kupić - tutaj znajdziesz ciekawe okazje, taniej niż w sklepie. Sprzedawaj po sąsiedzku na JustSellIt</p>
+                </div>
+                <div class="col-sm-6 col-lg-3 offset-lg-1 offset-sm-0 offset-1 footer-links mt-4 mt-lg-0 ">
+                    <h3>Przydatne linki</h3>
+                    <div class="border-links"></div>
+                    <a><p class="mt-4">STRONA DOMOWA</p></a>
+                    <a><p>OGŁOSZENIA</p></a>
+                    <a><p>REGULAMIN</p></a>
+                </div>
+                <div class="col-sm-5 offset-1 col-lg-3 footer-contact mt-4 mt-lg-0 ">
+                    <h3>Kontakt</h3> 
+                    <div class="border-contact"></div>
+                    <p><i class="fas fa-home mr-3 mt-3"></i>Wrocław</p>
+                    <p><i class="fas fa-envelope mr-3"></i>kontakt@justsellit.pl</p>
+                    <p><i class="fas fa-phone  mr-3"></i>754-498-246</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <p class="text-center">&copy; 2021 - JustSellIt</p>
         </div>
     </footer>
 

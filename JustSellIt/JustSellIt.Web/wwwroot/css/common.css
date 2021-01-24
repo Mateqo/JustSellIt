@@ -1,4 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 :root {
     --main-color: #36486b;
@@ -12,6 +13,7 @@ body {
     background-color: var(--bg-color);
     font-family: 'Barlow Semi Condensed', sans-serif;
     overflow-x: hidden;
+    margin-bottom:0;
 }
 
 .modal {
@@ -20,6 +22,14 @@ body {
 
 .navbar {
     background-color: var(--main-color) !important;
+    box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    position:sticky !important;
+}
+
+
+.navbar-brand {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
 }
 
 .form-control:active, .form-control:focus {
@@ -30,6 +40,47 @@ body {
     border-bottom: 5px solid var(--main-color);
 }
 
+.btn-nav-style1 {
+    background-color: white;
+    border: 3px solid white;
+    color: var(--main-color) !important;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 8px 15px 10px 15px !important;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+
+    .btn-nav-style1:hover {
+        background-color: var(--main-color);
+        color: white !important;
+    }
+
+.btn-nav-style2 {
+    border: 3px solid white;
+    color: white !important;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 8px 15px 10px 15px !important;
+    font-weight: bold;
+    transition:0.2s;
+}
+
+    .btn-nav-style2:hover {
+        border: 7px solid white;
+        padding: 4px 11px 6px 11px !important;
+        color: white !important;
+    }
+
+    @media (max-width:575px){
+        .btn-nav-style2, .btn-nav-style1{
+            text-align:center;
+            margin-left:auto;
+            margin-right:auto;
+            margin-bottom:10px;
+        }
+    }
 
 .btn-submit {
     color: var(--main-color);
@@ -37,8 +88,8 @@ body {
     transition: 0.2s;
     font-weight: 400;
     background-color: white;
+    padding: 15px 35px 15px 35px;
     border: solid 3px var(--main-color);
-    padding: 15px 30px 15px 30px;
 }
 
     .btn-submit:hover {
