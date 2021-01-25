@@ -24,15 +24,30 @@ namespace JustSellIt.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            SearchProductVm searchProduct = new SearchProductVm();
-
-            var model = _productService.GetAllProduct(searchProduct);
+            var model = _productService.GetLatesProducts();
 
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Index(SearchProductVm searchProduct)
+        {
+            var model = _productService.GetAllProduct(searchProduct);
+
+            return View("SearchProducts",model);
+        }
+
+        [HttpGet]
+        public IActionResult SearchProducts()
+        {
+            SearchProductVm search = new SearchProductVm();
+            var model = _productService.GetAllProduct(search);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult SearchProducts(SearchProductVm searchProduct)
         {
             var model = _productService.GetAllProduct(searchProduct);
 
@@ -66,9 +81,10 @@ namespace JustSellIt.Web.Controllers
             if (ModelState.IsValid)
             {
                 model.ProductStatusId = _statusService.GetIdForVeryfication();
+                model.CreatedOn = DateTime.Now;
                 _productService.AddProduct(model);
                 SetMessage("Ogłoszenie dodane", MessageType.Success);
-                return RedirectToAction("Index");
+                return RedirectToAction("SearchProducts");
             }
             else
             {

@@ -56,6 +56,22 @@ namespace JustSellIt.Application.Services
             return productList;
         }
 
+        public ListProductForListVm GetLatesProducts()
+        {            
+            var products = _productRepo.GetAllProducts().ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+
+            var productToShow = products.OrderByDescending(x=>x.CreatedOn).Take(8).ToList();
+
+            var productList = new ListProductForListVm()
+            {
+                Products = productToShow,
+                Count = products.Count,
+                Categories = GetAllCategory()
+            };
+
+            return productList;
+        }
+
         public ProductDetailsVm GetProductDetails(int productId)
         {
             var product = _productRepo.GetProductById(productId);

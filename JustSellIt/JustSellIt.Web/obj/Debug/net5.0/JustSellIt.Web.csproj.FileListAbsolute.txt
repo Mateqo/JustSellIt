@@ -910,3 +910,6 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Product\AddOrEditProduct.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_AlertPanel.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_Pagination.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_ProductTile.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_SearchPanel.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Product\SearchProducts.cshtml.g.cs

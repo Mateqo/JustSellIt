@@ -16,5 +16,6 @@ namespace JustSellIt.Application.Interfaces
         void UpdateProduct(NewOrEditProductVm model);
         void DeleteProduct(int id);
         List<CategoryProductVm> GetAllCategory();
+        ListProductForListVm GetLatesProducts();
     }
 }

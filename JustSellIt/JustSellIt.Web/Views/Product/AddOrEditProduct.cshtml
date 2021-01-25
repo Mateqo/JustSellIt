@@ -183,7 +183,7 @@
                             <div class="row mt-0 category d-inline-flex" style="box-shadow:none;">
                                 @{foreach (var category in Model.Categories)
                                     {
-                                        <div class="col-6 col-sm-4 col-md-3 mt-4 category-item">
+                                        <div class="col-6 col-sm-4 col-md-3 mt-4 category-item" data-name="@category.Name" data-id="@category.Id" data-img="@category.Image" onclick="selectCategory(this)">
                                             <div class="category-item-img" style="background-color:@category.ColorHex;">
                                                 <img src="/images/categories/@category.Image" alt="@category.Name" />
                                             </div>

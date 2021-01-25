@@ -7,19 +7,7 @@
 
 <form asp-action="Index" asp-controller="Product" method="post">
 
-    <div class="search">
-        <div class="input-group">
-            <i class="fas fa-search input-icon icon-border"></i>
-            <input type="text" asp-for="SearchString" id="searchString" class="form-control input-search-title" autocomplete="off" placeholder="Tutaj wpisz co cię interesuje..." />
-            <div class="input-group-append location-search">
-                <i class="fas fa-map-marker-alt input-icon"></i>
-                <input type="text" placeholder="Cała Polska" class="form-control input-search-location" />
-            </div>
-            <div class="input-group-append search-confirm">
-                <button type="submit" id="submitSearch" value="Szukaj" class="btn btn-search">Szukaj <i class="fas fa-search"></i></button>
-            </div>
-        </div>
-    </div>
+    <partial name="_SearchPanel" />
 
     <div class="row-full">
         <div class="category pt-4 pb-5">
@@ -45,45 +33,10 @@
 
     <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Najnowsze ogłoszenia</h1>
 
-    <div class="row">
-        @{foreach (var product in Model.Products)
-            {
-                <div class="col-sm-6  col-md-4 col-lg-3 ml-auto mr-auto mt-4">
-                    <div class="tile">
-                        <img src="/images/other/none.png" alt="Image product" class="img-fluid" />
-                        <hr />
-                        <h3>Rowe górski</h3>
-                        <span>Wrocław</span><span>18.02.2021</span>
-                        <h4>747 zł</h4>
-                        <i class="far fa-heart"></i>
-                    </div>
-                </div>
-                <div class="col-sm-6  col-md-4 col-lg-3 ml-auto mr-auto mt-4">
-                    <div class="tile">
-                        <img src="/images/other/none.png" alt="Image product" class="img-fluid" />
-                        <hr />
-                        <h3>Rowe górski</h3>
-                        <span>Wrocław</span><span>18.02.2021</span>
-                        <h4>747 zł</h4>
-                        <i class="far fa-heart"></i>
-                    </div>
-                </div>
-            }
-        }
-    </div>
+    <partial name="_ProductTile" />
 
     <div class="text-center mt-5 mb-4">
         <input type="submit" value="Zobacz wszystkie" class="btn btn-submit" />
     </div>
 
 </form>
-
-@section Scripts
-{
-    <script type="text/javascript">
-        function PagerClick(index) {
-            $("#actualPage").val(index);
-            $("#submitSearch").click();
-        }
-    </script>
-}

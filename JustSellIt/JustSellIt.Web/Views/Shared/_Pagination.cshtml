@@ -1,7 +1,7 @@
-﻿
+﻿@model JustSellIt.Application.ViewModels.Product.ListProductForListVm
 
 <nav>
-    <div class="pagination">
+    <div class="pagination mb-4">
 
         @{ var lastIndex = Math.Ceiling(Model.Count / (double)Model.PageSize);
             var step = 5;
@@ -118,7 +118,7 @@
                     if (Model.ActualPage + 4 < lastIndex)
                     {
                         <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
-                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage + 3; i++)
+                        @for (int i = Model.ActualPage - 3 ?? 1; i <= Model.ActualPage + 3; i++)
                         {
                             if (i != Model.ActualPage)
                             {
@@ -134,7 +134,7 @@
                     else if (Model.ActualPage + 3 < lastIndex)
                     {
                         <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
-                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage + 3; i++)
+                        @for (int i = Model.ActualPage - 3 ?? 1; i <= Model.ActualPage + 3; i++)
                         {
                             if (i != Model.ActualPage)
                             {
@@ -149,7 +149,7 @@
                     else if (Model.ActualPage + 3 == lastIndex)
                     {
                         <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
-                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage + 2; i++)
+                        @for (int i = Model.ActualPage - 3 ?? 1; i <= Model.ActualPage + 2; i++)
                         {
                             if (i != Model.ActualPage)
                             {
@@ -164,7 +164,7 @@
                     else if (Model.ActualPage + 2 == lastIndex)
                     {
                         <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
-                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage + 1; i++)
+                        @for (int i = Model.ActualPage - 3 ?? 1; i <= Model.ActualPage + 1; i++)
                         {
                             if (i != Model.ActualPage)
                             {
@@ -179,7 +179,7 @@
                     else if (Model.ActualPage + 1 == lastIndex)
                     {
                         <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
-                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage; i++)
+                        @for (int i = Model.ActualPage - 3 ?? 1; i <= Model.ActualPage; i++)
                         {
                             if (i != Model.ActualPage)
                             {
@@ -194,7 +194,7 @@
                     else if (Model.ActualPage == lastIndex)
                     {
                         <a class="page" href="#" onclick="PagerClick(@Model.ActualPage-@step)">...</a>
-                        @for (int i = Model.ActualPage - 3; i <= Model.ActualPage - 1; i++)
+                        @for (int i = Model.ActualPage - 3 ?? 1; i <= Model.ActualPage - 1; i++)
                         {
                             if (i != Model.ActualPage)
                             {

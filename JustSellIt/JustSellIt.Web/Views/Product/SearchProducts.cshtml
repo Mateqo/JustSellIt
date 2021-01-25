@@ -1,0 +1,33 @@
+﻿@model JustSellIt.Application.ViewModels.Product.ListProductForListVm
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+
+<partial name="_AlertPanel" />
+
+<form asp-action="SearchProducts" asp-controller="Product" method="post">
+
+    <partial name="_SearchPanel" />
+
+    <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Znalezione ogłoszenia</h1>
+
+    <partial name="_ProductTile" />
+
+    <partial name="_Pagination" />
+
+    <input type="hidden" asp-for="ActualPage" />
+
+</form>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function PagerClick(index) {
+            alert($("#actualPage").val(index));
+            $("#actualPage").val(index);
+            $("#submitSearch").click();
+        }
+    </script>
+}

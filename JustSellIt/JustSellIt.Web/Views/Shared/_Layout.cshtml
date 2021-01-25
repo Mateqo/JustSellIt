@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><span></span>JustSellIt</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Product" asp-action="Index"><span></span>JustSellIt</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -51,8 +51,8 @@
                 <div class="col-sm-6 col-lg-3 offset-lg-1 offset-sm-0 offset-1 footer-links mt-4 mt-lg-0 ">
                     <h3>Przydatne linki</h3>
                     <div class="border-links"></div>
-                    <a><p class="mt-4">STRONA DOMOWA</p></a>
-                    <a><p>OGŁOSZENIA</p></a>
+                    <a href="@Url.Action("Index", "Product")"><p class="mt-4">STRONA DOMOWA</p></a>
+                    <a href="@Url.Action("SearchProducts", "Product")"><p>OGŁOSZENIA</p></a>
                     <a><p>REGULAMIN</p></a>
                 </div>
                 <div class="col-sm-5 offset-1 col-lg-3 footer-contact mt-4 mt-lg-0 ">

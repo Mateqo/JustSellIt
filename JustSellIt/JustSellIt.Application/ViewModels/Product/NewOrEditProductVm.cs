@@ -25,6 +25,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int OwnerId { get; set; }
         public int ProductStatusId { get; set; }
         public bool StorePolicy { get; set; }
+        public DateTime CreatedOn { get; set; }
         public List<CategoryProductVm> Categories { get; set; }
 
         public void Mapping(MappingProfile profile)
@@ -46,7 +47,7 @@ namespace JustSellIt.Application.ViewModels.Product
 
             RuleFor(x => x.Description).NotNull().WithMessage("Opis jest wymagany");
             RuleFor(x => x.Description).MinimumLength(3).WithMessage("Minimalna długość to 10");
-            RuleFor(x => x.Description).MaximumLength(100).WithMessage("Maksymalna długosć to 600");
+            RuleFor(x => x.Description).MaximumLength(600).WithMessage("Maksymalna długosć to 600");
 
             RuleFor(x => x.Price).NotNull().WithMessage("Cena jest wymagana");
             RuleFor(x => x.Price).Must(BeAValidPrice).WithMessage("Nieprawidłowy format ceny");
