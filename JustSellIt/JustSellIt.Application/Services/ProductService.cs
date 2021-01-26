@@ -38,10 +38,13 @@ namespace JustSellIt.Application.Services
             if (searchProduct.SearchString is null)
                 searchProduct.SearchString = String.Empty;
 
-            var products = _productRepo.GetAllProducts().Where(x => x.Title.StartsWith(searchProduct.SearchString))
+            if (searchProduct.SearchLocation is null)
+                searchProduct.SearchLocation = String.Empty;
+
+            var products = _productRepo.GetAllProducts().Where(x => x.Title.StartsWith(searchProduct.SearchString) && x.Location.StartsWith(searchProduct.SearchLocation))
                 .ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow = products.Skip((int)(searchProduct.PageSize * (searchProduct.ActualPage - 1))).Take(searchProduct.PageSize).ToList();
+            var productToShow = products.OrderByDescending(x => x.CreatedOn).Skip((int)(searchProduct.PageSize * (searchProduct.ActualPage - 1))).Take(searchProduct.PageSize).ToList();
 
             var productList = new ListProductForListVm()
             {

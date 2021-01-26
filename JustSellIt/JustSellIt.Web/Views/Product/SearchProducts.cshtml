@@ -17,7 +17,8 @@
 
     <partial name="_Pagination" />
 
-    <input type="hidden" asp-for="ActualPage" />
+    <input id="actualPage" type="hidden" asp-for="ActualPage" />
+    <input id="isNewSearch" type="hidden" asp-for="IsNewSearch" value="true"/>
 
 </form>
 
@@ -25,7 +26,6 @@
 {
     <script type="text/javascript">
         function PagerClick(index) {
-            alert($("#actualPage").val(index));
             $("#actualPage").val(index);
             $("#submitSearch").click();
         }

@@ -6,7 +6,7 @@
         <input type="text" asp-for="@Model.SearchString" id="searchString" class="form-control input-search-title" autocomplete="off" placeholder="Tutaj wpisz co cię interesuje..." />
         <div class="input-group-append location-search">
             <i class="fas fa-map-marker-alt input-icon"></i>
-            <input type="text" placeholder="Cała Polska" class="form-control input-search-location" />
+            <input type="text" asp-for="@Model.SearchLocation" placeholder="Cała Polska" class="form-control input-search-location" />
         </div>
         <div class="input-group-append search-confirm">
             <button type="submit" id="submitSearch" value="Szukaj" class="btn btn-search">Szukaj <i class="fas fa-search"></i></button>

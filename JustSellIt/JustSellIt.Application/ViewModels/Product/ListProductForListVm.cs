@@ -11,6 +11,8 @@ namespace JustSellIt.Application.ViewModels.Product
         public int PageSize { get; set; }
         public int? ActualPage { get; set; }
         public string SearchString { get; set; }
+        public string SearchLocation { get; set; }
+        public bool IsNewSearch { get; set; }
         public int Count { get; set; }
         public List<CategoryProductVm> Categories { get; set; }
     }
