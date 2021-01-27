@@ -221,8 +221,18 @@
                     <a class="page active-page disabled last-page" href="#" onclick="PagerClick(@lastIndex)">@lastIndex</a>
                 }
             }
-
         }
     </div>
 </nav>
 
+<input id="actualPage" type="hidden" asp-for="ActualPage" />
+<input id="isNewSearch" type="hidden" asp-for="IsNewSearch" value="true" />
+
+
+<script type="text/javascript">
+    function PagerClick(index) {
+        $("#actualPage").val(index);
+        $("#isNewSearch").val("false");
+        $("#submitSearch").click();
+    }
+</script>

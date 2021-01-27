@@ -32,7 +32,7 @@ namespace JustSellIt.Application.Services
 
         public ListProductForListVm GetAllProduct(SearchProductVm searchProduct)
         {
-            if (!searchProduct.ActualPage.HasValue)
+            if (!searchProduct.ActualPage.HasValue || searchProduct.IsNewSearch)
                 searchProduct.ActualPage = 1;
 
             if (searchProduct.SearchString is null)
@@ -51,6 +51,7 @@ namespace JustSellIt.Application.Services
                 PageSize = searchProduct.PageSize,
                 ActualPage = searchProduct.ActualPage,
                 SearchString = searchProduct.SearchString,
+                SearchLocation = searchProduct.SearchLocation,
                 Products = productToShow,
                 Count = products.Count,
                 Categories=GetAllCategory()

@@ -11,23 +11,29 @@
 
     <partial name="_SearchPanel" />
 
-    <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Znalezione ogłoszenia</h1>
+    @{if (Model.Count != 0)
+        {
+            <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Znalezione ogłoszenia</h1>
+        }
+        else
+        {
+            <h1 class="add-title mt-5" style="font-weight:bold;text-align:center">Nie znaleziono produktu</h1>
+            <div class="not-found text-center mb-4">
+                <img class="img-fluid" src="~/images/other/notFound.png" alt="Not Found" />
+            </div>
+        }
+    }
+
 
     <partial name="_ProductTile" />
 
-    <partial name="_Pagination" />
+    @{if (Model.Count != 0)
+        {
+            <partial name="_Pagination" />
+        }
+    }
 
-    <input id="actualPage" type="hidden" asp-for="ActualPage" />
-    <input id="isNewSearch" type="hidden" asp-for="IsNewSearch" value="true"/>
 
 </form>
 
-@section Scripts
-{
-    <script type="text/javascript">
-        function PagerClick(index) {
-            $("#actualPage").val(index);
-            $("#submitSearch").click();
-        }
-    </script>
-}
+
