@@ -24,7 +24,40 @@
     </div>
 </div>
 
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchString").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "Product/AutoCompleteString",
+                    dataType: "json",
+                    data: {
+                        text: request.term
+                    },
+                    success: function (data) {
+                        response(data);
+                    }
+                })
+            }
+        });
+        //$("#searchLocation").autocomplete({
+        //    source: function (request, response) {
+        //        $.ajax({
+        //            url: "AutoCompleteLocation",
+        //            dataType: "json",
+        //            data: {
+        //                text: request.term
+        //            },
+        //            success: function (data) {
+        //                response(data);
+        //            }
+        //        })
+        //    }
+        //});
+    });
     function ClearString() {
         $("#clearString").addClass("d-none");
         $("#searchString").val("");

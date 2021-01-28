@@ -115,5 +115,23 @@ namespace JustSellIt.Web.Controllers
             _productService.DeleteProduct(id);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult AutoCompleteString(string text)
+        {
+            List<string> autoComplete = _productService.AutoCompleteString(text);
+            var result = autoComplete.Select(x => new { id = x, label = x, value = x }).ToList();
+
+            return Json(result);
+        }
+
+        [HttpGet]
+        public IActionResult AutoCompleteLocation(string text)
+        {
+            List<string> autoComplete = _productService.AutoCompleteLocation(text);
+            var result = autoComplete.Select(x => new { id = x, label = x, value = x }).ToList();
+
+            return Json(result);
+        }
     }
 }

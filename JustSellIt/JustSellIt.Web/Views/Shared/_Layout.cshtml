@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - JustSellIt</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/common.css" rel="stylesheet" />
     <link href="~/css/addOrEdit.css" rel="stylesheet" />
@@ -56,7 +57,7 @@
                     <a><p>REGULAMIN</p></a>
                 </div>
                 <div class="col-sm-5 offset-1 col-lg-3 footer-contact mt-4 mt-lg-0 ">
-                    <h3>Kontakt</h3> 
+                    <h3>Kontakt</h3>
                     <div class="border-contact"></div>
                     <p><i class="fas fa-home mr-3 mt-3"></i>Wrocław</p>
                     <p><i class="fas fa-envelope mr-3"></i>kontakt@justsellit.pl</p>
@@ -70,7 +71,9 @@
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -64,7 +64,7 @@ namespace JustSellIt.Application.Services
         {            
             var products = _productRepo.GetAllProducts().ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow = products.OrderByDescending(x=>x.CreatedOn).Take(8).ToList();
+            var productToShow = products.OrderByDescending(x=>x.CreatedOn).Take(SystemConfiguration.DefaultNumberOfLatestProduct).ToList();
 
             var productList = new ListProductForListVm()
             {
@@ -113,5 +113,23 @@ namespace JustSellIt.Application.Services
         {          
             return _productRepo.GetAllCategory().ProjectTo<CategoryProductVm>(_mapper.ConfigurationProvider).ToList();
         }
+
+        public List<string> AutoCompleteString(string text)
+        {
+            var listOfProducts=_productRepo.GetAllProducts().Where(x => x.Title.StartsWith(text)).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
+            List<string> autoComplete = listOfProducts.Select(x => x.Title).Distinct().ToList();
+
+            return autoComplete;
+        }
+
+        public List<string> AutoCompleteLocation(string text)
+        {
+            var listOfProducts = _productRepo.GetAllProducts().Where(x => x.Location.StartsWith(text)).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
+            List<string> autoComplete = listOfProducts.Select(x => x.Location).Distinct().ToList();
+
+            return autoComplete;
+        }
+
+
     }
 }

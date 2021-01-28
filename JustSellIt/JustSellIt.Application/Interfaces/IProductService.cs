@@ -17,5 +17,7 @@ namespace JustSellIt.Application.Interfaces
         void DeleteProduct(int id);
         List<CategoryProductVm> GetAllCategory();
         ListProductForListVm GetLatesProducts();
+        List<string> AutoCompleteString(string text);
+        List<string> AutoCompleteLocation(string text);
     }
 }
