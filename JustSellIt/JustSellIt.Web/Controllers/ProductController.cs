@@ -55,11 +55,11 @@ namespace JustSellIt.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewProduct(int productId)
+        public IActionResult ProductDetails(int productId)
         {
             var model = _productService.GetProductDetails(productId);
 
-            return View(model);
+            return View("ProductDetails",model);
         }
 
         [HttpGet]

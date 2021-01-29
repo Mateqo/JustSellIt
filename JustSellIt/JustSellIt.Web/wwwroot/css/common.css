@@ -397,59 +397,76 @@ input:checked + .slider:before {
         color: #55678a;
     }
 
-    .not-found img{
-       max-height:300px;
-       max-width:600px;
-    }
+.not-found img {
+    max-height: 300px;
+    max-width: 600px;
+}
+
+.ui-menu-item-wrapper {
+    color: var(--main-color);
+    border-bottom: 1px solid var(--border-color);
+    height: 50px;
+    line-height: 40px !important;
+    font-weight: bold !important;
+}
+
+.ui-menu-item .ui-menu-item-wrapper.ui-state-active {
+    background: var(--main-color) !important;
+    font-weight: bold !important;
+    color: #ffffff !important;
+} 
+
 @media (max-width: 500px) {
     .not-found img {
         max-height: 200px;
         max-width: 400px;
     }
 }
+
 @media (max-width: 350px) {
     .not-found img {
         max-height: 150px;
         max-width: 300px;
     }
 }
-    @media (max-width: 767px) {
-        .location-search {
-            border: none;
-            display: contents;
+
+@media (max-width: 767px) {
+    .location-search {
+        border: none;
+        display: contents;
+    }
+
+        .location-search input {
+            padding-left: 60px;
+            padding-right: 140px;
         }
 
-            .location-search input {
-                padding-left: 60px;
-                padding-right: 140px;
-            }
-
-            .location-search i {
-                position: absolute;
-                top: 60px;
-                left: 0;
-            }
-
-        .search-confirm {
+        .location-search i {
             position: absolute;
             top: 60px;
-            right: 0;
+            left: 0;
         }
 
-        .btn-search {
-            border-radius: 0;
-        }
-
-        .input-search-title {
-            padding-bottom: -10px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-            .input-search-title:hover, .input-search-title:active, .input-search-title:focus {
-                border-bottom: 1px solid var(--border-color);
-            }
-
-        .icon-border {
-            border-bottom: 1px solid var(--border-color);
-        }
+    .search-confirm {
+        position: absolute;
+        top: 60px;
+        right: 0;
     }
+
+    .btn-search {
+        border-radius: 0;
+    }
+
+    .input-search-title {
+        padding-bottom: -10px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+        .input-search-title:hover, .input-search-title:active, .input-search-title:focus {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+    .icon-border {
+        border-bottom: 1px solid var(--border-color);
+    }
+}
