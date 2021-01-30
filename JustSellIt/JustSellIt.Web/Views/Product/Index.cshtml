@@ -17,8 +17,9 @@
             <div class="row mt-4 container d-inline-flex">
                 @{foreach (var category in Model.Categories)
                     {
+                        <input id="categoryId" type="hidden" asp-for="SearchCategory" />
                         <div class="col-6 col-sm-4 col-md-3 col-lg-2 mt-4 category-item">
-                            <a asp-controller="Product" asp-action="SearchProducts">
+                            <a onclick="SearchCategory(@category.Id);">
                                 <div class="category-item-img" style="background-color:@category.ColorHex;">
                                     <img src="/images/categories/@category.Image" alt="@category.Name" />
                                 </div>
@@ -42,3 +43,12 @@
     </div>
 
 </form>
+
+@section Scripts{
+    <script type="text/javascript">
+        function SearchCategory(catId) {
+            $("#categoryId").val(catId);
+            $("#submitSearch").click();
+        }
+    </script>
+}

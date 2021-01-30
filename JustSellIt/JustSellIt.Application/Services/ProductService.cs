@@ -41,10 +41,14 @@ namespace JustSellIt.Application.Services
             if (searchProduct.SearchLocation is null)
                 searchProduct.SearchLocation = String.Empty;
 
-            var products = _productRepo.GetAllProducts().Where(x => x.Title.StartsWith(searchProduct.SearchString) && x.Location.StartsWith(searchProduct.SearchLocation))
-                .ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+            var products = _productRepo.GetAllProducts().Where(x => x.Title.StartsWith(searchProduct.SearchString) && x.Location.StartsWith(searchProduct.SearchLocation));
 
-            var productToShow = products.OrderByDescending(x => x.CreatedOn).Skip((int)(searchProduct.PageSize * (searchProduct.ActualPage - 1))).Take(searchProduct.PageSize).ToList();
+            if (searchProduct.SearchCategory.HasValue)
+                products = products.Where(x => x.CategoryId == searchProduct.SearchCategory);
+
+            var productsAfterFiltrs= products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+
+            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(searchProduct.PageSize * (searchProduct.ActualPage - 1))).Take(searchProduct.PageSize).ToList();
 
             var productList = new ListProductForListVm()
             {
@@ -53,18 +57,18 @@ namespace JustSellIt.Application.Services
                 SearchString = searchProduct.SearchString,
                 SearchLocation = searchProduct.SearchLocation,
                 Products = productToShow,
-                Count = products.Count,
-                Categories=GetAllCategory()
+                Count = productsAfterFiltrs.Count,
+                Categories = GetAllCategory()
             };
 
             return productList;
         }
 
         public ListProductForListVm GetLatesProducts()
-        {            
+        {
             var products = _productRepo.GetAllProducts().ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow = products.OrderByDescending(x=>x.CreatedOn).Take(SystemConfiguration.DefaultNumberOfLatestProduct).ToList();
+            var productToShow = products.OrderByDescending(x => x.CreatedOn).Take(SystemConfiguration.DefaultNumberOfLatestProduct).ToList();
 
             var productList = new ListProductForListVm()
             {
@@ -87,7 +91,7 @@ namespace JustSellIt.Application.Services
         public NewOrEditProductVm GetProductForEdit(int id)
         {
             var product = _productRepo.GetProductById(id);
-            var productVM= _mapper.Map<NewOrEditProductVm>(product);
+            var productVM = _mapper.Map<NewOrEditProductVm>(product);
 
             return productVM;
         }
@@ -110,13 +114,13 @@ namespace JustSellIt.Application.Services
         }
 
         public List<CategoryProductVm> GetAllCategory()
-        {          
+        {
             return _productRepo.GetAllCategory().ProjectTo<CategoryProductVm>(_mapper.ConfigurationProvider).ToList();
         }
 
         public List<string> AutoCompleteString(string text)
         {
-            var listOfProducts=_productRepo.GetAllProducts().Where(x => x.Title.StartsWith(text)).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
+            var listOfProducts = _productRepo.GetAllProducts().Where(x => x.Title.StartsWith(text)).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
             List<string> autoComplete = listOfProducts.Select(x => x.Title).Distinct().ToList();
 
             return autoComplete;

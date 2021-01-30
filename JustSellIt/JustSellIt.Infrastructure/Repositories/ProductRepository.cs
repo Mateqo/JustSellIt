@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace JustSellIt.Infrastructure.Repositories
 {
@@ -47,7 +48,7 @@ namespace JustSellIt.Infrastructure.Repositories
 
         public Product GetProductById(int productId)
         {
-            var product = _context.Products.FirstOrDefault(x => x.Id == productId);
+            var product = _context.Products.Include(x=>x.Owner).Include(x=>x.Category).FirstOrDefault(x => x.Id == productId);
 
             return product;
         }

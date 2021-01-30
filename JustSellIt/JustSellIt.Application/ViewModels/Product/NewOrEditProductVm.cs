@@ -46,7 +46,7 @@ namespace JustSellIt.Application.ViewModels.Product
             RuleFor(x => x.Title).MaximumLength(20).WithMessage("Maksymalna długosć to 20");
 
             RuleFor(x => x.Description).NotNull().WithMessage("Opis jest wymagany");
-            RuleFor(x => x.Description).MinimumLength(3).WithMessage("Minimalna długość to 10");
+            RuleFor(x => x.Description).MinimumLength(10).WithMessage("Minimalna długość to 10");
             RuleFor(x => x.Description).MaximumLength(600).WithMessage("Maksymalna długosć to 600");
 
             RuleFor(x => x.Price).NotNull().WithMessage("Cena jest wymagana");

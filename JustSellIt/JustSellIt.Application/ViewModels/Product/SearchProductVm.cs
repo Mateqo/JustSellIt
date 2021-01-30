@@ -10,6 +10,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int? ActualPage { get; set; }
         public string SearchString { get; set; }
         public string SearchLocation { get; set; }
+        public int? SearchCategory { get; set; }
         public bool IsNewSearch { get; set; }
     }
 }
