@@ -1,13 +1,13 @@
 ﻿@model JustSellIt.Application.ViewModels.Product.ListProductForListVm
 
 @{
-    ViewData["Title"] = "SearchProducts";
+    ViewData["Title"] = "GetOwnerProducts";
 }
 
 
-<partial name="_AlertPanel" />
+<h1>@Model.</h1>
 
-<form asp-action="SearchProducts" asp-controller="Product" method="get">
+<form asp-action="SearchProducts" asp-controller="Product" method="post">
 
     <partial name="_SearchPanel" />
 
@@ -24,7 +24,6 @@
         }
     }
 
-    <input id="searchCategory" type="hidden" asp-for="SearchCategory" />
 
     <partial name="_ProductTile" />
 
@@ -33,6 +32,7 @@
             <partial name="_Pagination" />
         }
     }
+
 
 </form>
 

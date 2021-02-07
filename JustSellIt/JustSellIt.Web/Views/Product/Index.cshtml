@@ -5,7 +5,7 @@
 }
 
 
-<form asp-action="Index" asp-controller="Product" method="post">
+<form asp-action="SearchProducts" asp-controller="Product" method="get">
 
     <partial name="_SearchPanel" />
 
@@ -17,7 +17,6 @@
             <div class="row mt-4 container d-inline-flex">
                 @{foreach (var category in Model.Categories)
                     {
-                        <input id="categoryId" type="hidden" asp-for="SearchCategory" />
                         <div class="col-6 col-sm-4 col-md-3 col-lg-2 mt-4 category-item">
                             <a onclick="SearchCategory(@category.Id);">
                                 <div class="category-item-img" style="background-color:@category.ColorHex;">
@@ -42,12 +41,14 @@
         <input type="submit" value="Zobacz wszystkie" class="btn btn-submit" />
     </div>
 
+    <input id="searchCategory" type="hidden" asp-for="SearchCategory" />
+
 </form>
 
 @section Scripts{
     <script type="text/javascript">
         function SearchCategory(catId) {
-            $("#categoryId").val(catId);
+            $("#searchCategory").val(catId);
             $("#submitSearch").click();
         }
     </script>

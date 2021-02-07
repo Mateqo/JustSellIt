@@ -1,4 +1,5 @@
-﻿using JustSellIt.Application.Interfaces;
+﻿using JustSellIt.Application;
+using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Application.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
@@ -29,27 +30,11 @@ namespace JustSellIt.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult Index(SearchProductVm searchProduct)
-        {
-            var model = _productService.GetAllProduct(searchProduct);
-
-            return View("SearchProducts",model);
-        }
-
         [HttpGet]
-        public IActionResult SearchProducts()
+        public IActionResult SearchProducts(string searchString,string searchLocation,int? searchCategory,int? actualPage,bool isNewSearch)
         {
-            SearchProductVm search = new SearchProductVm();
-            var model = _productService.GetAllProduct(search);
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult SearchProducts(SearchProductVm searchProduct)
-        {
-            var model = _productService.GetAllProduct(searchProduct);
+            int pageSize = SystemConfiguration.DefaultPageSize;
+            var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, actualPage, isNewSearch, pageSize);
 
             return View(model);
         }
@@ -133,5 +118,21 @@ namespace JustSellIt.Web.Controllers
 
             return Json(result);
         }
+
+        [HttpGet]
+        public IActionResult GetContactInfo(int id)
+        {
+            var contact = _productService.GetContactById(id);
+
+            return Json(new { data = contact });
+        }
+
+        //[HttpGet]
+        //public IActionResult GetOwnerProducts(int ownerId, SearchProductVm searchProduct)
+        //{
+        //    var model = _productService.GetOwnerProducts(ownerId,searchProduct);
+
+        //    return View(model);
+        //}
     }
 }

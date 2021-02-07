@@ -18,6 +18,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public string PhoneContact { get; set; }
         public string Location { get; set; }
         public DateTime CreatedOn { get; set; }
+
         public void Mapping(MappingProfile profile)
         {
             profile.CreateMap<JustSellIt.Domain.Model.Product, ProductDetailsVm>()

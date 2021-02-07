@@ -4,6 +4,10 @@
     transition: 0.4s;
 }
 
+.tile .title{
+    height:90px;
+}
+
     .tile:hover {
         cursor: pointer;
         transform: scale(1.1);

@@ -3,43 +3,76 @@
 @{
     ViewData["Title"] = "ProductDetails";
 }
-
-
-<div class="row mb-4 mt-4">
-    <div class="col-7">
-        <div class="col-12 row product-details-images mb-2 text-center">
-            <div class="col-12"><img class="img-fluid" src="~/images/other/none.png" alt="@Model.Title image" /></div>
+<div class="direction-details mt-4">
+    <i class="fas fa-chevron-left" onclick="goBack()">&nbsp;&nbsp;WRÓĆ</i><span class="ml-3">@Model.Category &nbsp;&nbsp;->&nbsp;&nbsp; @Model.Location &nbsp;&nbsp;->&nbsp;&nbsp; @Model.Title</span> 
+</div>
+<div class="row mb-4 mt-3">
+    <div class="col-xl-7 col-lg-6 pr-lg-5">
+        <div class="row">
+            <div class="col-12 product-details-images mb-2 text-center">
+                <div class="col-12"><img class="img-fluid" src="~/images/other/none.png" alt="@Model.Title image" /></div>
+            </div>
         </div>
     </div>
-    <div class="col-5 product-details-contact pt-4 mb-2">
+    <div class="col-xl-5 col-lg-6 product-details-contact pt-4 mb-2 order-lg-2 order-3">
         <div class="row">
-            <div class="col-5 pl-4">
+            <div class="col-lg-5 offset-lg-0 col-4 offset-md-2 offset-1 pl-4 user-image"> 
                 <img src="~/images/sex/man.png" class="avatar" alt="@Model.Owner avatar" />
             </div>
-            <div class="col-6 border-left mt-2">
+            <div class="col-6 offset-md-0 offset-1 border-left mt-2 user-info">
                 <p class="username mb-0">@Model.Owner</p>
                 <p class="user-date">Zarejstrowany od 21.01.2021</p>
                 <p class="location"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;@Model.Location</p>
             </div>
             <div class="col-12 mt-5 text-center user-btns">
                 <p class="user-products">Ogłoszenia użytkownika</p>
-                <p class="contact-btn">Zadwoń</p>
+                <p class="contact-btn" id="showContact" onclick="contact(@Model.Id);">Zadwoń</p>
             </div>
         </div>
     </div>
-    <div class="col-12 pl-4 mt-3 product-details-info">
+    <div class="col-12 pl-4 mt-3 mb-4 mb-lg-0 product-details-info order-lg-3 order-2">
         <p class="mt-4 title">@Model.Title</p>
         <p class="price mt-4">Cena: @Model.Price zł</p>
         @{
             var negotiate = @Model.IsNegotiate ? "Tak" : "Nie";
             var state = @Model.IsNew ? "Nowe" : "Używane";
         }
+
         <p class="btn-info-details">@Model.Category</p>
         <p class="btn-info-details">Do negocjacji: @negotiate</p>
         <p class="btn-info-details">Stan: @state</p>
+
         <p class="nameField mt-3">Opis</p>
         <p class="description">@Model.Description</p>
         <div class="col-12 data-border"></div>
         <p class="date">Data dodania:&nbsp;&nbsp;&nbsp;@Model.CreatedOn.ToString("dd/MM/yyyy")</p>
     </div>
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <script type="text/javascript">
+        function contact(productId) {
+            $.ajax({
+                url: '/Product/GetContactInfo',
+                data: { id: productId },
+                type: 'GET',
+                dataType: 'json',
+                success: function (json) {
+                    $("#showContact").css('cursor', 'default');
+                    $("#showContact").css('background-color', 'var(--main-color)');
+                    $("#showContact").html(json.data);
+                },
+                error: function (xhr, status) {
+                    alert('Przepraszamy, wystąpił problem!');
+                },
+                complete: function (xhr, status) {
+                }
+            });
+    }
+    </script>
+}
