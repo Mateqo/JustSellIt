@@ -1,39 +1,55 @@
-﻿@model JustSellIt.Application.ViewModels.Product.ListProductForListVm
+﻿@model JustSellIt.Application.ViewModels.Product.ListOwnerProducts
 
 @{
     ViewData["Title"] = "GetOwnerProducts";
 }
 
 
-<h1>@Model.</h1>
+<form id="searchForm" asp-action="GetOwnerProducts" asp-controller="Product" method="get">
+    <input id="submitSearch" type="submit" value="Zobacz wszystkie" class="btn btn-submit" hidden="hidden" />
+    <input asp-for="@Model.Id" hidden="hidden" />
+    <div>
+        <div class="ownerInfo row">
+                <div class="col-md-2 col-sm-3 col-12 offset-0 offset-md-1 mr-sm-2 mr-xl-0 text-center">
+                    <img src="~/images/sex/man.png" class="avatar" alt="@Model.Owner avatar" />
+                </div>
+                <div class="col-xl-9 col-sm-7 ml-xl-0 ml-sm-5 ml-0 border-left">
+                    <p class="owner-name mt-2 mb-0">@Model.Owner</p>
+                    <p class="owner-created">Zarejstrowany od 21.01.2021</p>
+                    <p class="owner-location"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;@Model.Location</p>
+                    <div class="owner-count">Liczba ogłoszeń: @Model.Count</div>
+                </div>           
+        </div>
 
-<form asp-action="SearchProducts" asp-controller="Product" method="post">
-
-    <partial name="_SearchPanel" />
-
-    @{if (Model.Count != 0)
-        {
-            <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Znalezione ogłoszenia</h1>
+        @{
+            if (Model.Count == 0)
+            {
+                <h1 class="add-title mt-5" style="font-weight:bold;text-align:center">Użytkownik nie posiada produktów</h1>
+                <div class="not-found text-center mb-4">
+                    <img class="img-fluid" src="~/images/other/notFound.png" alt="Not Found" />
+                </div>
+            }
+            else
+            {
+                <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Ogłoszenia użytkownika: @Model.Owner</h1>
+            }
         }
-        else
-        {
-            <h1 class="add-title mt-5" style="font-weight:bold;text-align:center">Nie znaleziono produktu</h1>
-            <div class="not-found text-center mb-4">
-                <img class="img-fluid" src="~/images/other/notFound.png" alt="Not Found" />
-            </div>
+
+
+        <partial name="_ProductTile" />
+
+        @{
+            if (Model.Count != 0)
+            {
+                <partial name="_Pagination" />
+            }
         }
-    }
 
 
-    <partial name="_ProductTile" />
-
-    @{if (Model.Count != 0)
-        {
-            <partial name="_Pagination" />
-        }
-    }
-
-
+    </div>
 </form>
+
+
+
 
 

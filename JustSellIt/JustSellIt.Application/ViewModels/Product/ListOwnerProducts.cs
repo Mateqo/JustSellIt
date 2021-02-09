@@ -6,16 +6,17 @@ using System.Text;
 
 namespace JustSellIt.Application.ViewModels.Product
 {
-    public class ListProductForListVm : IPagination, ISearch, IProductList
+    public class ListOwnerProducts : IPagination, IProductList
     {
+        public int Id { get; set; }
+        public string Owner { get; set; }
+        public string Location { get; set; }
+        //public DateTime CreatedOn { get; set; } TO DO 
         public List<ProductForListVm> Products { get; set; }
-        public List<CategoryProductVm> Categories { get; set; }
         public int PageSize { get; set; } 
         public int? ActualPage { get; set; }
-        public bool IsNewSearch { get; set; }
         public int Count { get; set; }
-        public string SearchString { get; set; }
-        public string SearchLocation { get; set; }
-        public int? SearchCategory { get; set; }
+        public bool IsNewSearch { get; set; }
+       
     }
 }

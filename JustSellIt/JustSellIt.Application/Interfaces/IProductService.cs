@@ -20,6 +20,6 @@ namespace JustSellIt.Application.Interfaces
         List<string> AutoCompleteString(string text);
         List<string> AutoCompleteLocation(string text);
         string GetContactById(int id);
-        //ListProductForListVm GetOwnerProducts(int ownerId, SearchProductVm searchProduct);
+        ListOwnerProducts GetOwnerProducts(int ownerId, int? actualPage, int pageSize);
     }
 }

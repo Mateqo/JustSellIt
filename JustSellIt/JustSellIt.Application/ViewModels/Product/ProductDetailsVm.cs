@@ -15,6 +15,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public bool IsNew { get; set; }
         public string Category { get; set; }
         public string Owner { get; set; }
+        public string OwnerId { get; set; }
         public string PhoneContact { get; set; }
         public string Location { get; set; }
         public DateTime CreatedOn { get; set; }

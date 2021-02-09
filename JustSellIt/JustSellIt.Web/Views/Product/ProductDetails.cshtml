@@ -24,9 +24,9 @@
                 <p class="user-date">Zarejstrowany od 21.01.2021</p>
                 <p class="location"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;@Model.Location</p>
             </div>
-            <div class="col-12 mt-5 text-center user-btns">
-                <p class="user-products">Ogłoszenia użytkownika</p>
-                <p class="contact-btn" id="showContact" onclick="contact(@Model.Id);">Zadwoń</p>
+            <div class="col-12 mt-5 mb-lg-0 mb-4 text-center user-btns">
+                <a href="@Url.Action("GetOwnerProducts","Product",new {id=Model.OwnerId})" class="user-products">Ogłoszenia użytkownika</a>
+                <a class="contact-btn" id="showContact" onclick="contact(@Model.Id);">Zadzwoń</a>
             </div>
         </div>
     </div>

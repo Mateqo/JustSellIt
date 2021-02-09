@@ -64,39 +64,32 @@ namespace JustSellIt.Application.Services
             return productList;
         }
 
-        //public ListProductForListVm GetOwnerProducts(int ownerId,SearchProductVm searchProduct)
-        //{
-        //    if (!searchProduct.ActualPage.HasValue || searchProduct.IsNewSearch)
-        //        searchProduct.ActualPage = 1;
+        public ListOwnerProducts GetOwnerProducts(int ownerId,int? actualPage,int pageSize)
+        {
+            if (!actualPage.HasValue )
+                actualPage = 1;
 
-        //    if (searchProduct.SearchString is null)
-        //        searchProduct.SearchString = String.Empty;
+            var owner = _productRepo.GetOwnerById(ownerId);
 
-        //    if (searchProduct.SearchLocation is null)
-        //        searchProduct.SearchLocation = String.Empty;
+            var products = _productRepo.GetAllProducts().Where(x => x.OwnerId == ownerId);
 
-        //    var products = _productRepo.GetAllProducts().Where(x=>x.OwnerId==ownerId).Where(x => x.Title.StartsWith(searchProduct.SearchString) && x.Location.StartsWith(searchProduct.SearchLocation));
+            var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-        //    if (searchProduct.SearchCategory.HasValue)
-        //        products = products.Where(x => x.CategoryId == searchProduct.SearchCategory);
+            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
 
-        //    var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+            var productList = new ListOwnerProducts()
+            {
+                PageSize = pageSize,
+                ActualPage = actualPage,
+                Products = productToShow,
+                Count = productsAfterFiltrs.Count,
+                Id = owner.Id,
+                Owner = owner.Name,
+                Location=owner.City
+            };
 
-        //    var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(searchProduct.PageSize * (searchProduct.ActualPage - 1))).Take(searchProduct.PageSize).ToList();
-
-        //    var productList = new ListProductForListVm()
-        //    {
-        //        PageSize = searchProduct.PageSize,
-        //        ActualPage = searchProduct.ActualPage,
-        //        SearchString = searchProduct.SearchString,
-        //        SearchLocation = searchProduct.SearchLocation,
-        //        Products = productToShow,
-        //        Count = productsAfterFiltrs.Count,
-        //        Categories = GetAllCategory()
-        //    };
-
-        //    return productList;
-        //}
+            return productList;
+        }
 
         public ListProductForListVm GetLatesProducts()
         {

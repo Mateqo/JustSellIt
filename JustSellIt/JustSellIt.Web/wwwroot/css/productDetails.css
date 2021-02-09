@@ -70,7 +70,7 @@
 
     .product-details-contact .contact-btn {
         background-color: var(--main-color);
-        color: white;
+        color: white !important;
         border-radius: 5px;
         display: inline-flex;
         padding: 7px 60px 7px 60px;
@@ -79,28 +79,28 @@
         transition: 0.4s;
     }
 
-         .contact-btn:hover {
-            cursor: pointer;
-            background-color: var(--second-color);
-        }
+.contact-btn:hover {
+    cursor: pointer;
+    background-color: var(--second-color);
+}
 
-    .product-details-contact .user-products {
-        display: inline-flex;
-        font-weight: bold;
-        font-size: 18px;
-        border-bottom: 5px solid var(--main-color);
-        transition: 0.2s;
+.product-details-contact .user-products {
+    display: inline-flex;
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 5px solid var(--main-color);
+    transition: 0.2s;
+}
+
+    .product-details-contact .user-products:hover {
+        cursor: pointer;
+        color: var(--second-color) !important;
+        border-color: var(--second-color);
     }
 
-        .product-details-contact .user-products:hover {
-            cursor: pointer;
-            color: var(--second-color);
-            border-color: var(--second-color);
-        }
-
-    .product-details-contact .user-btns p + p {
-        margin-left: 30px;
-    }
+.product-details-contact .user-btns a + a {
+    margin-left: 30px;
+}
 
 .btn-info-details {
     border: solid 2px var(--main-color);
@@ -117,7 +117,7 @@
 
 .direction-details {
     color: var(--main-color);
-    font-size:17px;
+    font-size: 17px;
 }
 
     .direction-details i {
@@ -152,6 +152,12 @@
     .btn-info-details:nth-child(5) {
         margin-left: 0px !important;
         display: table;
+    }
+}
+
+@media (max-width:387px) {
+    .product-details-contact .user-products{
+        margin-bottom:20px;
     }
 }
 

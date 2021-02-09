@@ -81,6 +81,13 @@ namespace JustSellIt.Infrastructure.Repositories
             return owners;
         }
 
+        public Owner GetOwnerById(int ownerId)
+        {
+            var owner = _context.Owners.FirstOrDefault(x => x.Id == ownerId);
+
+            return owner;
+        }
+
         public void UpdateProduct(Product product)
         {
             _context.Attach(product);

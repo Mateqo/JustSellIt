@@ -16,7 +16,9 @@ namespace JustSellIt.Domain.Interface
         IQueryable<ProductStatus> GetAllStatuses();
         IQueryable<Product> GetAllProducts();
         IQueryable<Owner> GetAllOwners();
+        Owner GetOwnerById(int ownerId);
         void UpdateProduct(Product product);
+
 
     }
 }

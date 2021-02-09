@@ -127,12 +127,13 @@ namespace JustSellIt.Web.Controllers
             return Json(new { data = contact });
         }
 
-        //[HttpGet]
-        //public IActionResult GetOwnerProducts(int ownerId, SearchProductVm searchProduct)
-        //{
-        //    var model = _productService.GetOwnerProducts(ownerId,searchProduct);
+        [HttpGet]
+        public IActionResult GetOwnerProducts(int id,int? actualPage)
+        {
+            int pageSize = SystemConfiguration.DefaultPageSize;
+            var model = _productService.GetOwnerProducts(id,actualPage,pageSize);
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
     }
 }

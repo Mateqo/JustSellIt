@@ -383,6 +383,7 @@ input:checked + .slider:before {
 
 .location-search {
     border-left: 2px solid var(--border-color);
+    z-index:10;
 }
 
 .clear {
