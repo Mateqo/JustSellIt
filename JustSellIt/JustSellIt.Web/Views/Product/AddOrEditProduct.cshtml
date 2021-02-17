@@ -2,10 +2,11 @@
 
 @{
     ViewData["Title"] = "AddProduct";
+    var title = Model.Action == "AddProduct" ? "Dodaj ogłoszenie!" : "Edytuj ogłoszenie!";
 }
 
 <div class="add-title form-inline mt-4">
-    <i class="fas fa-tag form-inline"></i><h1 class="ml-4">Dodaj ogłoszenie!</h1>
+    <i class="fas fa-tag form-inline"></i><h1 class="ml-4">@title</h1>
 </div>
 <hr />
 
@@ -13,7 +14,7 @@
 
 <div class="row">
     <div class="col-md-12 mt-3">
-        <form asp-action="AddProduct">
+        <form asp-action="@Model.Action" asp-route-id="@Model.Id" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
@@ -161,16 +162,34 @@
             <input type="hidden" asp-for="OwnerId" value="5" />
             <input type="hidden" asp-for="ProductStatusId" />
 
-            <div class="form-group form-check mt-4">
-                <label class="form-check-label">
-                    <input class="form-check-input add-checkbox" asp-for="StorePolicy" /> <span class="add-storePolicy">Wyrażam zgodę na używanie przez Grupę JustSellIt środków komunikacji elektronicznej oraz telekomunikacyjnych urządzeń końcowych w celu przesyłania mi informacji handlowych oraz prowadzenia marketingu (np. newsletter) przez Grupę JustSellIt, podmioty powiązane i partnerów biznesowych. Moja zgoda obejmuje numery telefonów i adresy e-mail wykorzystywane podczas korzystania z usług Grupy JustSellIT. Wyrażoną zgodę można wycofać lub ograniczyć w dowolnej chwili za pomocą odpowiednich ustawień konta lub zgłaszając nam takie żądanie.</span><span class="add-required">*</span>
-                </label>
-                <span asp-validation-for="StorePolicy" class="text-danger"></span>
-            </div>
+            @{
+                if (Model.Action == "AddProduct")
+                {
+                    <div class="form-group form-check mt-4">
+                        <label class="form-check-label">
+                            <input class="form-check-input add-checkbox" asp-for="StorePolicy" /> <span class="add-storePolicy">Wyrażam zgodę na używanie przez Grupę JustSellIt środków komunikacji elektronicznej oraz telekomunikacyjnych urządzeń końcowych w celu przesyłania mi informacji handlowych oraz prowadzenia marketingu (np. newsletter) przez Grupę JustSellIt, podmioty powiązane i partnerów biznesowych. Moja zgoda obejmuje numery telefonów i adresy e-mail wykorzystywane podczas korzystania z usług Grupy JustSellIT. Wyrażoną zgodę można wycofać lub ograniczyć w dowolnej chwili za pomocą odpowiednich ustawień konta lub zgłaszając nam takie żądanie.</span><span class="add-required">*</span>
+                        </label>
+                        <span asp-validation-for="StorePolicy" class="text-danger"></span>
+                    </div>
+                }
+                else
+                {
+                    <input asp-for="StorePolicy" type="hidden" />
+                }
+            }
 
-            <div class="form-group mt-4 mr-4 float-md-right">
-                <input type="submit" value="Dodaj" class="btn btn-submit-sm mb-3" />
-                <input type="submit" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" />
+            <div class="form-group mt-4 float-md-right text-center">
+                @{ if (Model.Action == "AddProduct")
+                    {
+                        <input type="submit" asp-route-businessAction="publish" value="Dodaj" class="btn btn-submit-sm mb-3" />
+                        <input type="submit" asp-route-businessAction="draft" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" />
+                    }
+                    else
+                    {
+                        <input value="Aktualizuj" class="btn btn-submit-sm mb-3" data-toggle="modal" data-target="#editModalPublish" readonly/>
+                        <input value="Zapisz jako wersja robocza" class="btn add-btn mb-3" data-toggle="modal" data-target="#editModalDraft" readonly/>
+                    }
+                }
             </div>
 
             <div id="selectCategoryModal" class="modal fade" role="dialog">
@@ -194,6 +213,40 @@
                                     }
                                 }
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="editModalDraft" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Czy chcesz zapisać edycje jako wersje roboczą?</h4>
+                        </div>
+                        <div class="modal-body">
+                            Spowoduje to, że ogłoszenie <span class="font-weight-bold">@Model.Title</span> zostanie zdjęte z tablicy.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" asp-route-businessAction="draft" class="btn btn-success">Zapisz jako wersja robocza</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="editModalPublish" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Czy chcesz zaktualizować ogłoszenie?</h4>
+                        </div>
+                        <div class="modal-body">
+                            Jeśli ogłoszenie <span class="font-weight-bold">@Model.Title</span> było zweryfikowane, automatycznie zostanie zdjęte z tablicy do momentu ponownej weryfikacji.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" asp-route-businessAction="publish" class="btn btn-success">Publikuj</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
                         </div>
                     </div>
                 </div>

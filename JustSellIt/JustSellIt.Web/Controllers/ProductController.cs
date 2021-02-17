@@ -31,7 +31,7 @@ namespace JustSellIt.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult SearchProducts(string searchString,string searchLocation,int? searchCategory,int? actualPage,bool isNewSearch)
+        public IActionResult SearchProducts(string searchString, string searchLocation, int? searchCategory, int? actualPage, bool isNewSearch)
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
             var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, actualPage, isNewSearch, pageSize);
@@ -44,7 +44,7 @@ namespace JustSellIt.Web.Controllers
         {
             var model = _productService.GetProductDetails(id);
 
-            return View("ProductDetails",model);
+            return View("ProductDetails", model);
         }
 
         [HttpGet]
@@ -53,28 +53,29 @@ namespace JustSellIt.Web.Controllers
             NewOrEditProductVm newProduct = new NewOrEditProductVm()
             {
                 ProductStatusId = _statusService.GetIdBeforeNew(),
-                Categories = _productService.GetAllCategory()
+                Categories = _productService.GetAllCategory(),
+                Action = "AddProduct"
             };
 
-            return View("AddOrEditProduct",newProduct);
+            return View("AddOrEditProduct", newProduct);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddProduct(NewOrEditProductVm model)
+        public IActionResult AddProduct(NewOrEditProductVm model,string businessAction)
         {
             if (ModelState.IsValid)
             {
-                model.ProductStatusId = _statusService.GetIdForVeryfication();
+                model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
                 model.CreatedOn = DateTime.Now;
                 _productService.AddProduct(model);
-                SetMessage("Ogłoszenie dodane", MessageType.Success);
+                SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
                 return RedirectToAction("SearchProducts");
             }
             else
             {
                 model.Categories = _productService.GetAllCategory();
-                SetMessage("Uzupełnij wymagane pola",MessageType.Error);
+                SetMessage("Uzupełnij wymagane pola", MessageType.Error);
                 return View("AddOrEditProduct", model);
             }
         }
@@ -83,22 +84,39 @@ namespace JustSellIt.Web.Controllers
         public IActionResult EditProduct(int id)
         {
             var product = _productService.GetProductForEdit(id);
-            return View(product);
+            product.CategoryImage = $"/images/categories/{_productService.GetImageCategoryById(product.CategoryId)}";
+            product.CategoryName = _productService.GetNameCategoryById(product.CategoryId);
+            product.Categories= _productService.GetAllCategory();
+            product.Action = "EditProduct";
+            return View("AddOrEditProduct",product);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditProduct(NewOrEditProductVm model)
+        public IActionResult EditProduct(NewOrEditProductVm model,string businessAction)
         {
-            _productService.UpdateProduct(model);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                model.CreatedOn = DateTime.Now;
+                model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
+                _productService.UpdateProduct(model);
+                SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
+                return RedirectToAction("SearchProducts");
+            }
+            else
+            {
+                model.Categories = _productService.GetAllCategory();
+                SetMessage("Uzupełnij wymagane pola", MessageType.Error);
+                return View("AddOrEditProduct", model);
+            }
         }
 
         [HttpGet]
         public IActionResult DeleteProduct(int id)
         {
             _productService.DeleteProduct(id);
-            return RedirectToAction("Index");
+            SetMessage("Ogłoszenie zostało usunięte", MessageType.Error);
+            return RedirectToAction("SearchProducts");
         }
 
         [HttpGet]
@@ -128,10 +146,19 @@ namespace JustSellIt.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetOwnerProducts(int id,int? actualPage)
+        public IActionResult GetOwnerProducts(int id, int? actualPage)
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
-            var model = _productService.GetOwnerProducts(id,actualPage,pageSize);
+            var model = _productService.GetOwnerProducts(id, actualPage, pageSize);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult MyProducts(int id, int? actualPage)
+        {
+            int pageSize = SystemConfiguration.DefaultPageSize;
+            var model = _productService.GetOwnerProducts(id, actualPage, pageSize);
 
             return View(model);
         }

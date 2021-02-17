@@ -15,10 +15,12 @@
     .ownerInfo .owner-name {
         font-size: 35px;
         font-weight: bold;
+        margin-top: 0px;
     }
 
     .ownerInfo .owner-location {
-        font-size:20px;
+        font-size: 20px;
+        margin-bottom: 0px;
     }
 
     .ownerInfo .owner-created {
@@ -26,8 +28,54 @@
     }
 
     .ownerInfo .owner-count {
-        position:absolute;
-        right:50px;
-        bottom:0px;
+        position: absolute;
+        right: 50px;
+        bottom: 0px;
     }
 
+    .ownerInfo .owner-data {
+        border-left: 1px solid #dee2e6 !important;
+    }
+
+@media(max-width:1199px) {
+    .ownerInfo .owner-count {
+        right: -40px !important;
+    }
+}
+
+@media(max-width:767px) {
+    .ownerInfo .owner-count {
+        right: 10px !important;
+    }
+}
+
+@media(max-width:575px) {
+    .ownerInfo .owner-data {
+        text-align: center;
+        border: none;
+    }
+
+    .ownerInfo .owner-created {
+        margin-bottom:0px;
+    }
+
+    .ownerInfo .owner-hr-top {
+        border-top: 1px solid #dee2e6 !important;
+        width: 200px;
+        text-align: center;
+        display: inline-flex;
+    }
+
+    .ownerInfo .owner-hr-bottom {
+        border-bottom: 1px solid #dee2e6 !important;
+        width: 200px;
+        text-align: center;
+        display: inline-flex;
+    }
+    .ownerInfo .owner-count {
+        display:block !important;
+        right:0 !important;
+        position:inherit !important;
+        margin-bottom:10px;
+    }
+}

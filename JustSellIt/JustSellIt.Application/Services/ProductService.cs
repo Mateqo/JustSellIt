@@ -129,12 +129,6 @@ namespace JustSellIt.Application.Services
             _productRepo.UpdateProduct(product);
         }
 
-        public void DeleteProduct(NewOrEditProductVm model)
-        {
-            var product = _mapper.Map<Product>(model);
-            _productRepo.UpdateProduct(product);
-        }
-
         public void DeleteProduct(int id)
         {
             _productRepo.DeleteProduct(id);
@@ -164,6 +158,16 @@ namespace JustSellIt.Application.Services
         public string GetContactById(int id)
         {
             return  _productRepo.GetProductById(id).PhoneContact;
+        }
+
+        public string GetNameCategoryById(int id)
+        {
+            return _productRepo.GetCategoryById(id).Name;
+        }
+
+        public string GetImageCategoryById(int id)
+        {
+            return _productRepo.GetCategoryById(id).Image;
         }
 
     }

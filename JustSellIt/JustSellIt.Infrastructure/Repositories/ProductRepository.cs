@@ -93,7 +93,20 @@ namespace JustSellIt.Infrastructure.Repositories
             _context.Attach(product);
             _context.Entry(product).Property("Title").IsModified = true;
             _context.Entry(product).Property("Description").IsModified = true;
+            _context.Entry(product).Property("Price").IsModified = true;
+            _context.Entry(product).Property("CategoryId").IsModified = true;
+            _context.Entry(product).Property("ProductStatusId").IsModified = true;
+            _context.Entry(product).Property("IsNegotiate").IsModified = true;
+            _context.Entry(product).Property("IsNew").IsModified = true;
+            _context.Entry(product).Property("Location").IsModified = true;
+            _context.Entry(product).Property("PhoneContact").IsModified = true;
+            _context.Entry(product).Property("CreatedOn").IsModified = true;
             _context.SaveChanges();
+        }
+
+        public Category GetCategoryById(int id)
+        {
+            return _context.Categories.FirstOrDefault(x=>x.Id==id);
         }
     }
 }

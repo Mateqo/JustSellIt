@@ -106,12 +106,14 @@ body {
     background-color: white;
     padding: 8px 30px 8px 30px;
     border: solid 3px var(--main-color);
+    max-width: 150px;
 }
 
     .btn-submit-sm:hover {
         color: var(--main-color) !important;
         padding: 5px 27px 5px 27px;
         border: solid 6px var(--main-color);
+        cursor: pointer;
     }
 
 .row-full {
