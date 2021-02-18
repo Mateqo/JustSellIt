@@ -18,13 +18,15 @@ namespace JustSellIt.Application.ViewModels.Product
         public string OwnerId { get; set; }
         public string PhoneContact { get; set; }
         public string Location { get; set; }
+        public string Status { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public void Mapping(MappingProfile profile)
         {
             profile.CreateMap<JustSellIt.Domain.Model.Product, ProductDetailsVm>()
                 .ForMember(s => s.Category, opt => opt.MapFrom(d => d.Category.Name))
-                .ForMember(s => s.Owner, opt => opt.MapFrom(d => d.Owner.Name));
+                .ForMember(s => s.Owner, opt => opt.MapFrom(d => d.Owner.Name))
+                .ForMember(s => s.Status, opt => opt.MapFrom(d => d.ProductStatus.Name));
         }
     }
 }

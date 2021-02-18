@@ -62,15 +62,20 @@ namespace JustSellIt.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddProduct(NewOrEditProductVm model,string businessAction)
+        public IActionResult AddProduct(NewOrEditProductVm model, string businessAction)
         {
             if (ModelState.IsValid)
             {
                 model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
                 model.CreatedOn = DateTime.Now;
                 _productService.AddProduct(model);
-                SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
-                return RedirectToAction("SearchProducts");
+
+                if (businessAction == "publish")
+                    SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
+                else
+                    SetMessage("Ogłoszenie zapisano w wersji roboczej", MessageType.Success);
+
+                return RedirectToAction("MyProducts", new { id = model.OwnerId });
             }
             else
             {
@@ -86,22 +91,27 @@ namespace JustSellIt.Web.Controllers
             var product = _productService.GetProductForEdit(id);
             product.CategoryImage = $"/images/categories/{_productService.GetImageCategoryById(product.CategoryId)}";
             product.CategoryName = _productService.GetNameCategoryById(product.CategoryId);
-            product.Categories= _productService.GetAllCategory();
+            product.Categories = _productService.GetAllCategory();
             product.Action = "EditProduct";
-            return View("AddOrEditProduct",product);
+            return View("AddOrEditProduct", product);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditProduct(NewOrEditProductVm model,string businessAction)
+        public IActionResult EditProduct(NewOrEditProductVm model, string businessAction)
         {
             if (ModelState.IsValid)
             {
                 model.CreatedOn = DateTime.Now;
                 model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
                 _productService.UpdateProduct(model);
-                SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
-                return RedirectToAction("SearchProducts");
+
+                if (businessAction == "publish")
+                    SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
+                else
+                    SetMessage("Ogłoszenie zapisano w wersji roboczej", MessageType.Success);
+
+                return RedirectToAction("MyProducts", new { id = model.OwnerId });
             }
             else
             {
@@ -116,7 +126,7 @@ namespace JustSellIt.Web.Controllers
         {
             _productService.DeleteProduct(id);
             SetMessage("Ogłoszenie zostało usunięte", MessageType.Error);
-            return RedirectToAction("SearchProducts");
+            return RedirectToAction("MyProducts", new { id=_productService.GetOwnerIdByProductId(id)});
         }
 
         [HttpGet]
@@ -150,6 +160,7 @@ namespace JustSellIt.Web.Controllers
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
             var model = _productService.GetOwnerProducts(id, actualPage, pageSize);
+            model.Action = "GetOwnerProducts";
 
             return View(model);
         }
@@ -158,9 +169,10 @@ namespace JustSellIt.Web.Controllers
         public IActionResult MyProducts(int id, int? actualPage)
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
-            var model = _productService.GetOwnerProducts(id, actualPage, pageSize);
+            var model = _productService.GetMyProducts(id, actualPage, pageSize);
+            model.Action = "MyProducts";
 
-            return View(model);
+            return View("GetOwnerProducts", model);
         }
     }
 }

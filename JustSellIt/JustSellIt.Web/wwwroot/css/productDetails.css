@@ -129,6 +129,68 @@
             color: var(--second-color);
         }
 
+.product-manage {
+    text-align:center;
+    margin-bottom:20px !important;
+}
+
+.btn-delete {
+    background-color: #990033;
+    padding: 8px 20px;
+    font-weight: bold;
+    color:white !important;
+}
+
+.btn-edit {
+    background-color: #009966;
+    padding: 8px 20px;
+    font-weight: bold;
+    color: white !important;
+}
+
+    .product-details-info .btn-edit+.btn-delete{
+        margin-left:10px;
+    }
+
+    .btn-delete:hover, .btn-edit:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+.product-details-info .info-veryfication {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    padding: 7px 15px;
+    background-color: #FFFF00;
+    border-radius: 0 0 0 5px;
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.product-details-info .info-draft {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    padding: 7px 15px;
+    background-color: #e040fb;
+    border-radius: 0 0 0 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.product-details-info .info-rejected {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    padding: 7px 15px;
+    background-color: #ff5722;
+    border-radius: 0 0 0 5px;
+    color: white;
+    font-weight: bold;
+}
+
+
 @media (max-width:485px) {
     .user-image {
         margin-left: 10px;
@@ -156,8 +218,8 @@
 }
 
 @media (max-width:387px) {
-    .product-details-contact .user-products{
-        margin-bottom:20px;
+    .product-details-contact .user-products {
+        margin-bottom: 20px;
     }
 }
 

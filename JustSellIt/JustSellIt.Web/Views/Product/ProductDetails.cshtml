@@ -16,7 +16,7 @@
     </div>
     <div class="col-xl-5 col-lg-6 product-details-contact pt-4 mb-2 order-lg-2 order-3">
         <div class="row">
-            <div class="col-lg-5 offset-lg-0 col-4 offset-md-2 offset-1 pl-4 user-image"> 
+            <div class="col-lg-5 offset-lg-0 col-4 offset-md-2 offset-1 pl-4 user-image">
                 <img src="~/images/sex/man.png" class="avatar" alt="@Model.Owner avatar" />
             </div>
             <div class="col-6 offset-md-0 offset-1 border-left mt-2 user-info">
@@ -31,6 +31,23 @@
         </div>
     </div>
     <div class="col-12 pl-4 mt-3 mb-4 mb-lg-0 product-details-info order-lg-3 order-2">
+        @{
+            if (Model.Status != "Published")
+            {
+                switch (Model.Status)
+                {
+                    case "Rejected":
+                        <div class="info-rejected">Odrzucone</div>
+                        break;
+                    case "ForVeryfication":
+                        <div class="info-veryfication">W trakcie weryfikacji</div>
+                        break;
+                    case "Draft":
+                        <div class="info-draft">Wersja robocza</div>
+                        break;
+                }
+            }
+        }
         <p class="mt-4 title">@Model.Title</p>
         <p class="price mt-4">Cena: @Model.Price zł</p>
         @{
@@ -46,6 +63,28 @@
         <p class="description">@Model.Description</p>
         <div class="col-12 data-border"></div>
         <p class="date">Data dodania:&nbsp;&nbsp;&nbsp;@Model.CreatedOn.ToString("dd/MM/yyyy")</p>
+        <div class="product-manage">
+            <h4 class="mb-3">Zarządzaj ogłoszeniem&nbsp;&nbsp;<i class="fas fa-cogs"></i></h4>
+            <a asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-edit">Edytuj</a>
+            <a data-toggle="modal" data-target="#deleteModal" class="btn btn-delete">Usuń</a>
+        </div>
+    </div>
+</div>
+
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Usuwanie!</h4>
+            </div>
+            <div class="modal-body">
+                Czy na pewno chcesz usunąć ogłoszenie <span class="font-weight-bold">@Model.Title</span>, spowoduje to nieodwracalne zdjęcie produktu z tablicy?
+            </div>
+            <div class="modal-footer">
+                <a asp-action="DeleteProduct" asp-route-id="@Model.Id"  class="btn btn-success">Potwierdź</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+            </div>
+        </div>
     </div>
 </div>
 

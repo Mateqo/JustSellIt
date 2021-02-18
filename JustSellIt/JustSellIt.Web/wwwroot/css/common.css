@@ -73,12 +73,15 @@ body {
         color: white !important;
     }
 
-@media (max-width:575px) {
+@media (max-width:991px) {
     .btn-nav-style2, .btn-nav-style1 {
         text-align: center;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 10px;
+    }
+    .navbar-collapse{
+        border-left:none !important;
     }
 }
 

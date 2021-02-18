@@ -4,26 +4,33 @@
     ViewData["Title"] = "GetOwnerProducts";
 }
 
+<partial name="_AlertPanel" />
 
-<form id="searchForm" asp-action="GetOwnerProducts" asp-controller="Product" method="get">
+<form id="searchForm" asp-action="@Model.Action" asp-controller="Product" method="get">
     <input id="submitSearch" type="submit" value="Zobacz wszystkie" class="btn btn-submit" hidden="hidden" />
     <input asp-for="@Model.Id" hidden="hidden" />
     <div>
         <div class="ownerInfo row">
-                <div class="col-md-2 col-sm-3 col-12 offset-0 offset-md-1 mr-sm-2 mr-xl-0 text-center">
-                    <img src="~/images/sex/man.png" class="avatar" alt="@Model.Owner avatar" />
-                </div>
-                <div class="col-xl-9 col-sm-7 ml-xl-0 ml-sm-5 ml-0 owner-data">
-                    <div class="owner-hr-top"></div>
-                    <p class="owner-name mt-2 mb-0">@Model.Owner</p>
-                    @*TO DO zamienić potem na dynamiczną date*@
-                    <p class="owner-created">Zarejstrowany od 21.01.2021</p>
-                    <div class="owner-count">Liczba ogłoszeń: @Model.Count</div>
-                    <p class="owner-location"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;@Model.Location</p>
+            <div class="col-md-2 col-sm-3 col-12 offset-0 offset-md-1 mr-sm-2 mr-xl-0 text-center">
+                <img src="~/images/sex/man.png" class="avatar" alt="@Model.Owner avatar" />
+                @{
+                    if (@Model.Action == "MyProducts")
+                    {
+                        <i class="fas fa-user-cog config-user"></i>
+                    }
+                }
+            </div>
+            <div class="col-xl-9 col-sm-7 ml-xl-0 ml-sm-5 ml-0 owner-data">
+                <div class="owner-hr-top"></div>
+                <p class="owner-name mt-2 mb-0">@Model.Owner</p>
+                @*TO DO zamienić potem na dynamiczną date*@
+                <p class="owner-created">Zarejstrowany od 21.01.2021</p>
+                <div class="owner-count">Liczba ogłoszeń: @Model.Count</div>
+                <p class="owner-location"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;@Model.Location</p>
 
-                    <div class="owner-hr-bottom"></div>
-                </div>
-                
+                <div class="owner-hr-bottom"></div>
+            </div>
+
         </div>
 
         @{

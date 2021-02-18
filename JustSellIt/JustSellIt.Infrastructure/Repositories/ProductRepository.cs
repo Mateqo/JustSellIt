@@ -48,7 +48,7 @@ namespace JustSellIt.Infrastructure.Repositories
 
         public Product GetProductById(int productId)
         {
-            var product = _context.Products.Include(x=>x.Owner).Include(x=>x.Category).FirstOrDefault(x => x.Id == productId);
+            var product = _context.Products.Include(x=>x.Owner).Include(x=>x.Category).Include(x => x.ProductStatus).FirstOrDefault(x => x.Id == productId);
 
             return product;
         }
@@ -69,7 +69,7 @@ namespace JustSellIt.Infrastructure.Repositories
 
         public IQueryable<Product> GetAllProducts()
         {
-            var products = _context.Products.Where(x => x.ProductStatus.Name != "Deleted");
+            var products = _context.Products.Include(x=>x.ProductStatus).Where(x => x.ProductStatus.Name != "Deleted");
 
             return products;
         }

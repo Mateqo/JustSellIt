@@ -37,9 +37,25 @@
         border-left: 1px solid #dee2e6 !important;
     }
 
+    .ownerInfo .config-user{
+        position:absolute;
+        right:10px;
+        bottom:5px;
+        font-size:20px;
+    }
+
+    .ownerInfo .config-user:hover {
+        cursor:pointer;
+        color:var(--second-color);
+    }
+
 @media(max-width:1199px) {
     .ownerInfo .owner-count {
         right: -40px !important;
+    }
+    .ownerInfo .config-user {
+        right: -48px;
+        bottom: 5px;
     }
 }
 
@@ -47,12 +63,23 @@
     .ownerInfo .owner-count {
         right: 10px !important;
     }
+    .ownerInfo .config-user {
+        right: -40px;
+        bottom: 5px;
+    }
 }
 
 @media(max-width:575px) {
     .ownerInfo .owner-data {
         text-align: center;
         border: none;
+    }
+    .ownerInfo .config-user {
+        display: block !important;
+        right: 0 !important;
+        position: inherit !important;
+        margin-top:-20px;
+        margin-left:150px;
     }
 
     .ownerInfo .owner-created {

@@ -71,7 +71,7 @@ namespace JustSellIt.Application.Services
 
             var owner = _productRepo.GetOwnerById(ownerId);
 
-            var products = _productRepo.GetAllProducts().Where(x => x.OwnerId == ownerId);
+            var products = _productRepo.GetAllProducts().Where(x => x.OwnerId == ownerId && x.ProductStatus.Name=="Published");
 
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
@@ -86,6 +86,33 @@ namespace JustSellIt.Application.Services
                 Id = owner.Id,
                 Owner = owner.Name,
                 Location=owner.City
+            };
+
+            return productList;
+        }
+
+        public ListOwnerProducts GetMyProducts(int ownerId, int? actualPage, int pageSize)
+        {
+            if (!actualPage.HasValue)
+                actualPage = 1;
+
+            var owner = _productRepo.GetOwnerById(ownerId);
+
+            var products = _productRepo.GetAllProducts().Where(x => x.OwnerId == ownerId && x.ProductStatus.Name != "Deleted");
+
+            var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+
+            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
+
+            var productList = new ListOwnerProducts()
+            {
+                PageSize = pageSize,
+                ActualPage = actualPage,
+                Products = productToShow,
+                Count = productsAfterFiltrs.Count,
+                Id = owner.Id,
+                Owner = owner.Name,
+                Location = owner.City
             };
 
             return productList;
@@ -168,6 +195,11 @@ namespace JustSellIt.Application.Services
         public string GetImageCategoryById(int id)
         {
             return _productRepo.GetCategoryById(id).Image;
+        }
+
+        public int GetOwnerIdByProductId(int id)
+        {
+            return _productRepo.GetProductById(id).OwnerId;
         }
 
     }

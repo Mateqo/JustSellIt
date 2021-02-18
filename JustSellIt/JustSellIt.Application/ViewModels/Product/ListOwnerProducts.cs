@@ -17,6 +17,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int? ActualPage { get; set; }
         public int Count { get; set; }
         public bool IsNewSearch { get; set; }
-       
+        public string Action { get; set; }
+
     }
 }

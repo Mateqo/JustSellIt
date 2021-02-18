@@ -21,7 +21,9 @@ namespace JustSellIt.Application.Interfaces
         List<string> AutoCompleteLocation(string text);
         string GetContactById(int id);
         ListOwnerProducts GetOwnerProducts(int ownerId, int? actualPage, int pageSize);
-        public string GetNameCategoryById(int id);
-        public string GetImageCategoryById(int id);
+        ListOwnerProducts GetMyProducts(int ownerId, int? actualPage, int pageSize);
+        string GetNameCategoryById(int id);
+        string GetImageCategoryById(int id);
+        int GetOwnerIdByProductId(int id);
     }
 }

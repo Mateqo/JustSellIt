@@ -11,11 +11,13 @@ namespace JustSellIt.Application.ViewModels.Product
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string Location { get; set; }
+        public string Status { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public void Mapping(MappingProfile profile)
         {
-            profile.CreateMap<JustSellIt.Domain.Model.Product, ProductForListVm>();
+            profile.CreateMap<JustSellIt.Domain.Model.Product, ProductForListVm>()
+                .ForMember(s => s.Status, opt => opt.MapFrom(d => d.ProductStatus.Name));
         }
 
     }
