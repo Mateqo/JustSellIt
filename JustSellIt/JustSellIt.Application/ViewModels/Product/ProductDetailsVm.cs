@@ -19,6 +19,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public string PhoneContact { get; set; }
         public string Location { get; set; }
         public string Status { get; set; }
+        public string RejectionReason { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public void Mapping(MappingProfile profile)

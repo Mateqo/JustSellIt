@@ -30,7 +30,7 @@ namespace JustSellIt.Application.Services
             return id;
         }
 
-        public ListProductForListVm GetAllProduct(string searchString, string searchLocation, int? searchCategory, int? actualPage, bool isNewSearch,int pageSize)
+        public ListProductForListVm GetAllProduct(string searchString, string searchLocation, int? searchCategory, int? actualPage, bool isNewSearch, int pageSize)
         {
             if (!actualPage.HasValue || isNewSearch)
                 actualPage = 1;
@@ -46,7 +46,7 @@ namespace JustSellIt.Application.Services
             if (searchCategory.HasValue)
                 products = products.Where(x => x.CategoryId == searchCategory);
 
-            var productsAfterFiltrs= products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+            var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
             var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
 
@@ -64,14 +64,14 @@ namespace JustSellIt.Application.Services
             return productList;
         }
 
-        public ListOwnerProducts GetOwnerProducts(int ownerId,int? actualPage,int pageSize)
+        public ListOwnerProducts GetOwnerProducts(int ownerId, int? actualPage, int pageSize)
         {
-            if (!actualPage.HasValue )
+            if (!actualPage.HasValue)
                 actualPage = 1;
 
             var owner = _productRepo.GetOwnerById(ownerId);
 
-            var products = _productRepo.GetAllProducts().Where(x => x.OwnerId == ownerId && x.ProductStatus.Name=="Published");
+            var products = _productRepo.GetAllProducts().Where(x => x.OwnerId == ownerId && x.ProductStatus.Name == "Published");
 
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
@@ -85,7 +85,7 @@ namespace JustSellIt.Application.Services
                 Count = productsAfterFiltrs.Count,
                 Id = owner.Id,
                 Owner = owner.Name,
-                Location=owner.City
+                Location = owner.City
             };
 
             return productList;
@@ -184,7 +184,7 @@ namespace JustSellIt.Application.Services
 
         public string GetContactById(int id)
         {
-            return  _productRepo.GetProductById(id).PhoneContact;
+            return _productRepo.GetProductById(id).PhoneContact;
         }
 
         public string GetNameCategoryById(int id)
@@ -200,6 +200,11 @@ namespace JustSellIt.Application.Services
         public int GetOwnerIdByProductId(int id)
         {
             return _productRepo.GetProductById(id).OwnerId;
+        }
+
+        public void ClearReason(int id)
+        {
+            _productRepo.ClearReason(id);
         }
 
     }

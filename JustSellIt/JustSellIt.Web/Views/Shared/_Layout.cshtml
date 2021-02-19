@@ -12,6 +12,7 @@
     <link href="~/css/productDetails.css" rel="stylesheet" />
     <link href="~/css/productTile.css" rel="stylesheet" />
     <link href="~/css/index.css" rel="stylesheet" />
+    <link href="~/css/admin.css" rel="stylesheet" />
     <link href="~/css/ownerProducts.css" rel="stylesheet" />
     <link href="~/css/footer.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/5891e1dd9e.js" crossorigin="anonymous"></script>
@@ -34,7 +35,7 @@
                             <a class="nav-link text-light" asp-controller="Product" asp-action="MyProducts" asp-route-id="3">Moje ogłoszenia</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="Product" asp-action="MyProducts" asp-route-id="3">Panel administratora</a>
+                            <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Panel administratora</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

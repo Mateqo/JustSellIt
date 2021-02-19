@@ -1,0 +1,43 @@
+﻿.admin-welcome {
+    background-color: white;
+    box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    padding: 20px 10px;
+    text-align: center;
+}
+
+    .admin-welcome h1 {
+        color: var(--main-color);
+        font-weight: bold;
+    }
+
+    .admin-welcome img {
+        max-height: 200px;
+        max-width: 200px;
+    }
+
+    .admin-welcome .admin-product-count {
+        color: var(--main-color);
+    }
+
+.admin-manage-product {
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    padding: 20px 10px;
+    color: var(--main-color);
+    font-weight: bold !important;
+    border:#b91313 3px solid;
+}
+
+    .admin-manage-product img {
+        max-height: 100px;
+        max-width: 100px;
+    }
+
+    .admin-manage-product h4 {
+        font-weight: bold;
+    }
+
+    .admin-manage-product a + a {
+        margin-left: 10px;
+    }

@@ -1,10 +1,11 @@
 ﻿@model JustSellIt.Application.ViewModels.Product.ProductDetailsVm
 
 @{
-    ViewData["Title"] = "ProductDetails";
+    ViewData["Title"] = "Index";
 }
+
 <div class="direction-details mt-4">
-    <i class="fas fa-chevron-left" onclick="goBack()">&nbsp;&nbsp;WRÓĆ</i><span class="ml-3">@Model.Category &nbsp;&nbsp;->&nbsp;&nbsp; @Model.Location &nbsp;&nbsp;->&nbsp;&nbsp; @Model.Title</span> 
+    <i class="fas fa-chevron-left" onclick="goBack()">&nbsp;&nbsp;WRÓĆ</i><span class="ml-3">@Model.Category &nbsp;&nbsp;->&nbsp;&nbsp; @Model.Location &nbsp;&nbsp;->&nbsp;&nbsp; @Model.Title</span>
 </div>
 <div class="row mb-4 mt-3">
     <div class="col-xl-7 col-lg-6 pr-lg-5">
@@ -30,6 +31,15 @@
             </div>
         </div>
     </div>
+
+    @{ if (!String.IsNullOrEmpty(Model.RejectionReason))
+        {
+            <div class="col-12 order-2 alert-danger mt-2 pt-3 pb-3 pl-4">
+                <span class="float-left">Powód odrzucenia: "@Model.RejectionReason"</span>
+            </div>
+        }
+    }
+
     <div class="col-12 pl-4 mt-3 mb-4 mb-lg-0 product-details-info order-lg-3 order-2">
         @{
             if (Model.Status != "Published")
@@ -63,25 +73,31 @@
         <p class="description">@Model.Description</p>
         <div class="col-12 data-border"></div>
         <p class="date">Data dodania:&nbsp;&nbsp;&nbsp;@Model.CreatedOn.ToString("dd/MM/yyyy")</p>
+        @*TO DO sprawdzenie użytkownika*@
         <div class="product-manage">
             <h4 class="mb-3">Zarządzaj ogłoszeniem&nbsp;&nbsp;<i class="fas fa-cogs"></i></h4>
             <a asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-edit">Edytuj</a>
             <a data-toggle="modal" data-target="#deleteModal" class="btn btn-delete">Usuń</a>
         </div>
     </div>
+
+    <partial name="_ManagePanel" />
+
 </div>
+
+
 
 <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Usuwanie!</h4>
+                <h4 class="modal-title">Usuwanie</h4>
             </div>
             <div class="modal-body">
                 Czy na pewno chcesz usunąć ogłoszenie <span class="font-weight-bold">@Model.Title</span>, spowoduje to nieodwracalne zdjęcie produktu z tablicy?
             </div>
             <div class="modal-footer">
-                <a asp-action="DeleteProduct" asp-route-id="@Model.Id"  class="btn btn-success">Potwierdź</a>
+                <a asp-action="DeleteProduct" asp-route-id="@Model.Id" class="btn btn-success">Potwierdź</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
             </div>
         </div>
@@ -112,6 +128,6 @@
                 complete: function (xhr, status) {
                 }
             });
-    }
+        }
     </script>
 }

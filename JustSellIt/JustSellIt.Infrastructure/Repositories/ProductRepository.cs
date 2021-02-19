@@ -31,6 +31,35 @@ namespace JustSellIt.Infrastructure.Repositories
             return false;
         }
 
+        public bool RejectProduct(int productId,string reason)
+        {
+            var item = _context.Products.Find(productId);
+            if (item != null)
+            {
+                item.ProductStatusId = _context.ProductStatuses.FirstOrDefault(x => x.Name == "Rejected").Id;
+                item.RejectionReason = reason;
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AcceptProduct(int productId)
+        {
+            var item = _context.Products.Find(productId);
+            if (item != null)
+            {
+                item.ProductStatusId = _context.ProductStatuses.FirstOrDefault(x => x.Name == "Published").Id;
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public int AddProduct(Product product)
         {
             _context.Products.Add(product);
@@ -90,6 +119,8 @@ namespace JustSellIt.Infrastructure.Repositories
 
         public void UpdateProduct(Product product)
         {
+            //Reset reason because product is update
+            product.RejectionReason = null;
             _context.Attach(product);
             _context.Entry(product).Property("Title").IsModified = true;
             _context.Entry(product).Property("Description").IsModified = true;
@@ -101,12 +132,20 @@ namespace JustSellIt.Infrastructure.Repositories
             _context.Entry(product).Property("Location").IsModified = true;
             _context.Entry(product).Property("PhoneContact").IsModified = true;
             _context.Entry(product).Property("CreatedOn").IsModified = true;
+            _context.Entry(product).Property("RejectionReason").IsModified = true;
             _context.SaveChanges();
         }
 
         public Category GetCategoryById(int id)
         {
             return _context.Categories.FirstOrDefault(x=>x.Id==id);
+        }
+
+        public void ClearReason(int id)
+        {
+            var product = _context.Products.Find(id);
+            product.RejectionReason = null;
+            _context.SaveChanges();
         }
     }
 }

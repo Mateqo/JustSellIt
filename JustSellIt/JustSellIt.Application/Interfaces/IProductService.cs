@@ -25,5 +25,6 @@ namespace JustSellIt.Application.Interfaces
         string GetNameCategoryById(int id);
         string GetImageCategoryById(int id);
         int GetOwnerIdByProductId(int id);
+        void ClearReason(int id);
     }
 }

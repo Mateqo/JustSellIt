@@ -190,6 +190,9 @@
     font-weight: bold;
 }
 
+.details-reason{
+    
+}
 
 @media (max-width:485px) {
     .user-image {
@@ -207,6 +210,13 @@
     .contact-btn {
         margin-left: auto !important;
         margin-right: auto !important;
+    }
+}
+
+@media (max-width:459px) {
+    .btn-info-details:nth-child(6) {
+        margin-left: 0px !important;
+        display: table;
     }
 }
 

@@ -1,0 +1,31 @@
+﻿@model JustSellIt.Application.ViewModels.Product.ProductDetailsVm
+
+@*TO DO sprawdzenie czy admin oraz czy do weryfikacji*@
+<div class="admin-manage-product col-12 order-4 mt-4">
+    <h4 class="mb-0">Panel administratora</h4>
+    <img alt="admin-icon" src="~/images/other/admin.png" />
+    <div class="mt-3">
+        <a asp-action="AcceptProduct" asp-controller="Admin" asp-route-id="@Model.Id" class="btn btn-edit">Akceptuj</a>
+        <a data-toggle="modal" data-target="#rejectModal" class="btn btn-delete">Odrzuć</a>
+    </div>
+</div>
+<div id="rejectModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="RejectProduct" asp-controller="Admin" asp-route-id="@Model.Id" asp-route-rejectionReason="@Model.RejectionReason" method="get">
+                <input asp-for="@Model.Id" type="hidden" />
+                <div class="modal-header">
+                    <h4 class="modal-title">Odrzucenie ogłoszenia <span class="font-weight-bold">@Model.Title</span></h4>
+                </div>
+                <div class="modal-body">
+                    Wybierz powód odrzucenia ogłoszenia:
+                    <input class="form-control mt-3" type="text" asp-for="@Model.RejectionReason" autocomplete="off" placeholder="Produkt niezgodny z ogłoszeniem..." />
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" value="Potwierdź" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
