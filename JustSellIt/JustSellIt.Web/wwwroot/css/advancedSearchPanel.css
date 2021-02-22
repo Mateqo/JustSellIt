@@ -1,0 +1,40 @@
+﻿.advancedSearchPanel h4 {
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.advancedSearchPanel {
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+    .advancedSearchPanel .form-control {
+        outline: 0 !important;
+        box-shadow: none !important;
+        background-color: white;
+        border-color: #ced4da;
+        border: none;
+        padding: 10px 10px;
+        height: 45px;
+        font-size: 17px;
+    }
+
+        .advancedSearchPanel .form-control:hover {
+            cursor: pointer;
+        }
+
+        .advancedSearchPanel .form-control:active, .form-control:focus {
+            outline: 0 !important;
+            box-shadow: none !important;
+            background-color: white;
+            border-color: #ced4da;
+            border: none;
+        }
+
+    .advancedSearchPanel select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        /* Some browsers will not display the caret when using calc, so we put the fallback first */
+        background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") white no-repeat 98.5% !important; /* !important used for overriding all other customisations */
+        background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") white no-repeat calc(100% - 10px) !important; /* Better placement regardless of input width */
+    }

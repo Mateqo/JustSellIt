@@ -17,5 +17,9 @@ namespace JustSellIt.Application.ViewModels.Product
         public string SearchString { get; set; }
         public string SearchLocation { get; set; }
         public int? SearchCategory { get; set; }
+        public int? SearchMinPrice { get; set; }
+        public int? SearchMaxPrice { get; set; }
+        public string SearchCondition { get; set; }
+        public string Sorting { get; set; }
     }
 }

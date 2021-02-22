@@ -35,7 +35,6 @@ namespace JustSellIt.Web.Controllers
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
             var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, actualPage, isNewSearch, pageSize);
-
             return View(model);
         }
 
