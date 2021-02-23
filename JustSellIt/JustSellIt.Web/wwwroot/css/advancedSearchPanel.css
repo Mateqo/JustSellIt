@@ -8,6 +8,11 @@
     font-weight: bold;
 }
 
+.advancedSearchPanel .filters{
+    display: flex;
+    flex-wrap: wrap;
+}
+
     .advancedSearchPanel .form-control {
         outline: 0 !important;
         box-shadow: none !important;
@@ -38,3 +43,43 @@
         background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") white no-repeat 98.5% !important; /* !important used for overriding all other customisations */
         background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") white no-repeat calc(100% - 10px) !important; /* Better placement regardless of input width */
     }
+
+    .advancedSearchPanel .price-min .input-group input {
+        cursor: text;
+    }
+
+.advancedSearchPanel .price-max .input-group input {
+    cursor: text;
+}
+
+.advancedSearchPanel .price-max {
+    margin-top: 24px;
+    width: 130px;
+}
+
+.advancedSearchPanel .price-min {
+    width: 130px;
+}
+
+.advancedSearchPanel .cat, .condition, .sort {
+    width: 230px;
+}
+
+
+    .advancedSearchPanel .input-group-append span {
+        background-color: var(--main-color);
+        color: white;
+    }
+
+.advancedSearchPanel .input-group-append span:hover {
+    cursor: default;
+}
+
+    .advancedSearchPanel .input-group-append span{
+        border-radius: 0 5px 5px 0;
+        border: none;
+    }
+
+.advancedSearchPanel .filters div + div {
+    margin-left: 25px;
+}

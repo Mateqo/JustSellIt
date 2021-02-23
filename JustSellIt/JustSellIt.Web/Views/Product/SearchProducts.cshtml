@@ -17,30 +17,49 @@
 
     <partial name="_SearchPanel" />
 
-    <div class="advancedSearchPanel mt-4">
-        <h4>Filtry</h4>
+    <div class="advancedSearchPanel mt-5">
+        <h4><i class="fas fa-filter" style="font-size:20px"></i> Filtry</h4>
         <hr />
-        <div class="mt-3 col-3 pl-0">
-            <span class="label">Kategoria</span>
-            <select class="form-control mt-2 " asp-for="@Model.SearchCategory" asp-items="@items">
-                
-            </select>
-        </div>
-        <div class="mt-3 col-3 pl-0">
-            <span class="label">Stan</span>
-            <select id="select-cat" class="form-control mt-2 " asp-for="@Model.SearchCategory">
-                <option selected>Wszystkie</option>
-                <option value="new">Nowe</option>
-                <option>Używane</option>
-            </select>
-        </div>
-        <div class="mt-3 col-3 pl-0">
-            <span class="label">Sortuj</span>
-            <select class="form-control mt-2 " asp-for="@Model.SearchCategory">
-                <option selected>Najnowsze</option>
-                <option value="new">Malejąco</option>
-                <option>Rosnąco</option>
-            </select>
+        <div class="filters">
+            <div class="cat">
+                <span class="label">Kategoria</span>
+                <select class="form-control mt-2" asp-for="@Model.SearchCategory" asp-items="@items">
+                    <option selected>Wszystkie</option>
+                </select>
+            </div>
+            <div class="price-min">
+                <span class="label">Cena</span>
+                <div class="input-group mt-2">
+                    <input asp-for="@Model.SearchMinPrice" type="text" class="form-control" placeholder="Od" autocomplete="off"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text">zł</span>
+                    </div>
+                </div>
+            </div>
+            <div class="price-max">
+                <div class="input-group mt-2">
+                    <input asp-for="@Model.SearchMinPrice" type="text" class="form-control" placeholder="Do" autocomplete="off"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text">zł</span>
+                    </div>
+                </div>
+            </div>
+            <div class="condition">
+                <span class="label">Stan</span>
+                <select id="select-cat" class="form-control mt-2 " asp-for="@Model.SearchCondition">
+                    <option selected>Wszystkie</option>
+                    <option value="new">Nowe</option>
+                    <option>Używane</option>
+                </select>
+            </div>
+            <div class="sort">
+                <span class="label">Sortuj</span>
+                <select class="form-control mt-2 " asp-for="@Model.Sorting">
+                    <option selected>Najnowsze</option>
+                    <option value="new">Cena malejąco</option>
+                    <option>Cena rosnąco</option>
+                </select>
+            </div>
         </div>
         <input value="xd" type="submit" />
     </div>

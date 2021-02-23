@@ -9,15 +9,15 @@
                 <i id="clearString" class="fas fa-times clear" onclick="ClearString()"></i>
             }
         }
-    <div class="input-group-append location-search">
-        <i class="fas fa-map-marker-alt input-icon"></i>
-        <input type="text" asp-for="@Model.SearchLocation" id="searchLocation" placeholder="Cała Polska" class="form-control input-search-location" />
-        @{ if (!String.IsNullOrEmpty(Model.SearchLocation))
-            {
-                <i id="clearLocation" class="fas fa-times clear" onclick="ClearLocation()"></i>
+        <div class="input-group-append location-search">
+            <i class="fas fa-map-marker-alt input-icon"></i>
+            <input type="text" asp-for="@Model.SearchLocation" id="searchLocation" placeholder="Cała Polska" class="form-control input-search-location" />
+            @{ if (!String.IsNullOrEmpty(Model.SearchLocation))
+                {
+                    <i id="clearLocation" class="fas fa-times clear" onclick="ClearLocation()"></i>
+                }
             }
-        }
-    </div>
+        </div>
         <div class="input-group-append search-confirm">
             <button type="submit" id="submitSearch" value="Szukaj" class="btn btn-search">Szukaj <i class="fas fa-search"></i></button>
         </div>
