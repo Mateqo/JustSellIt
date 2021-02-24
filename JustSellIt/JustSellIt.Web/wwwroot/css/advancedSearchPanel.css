@@ -18,7 +18,7 @@
         box-shadow: none !important;
         background-color: white;
         border-color: #ced4da;
-        border: none;
+        border: 1px #ced4da solid;
         padding: 10px 10px;
         height: 45px;
         font-size: 17px;
@@ -28,12 +28,11 @@
             cursor: pointer;
         }
 
-        .advancedSearchPanel .form-control:active, .form-control:focus {
+        .advancedSearchPanel .form-control:focus{
             outline: 0 !important;
             box-shadow: none !important;
-            background-color: white;
             border-color: #ced4da;
-            border: none;
+            border: 1px #ced4da solid;
         }
 
     .advancedSearchPanel select {
@@ -82,4 +81,15 @@
 
 .advancedSearchPanel .filters div + div {
     margin-left: 25px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }

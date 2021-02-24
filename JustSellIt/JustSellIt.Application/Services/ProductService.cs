@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper.Configuration.Conventions;
 
 namespace JustSellIt.Application.Services
 {
@@ -30,7 +31,7 @@ namespace JustSellIt.Application.Services
             return id;
         }
 
-        public ListProductForListVm GetAllProduct(string searchString, string searchLocation, int? searchCategory, int? actualPage, bool isNewSearch, int pageSize)
+        public ListProductForListVm GetAllProduct(string searchString, string searchLocation, int? searchCategory, int? searchMinPrice, int? searchMaxPrice, string searchCondition, string sorting, bool isNewSearch, int pageSize, int? actualPage)
         {
             if (!actualPage.HasValue || isNewSearch)
                 actualPage = 1;
@@ -46,9 +47,40 @@ namespace JustSellIt.Application.Services
             if (searchCategory.HasValue)
                 products = products.Where(x => x.CategoryId == searchCategory);
 
+            if (searchMinPrice.HasValue)
+                products = products.Where(x => x.Price>= searchMinPrice);
+
+            if (searchMaxPrice.HasValue)
+                products = products.Where(x => x.Price <= searchMaxPrice);
+
+            switch (searchCondition)
+            {
+                case "new":
+                    products = products.Where(x => x.IsNew ==true);
+                    break;
+                case "used":
+                    products = products.Where(x => x.IsNew == false);
+                    break;
+            }
+            switch (sorting)
+            {
+                case "new":
+                    products = products.OrderByDescending(x => x.CreatedOn);
+                    break;
+                case "asc":
+                    products = products.OrderBy(x => x.Price);
+                    break;
+                case "desc":
+                    products = products.OrderByDescending(x => x.Price);
+                    break;
+                default:
+                    products = products.OrderByDescending(x => x.CreatedOn);
+                    break;
+            }
+
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
+            var productToShow= productsAfterFiltrs.Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
 
             var productList = new ListProductForListVm()
             {

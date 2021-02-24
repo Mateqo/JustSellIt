@@ -24,13 +24,13 @@
             <div class="cat">
                 <span class="label">Kategoria</span>
                 <select class="form-control mt-2" asp-for="@Model.SearchCategory" asp-items="@items">
-                    <option selected>Wszystkie</option>
+                    <option value="null"selected>Wszystkie</option>
                 </select>
             </div>
             <div class="price-min">
                 <span class="label">Cena</span>
                 <div class="input-group mt-2">
-                    <input asp-for="@Model.SearchMinPrice" type="text" class="form-control" placeholder="Od" autocomplete="off"/>
+                    <input asp-for="@Model.SearchMinPrice" type="number" class="form-control" placeholder="Od" autocomplete="off" />
                     <div class="input-group-append">
                         <span class="input-group-text">zł</span>
                     </div>
@@ -38,7 +38,7 @@
             </div>
             <div class="price-max">
                 <div class="input-group mt-2">
-                    <input asp-for="@Model.SearchMinPrice" type="text" class="form-control" placeholder="Do" autocomplete="off"/>
+                    <input asp-for="@Model.SearchMaxPrice" type="number" class="form-control" placeholder="Do" autocomplete="off"/>
                     <div class="input-group-append">
                         <span class="input-group-text">zł</span>
                     </div>
@@ -47,17 +47,17 @@
             <div class="condition">
                 <span class="label">Stan</span>
                 <select id="select-cat" class="form-control mt-2 " asp-for="@Model.SearchCondition">
-                    <option selected>Wszystkie</option>
+                    <option value="all" selected>Wszystkie</option>
                     <option value="new">Nowe</option>
-                    <option>Używane</option>
+                    <option value="used">Używane</option>
                 </select>
             </div>
             <div class="sort">
                 <span class="label">Sortuj</span>
                 <select class="form-control mt-2 " asp-for="@Model.Sorting">
-                    <option selected>Najnowsze</option>
-                    <option value="new">Cena malejąco</option>
-                    <option>Cena rosnąco</option>
+                    <option value="new" selected>Najnowsze</option>
+                    <option value="desc">Cena malejąco</option>
+                    <option value="asc">Cena rosnąco</option>
                 </select>
             </div>
         </div>

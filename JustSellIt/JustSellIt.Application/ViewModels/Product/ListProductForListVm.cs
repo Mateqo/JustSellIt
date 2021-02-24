@@ -1,8 +1,6 @@
-﻿using JustSellIt.Application.Interfaces;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+﻿
+using JustSellIt.Application.Interfaces;
 using System.Collections.Generic;
-using System.Text;
 
 namespace JustSellIt.Application.ViewModels.Product
 {
@@ -22,4 +20,5 @@ namespace JustSellIt.Application.ViewModels.Product
         public string SearchCondition { get; set; }
         public string Sorting { get; set; }
     }
+
 }

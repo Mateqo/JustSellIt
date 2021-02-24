@@ -31,10 +31,12 @@ namespace JustSellIt.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult SearchProducts(string searchString, string searchLocation, int? searchCategory, int? actualPage, bool isNewSearch)
+        public IActionResult SearchProducts(string searchString, string searchLocation, int? searchCategory, int? searchMinPrice, int? searchMaxPrice, string searchCondition, string sorting, bool isNewSearch, int? actualPage)
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
-            var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, actualPage, isNewSearch, pageSize);
+            var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, searchMinPrice,
+                    searchMaxPrice, searchCondition, sorting, isNewSearch, pageSize, actualPage);
+
             return View(model);
         }
 

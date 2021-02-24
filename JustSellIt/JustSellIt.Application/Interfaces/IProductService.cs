@@ -9,7 +9,7 @@ namespace JustSellIt.Application.Interfaces
 {
     public interface IProductService
     {
-        ListProductForListVm GetAllProduct(string searchString, string searchLocation, int? searchCategory, int? actualPage, bool isNewSearch, int pageSize);
+        ListProductForListVm GetAllProduct(string searchString, string searchLocation, int? searchCategory, int? searchMinPrice, int? searchMaxPrice, string searchCondition, string sorting, bool isNewSearch, int pageSize, int? actualPage);
         int AddProduct(NewOrEditProductVm product);
         ProductDetailsVm GetProductDetails(int productId);
         NewOrEditProductVm GetProductForEdit(int id);
