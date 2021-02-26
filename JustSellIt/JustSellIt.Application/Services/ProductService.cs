@@ -90,7 +90,9 @@ namespace JustSellIt.Application.Services
                 SearchLocation = searchLocation,
                 Products = productToShow,
                 Count = productsAfterFiltrs.Count,
-                Categories = GetAllCategory()
+                Categories = GetAllCategory(),
+                SearchMinPrice = searchMinPrice,
+                SearchMaxPrice = searchMaxPrice
             };
 
             return productList;

@@ -38,8 +38,10 @@
     <partial name="_ProductTile" />
 
     <div class="text-center mt-5 mb-4">
-        <input type="submit" value="Zobacz wszystkie" class="btn btn-submit" />
+        <input type="button" value="Zobacz wszystkie" class="btn btn-submit" onclick="SearchAll();"/>
     </div>
+    
+    <input id="searchCategory" type="hidden" asp-for="SearchCategory"/>
 
 </form>
 
@@ -55,6 +57,11 @@
         });
         function SearchCategory(catId) {
             $("#searchCategory").val(catId);
+            $("#submitSearch").click();
+        }
+        function SearchAll(catId) {
+            $("#searchString").val(null);
+            $("#searchLocation").val(null);
             $("#submitSearch").click();
         }
     </script>

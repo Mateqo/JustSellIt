@@ -36,7 +36,7 @@ namespace JustSellIt.Web
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
             //Add Fluent Validation 
-            services.AddControllersWithViews().AddFluentValidation(fv=>fv.RunDefaultMvcValidationAfterFluentValidationExecutes=false);
+            services.AddControllersWithViews().AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
             services.AddRazorPages();
 
             //DependencyInjection services
@@ -44,11 +44,11 @@ namespace JustSellIt.Web
             services.AddInfrastructure();
 
             //Fluent Validation
-            services.AddTransient<IValidator<NewOrEditProductVm>,NewOrEditProductValidation>();
+            services.AddTransient<IValidator<NewOrEditProductVm>, NewOrEditProductValidation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             //Save to File
             loggerFactory.AddFile("Logs/myLog-{Date}.txt");

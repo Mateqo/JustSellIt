@@ -8,10 +8,10 @@
     font-weight: bold;
 }
 
-.advancedSearchPanel .filters{
-    display: flex;
-    flex-wrap: wrap;
-}
+    .advancedSearchPanel .filters {
+        display: flex;
+        flex-wrap: wrap;
+    }
 
     .advancedSearchPanel .form-control {
         outline: 0 !important;
@@ -28,7 +28,7 @@
             cursor: pointer;
         }
 
-        .advancedSearchPanel .form-control:focus{
+        .advancedSearchPanel .form-control:focus {
             outline: 0 !important;
             box-shadow: none !important;
             border-color: #ced4da;
@@ -47,22 +47,22 @@
         cursor: text;
     }
 
-.advancedSearchPanel .price-max .input-group input {
-    cursor: text;
-}
+    .advancedSearchPanel .price-max .input-group input {
+        cursor: text;
+    }
 
-.advancedSearchPanel .price-max {
-    margin-top: 24px;
-    width: 130px;
-}
+    .advancedSearchPanel .price-max {
+        margin-top: 24px;
+        width: 130px;
+    }
 
-.advancedSearchPanel .price-min {
-    width: 130px;
-}
+    .advancedSearchPanel .price-min {
+        width: 130px;
+    }
 
-.advancedSearchPanel .cat, .condition, .sort {
-    width: 230px;
-}
+    .advancedSearchPanel .cat, .condition, .sort {
+        width: 230px;
+    }
 
 
     .advancedSearchPanel .input-group-append span {
@@ -70,18 +70,18 @@
         color: white;
     }
 
-.advancedSearchPanel .input-group-append span:hover {
-    cursor: default;
-}
+        .advancedSearchPanel .input-group-append span:hover {
+            cursor: default;
+        }
 
-    .advancedSearchPanel .input-group-append span{
+    .advancedSearchPanel .input-group-append span {
         border-radius: 0 5px 5px 0;
         border: none;
     }
 
-.advancedSearchPanel .filters div + div {
-    margin-left: 25px;
-}
+    .advancedSearchPanel .filters div + div {
+        margin-left: 25px;
+    }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -92,4 +92,111 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+.advancedSearchPanel .btn-confirm-search {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.4s;
+    display: none;
+}
+
+    .advancedSearchPanel .btn-confirm-search:hover {
+        background-color: var(--second-color);
+        cursor: pointer;
+    }
+
+@media(max-width: 1199px) {
+    .filters .sort{
+        margin-left: 0 !important;
+        margin-top: 10px;
+    }
+}
+
+@media(max-width: 991px) {
+    .filters .sort {
+        margin-left: 25px !important;
+        margin-top: 10px;
+    }
+    .filters .condition {
+        margin-left: 0px !important;
+        margin-top: 10px;
+    }
+}
+
+@media(max-width: 767px) {
+    .filters .cat {
+        margin-right: 160px !important;
+    }
+    .filters .price-min {
+        margin-left: 0px !important;
+        margin-top: 10px;
+    }
+    .filters .price-max {
+        margin-top: 31px;
+    }
+}
+
+@media(max-width: 575px) {
+    .filters .cat {
+        margin-right: 190px !important;
+    }
+    .filters .price-max {
+        margin-right: 51px;
+    }
+}
+
+@media(max-width: 514px) {
+    .filters .cat {
+        margin-left: 25% !important;
+        margin-right: 25% !important;
+    }
+
+    .filters .price-min {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .filters .price-max {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .filters .condition {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .filters .sort {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+@media(max-width: 389px) {
+    .filters .cat {
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .filters .price-min {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .filters .price-max {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .filters .condition {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .filters .sort {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
 }

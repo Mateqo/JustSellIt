@@ -34,10 +34,10 @@ namespace JustSellIt.Web.Controllers
         public IActionResult SearchProducts(string searchString, string searchLocation, int? searchCategory, int? searchMinPrice, int? searchMaxPrice, string searchCondition, string sorting, bool isNewSearch, int? actualPage)
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
-            var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, searchMinPrice,
+                var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, searchMinPrice,
                     searchMaxPrice, searchCondition, sorting, isNewSearch, pageSize, actualPage);
 
-            return View(model);
+                return View(model);
         }
 
         [HttpGet]
@@ -127,7 +127,7 @@ namespace JustSellIt.Web.Controllers
         {
             _productService.DeleteProduct(id);
             SetMessage("Ogłoszenie zostało usunięte", MessageType.Error);
-            return RedirectToAction("MyProducts", new { id=_productService.GetOwnerIdByProductId(id)});
+            return RedirectToAction("MyProducts", new { id = _productService.GetOwnerIdByProductId(id) });
         }
 
         [HttpGet]

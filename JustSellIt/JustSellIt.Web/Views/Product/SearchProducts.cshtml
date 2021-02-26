@@ -2,76 +2,23 @@
 @{
     ViewData["Title"] = "SearchProducts";
 
-    List<SelectListItem> items = Model.Categories.ConvertAll(x =>
-    {
-        return new SelectListItem()
-        {
-            Text = x.Name.ToString(),
-            Value = x.Id.ToString(),
-            Selected = false
-        };
-    });
 }
+
+<partial name="_AlertPanel" />
 
 <form id="searchForm" asp-action="SearchProducts" asp-controller="Product" method="get">
 
     <partial name="_SearchPanel" />
-
-    <div class="advancedSearchPanel mt-5">
-        <h4><i class="fas fa-filter" style="font-size:20px"></i> Filtry</h4>
-        <hr />
-        <div class="filters">
-            <div class="cat">
-                <span class="label">Kategoria</span>
-                <select class="form-control mt-2" asp-for="@Model.SearchCategory" asp-items="@items">
-                    <option value="null"selected>Wszystkie</option>
-                </select>
-            </div>
-            <div class="price-min">
-                <span class="label">Cena</span>
-                <div class="input-group mt-2">
-                    <input asp-for="@Model.SearchMinPrice" type="number" class="form-control" placeholder="Od" autocomplete="off" />
-                    <div class="input-group-append">
-                        <span class="input-group-text">zł</span>
-                    </div>
-                </div>
-            </div>
-            <div class="price-max">
-                <div class="input-group mt-2">
-                    <input asp-for="@Model.SearchMaxPrice" type="number" class="form-control" placeholder="Do" autocomplete="off"/>
-                    <div class="input-group-append">
-                        <span class="input-group-text">zł</span>
-                    </div>
-                </div>
-            </div>
-            <div class="condition">
-                <span class="label">Stan</span>
-                <select id="select-cat" class="form-control mt-2 " asp-for="@Model.SearchCondition">
-                    <option value="all" selected>Wszystkie</option>
-                    <option value="new">Nowe</option>
-                    <option value="used">Używane</option>
-                </select>
-            </div>
-            <div class="sort">
-                <span class="label">Sortuj</span>
-                <select class="form-control mt-2 " asp-for="@Model.Sorting">
-                    <option value="new" selected>Najnowsze</option>
-                    <option value="desc">Cena malejąco</option>
-                    <option value="asc">Cena rosnąco</option>
-                </select>
-            </div>
-        </div>
-        <input value="xd" type="submit" />
-    </div>
+    <partial name="_AdvancedSearchPanel" />
 
     @{
         if (Model.Count != 0)
         {
-            <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Znalezione ogłoszenia</h1>
+            <h1 class="add-title mt-5 mb-5" style="font-weight: bold; text-align: center">Znalezione ogłoszenia</h1>
         }
         else
         {
-            <h1 class="add-title mt-5" style="font-weight:bold;text-align:center">Nie znaleziono produktu</h1>
+            <h1 class="add-title mt-5" style="font-weight: bold; text-align: center">Nie znaleziono produktu</h1>
             <div class="not-found text-center mb-4">
                 <img class="img-fluid" src="~/images/other/notFound.png" alt="Not Found" />
             </div>
