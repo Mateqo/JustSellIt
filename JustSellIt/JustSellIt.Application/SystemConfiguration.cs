@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace JustSellIt.Application
+﻿namespace JustSellIt.Application
 {
     public static class SystemConfiguration
     {

@@ -47,6 +47,10 @@
             cursor: pointer;
         }
 
+    .tile .favourite {
+        color: #d71e1e;
+    }
+
     .tile .img-fluid {
         display: flex;
         margin-right: auto;

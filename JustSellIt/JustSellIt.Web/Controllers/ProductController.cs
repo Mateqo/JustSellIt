@@ -2,12 +2,11 @@
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Application.ViewModels.Product;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace JustSellIt.Web.Controllers
 {
@@ -36,6 +35,7 @@ namespace JustSellIt.Web.Controllers
             int pageSize = SystemConfiguration.DefaultPageSize;
                 var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, searchMinPrice,
                     searchMaxPrice, searchCondition, sorting, isNewSearch, pageSize, actualPage);
+         
 
                 return View(model);
         }
@@ -174,6 +174,31 @@ namespace JustSellIt.Web.Controllers
             model.Action = "MyProducts";
 
             return View("GetOwnerProducts", model);
+        }
+
+        [HttpGet]
+        public IActionResult MyFavourites(int id, int? actualPage)
+        {
+            int pageSize = SystemConfiguration.DefaultPageSize;
+            var model = _productService.GetMyProducts(id, actualPage, pageSize);
+            model.Action = "MyProducts";
+
+            return View("MyFavourites", model);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateFavourite(int productId)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString($"favourite_{productId}")))
+            {
+                HttpContext.Session.SetInt32($"favourite_{productId}", productId);
+                return Json(new { IsAdd = true});
+            }
+            else
+            {
+                HttpContext.Session.Remove($"favourite_{productId}");
+                return Json( new { IsAdd = false });
+            }
         }
     }
 }

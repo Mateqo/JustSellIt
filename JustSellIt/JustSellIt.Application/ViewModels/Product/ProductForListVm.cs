@@ -12,6 +12,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public decimal Price { get; set; }
         public string Location { get; set; }
         public string Status { get; set; }
+        public bool IsFavorite { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public void Mapping(MappingProfile profile)
