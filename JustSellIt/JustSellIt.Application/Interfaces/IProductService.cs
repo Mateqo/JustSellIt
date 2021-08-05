@@ -26,5 +26,6 @@ namespace JustSellIt.Application.Interfaces
         string GetImageCategoryById(int id);
         int GetOwnerIdByProductId(int id);
         void ClearReason(int id);
+        ListFavouritProducts GetMyFavourites(string[] favouritesIds, int? actualPage, int pageSize);
     }
 }

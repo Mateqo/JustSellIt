@@ -4,12 +4,9 @@ using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Product;
 using JustSellIt.Domain.Interface;
 using JustSellIt.Domain.Model;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using AutoMapper.Configuration.Conventions;
 
 namespace JustSellIt.Application.Services
 {
@@ -48,7 +45,7 @@ namespace JustSellIt.Application.Services
                 products = products.Where(x => x.CategoryId == searchCategory);
 
             if (searchMinPrice.HasValue)
-                products = products.Where(x => x.Price>= searchMinPrice);
+                products = products.Where(x => x.Price >= searchMinPrice);
 
             if (searchMaxPrice.HasValue)
                 products = products.Where(x => x.Price <= searchMaxPrice);
@@ -56,7 +53,7 @@ namespace JustSellIt.Application.Services
             switch (searchCondition)
             {
                 case "new":
-                    products = products.Where(x => x.IsNew ==true);
+                    products = products.Where(x => x.IsNew == true);
                     break;
                 case "used":
                     products = products.Where(x => x.IsNew == false);
@@ -80,7 +77,7 @@ namespace JustSellIt.Application.Services
 
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow= productsAfterFiltrs.Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
+            var productToShow = productsAfterFiltrs.Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
 
             var productList = new ListProductForListVm()
             {
@@ -147,6 +144,33 @@ namespace JustSellIt.Application.Services
                 Id = owner.Id,
                 Owner = owner.Name,
                 Location = owner.City
+            };
+
+            return productList;
+        }
+
+        public ListFavouritProducts GetMyFavourites(string[] favouritesIds, int? actualPage, int pageSize)
+        {
+            if (!actualPage.HasValue)
+                actualPage = 1;
+
+            var products = _productRepo.GetAllProducts()
+                .Where(x => favouritesIds.Contains(x.Id.ToString()) && x.ProductStatus.Name != "Deleted");
+
+            var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+
+            var productToShow = productsAfterFiltrs
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((int)(pageSize * (actualPage - 1)))
+                .Take(pageSize)
+                .ToList();
+
+            var productList = new ListFavouritProducts()
+            {
+                PageSize = pageSize,
+                ActualPage = actualPage,
+                Products = productToShow,
+                Count = productsAfterFiltrs.Count,
             };
 
             return productList;

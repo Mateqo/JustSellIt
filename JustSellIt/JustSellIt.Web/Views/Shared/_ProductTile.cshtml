@@ -6,7 +6,7 @@
 <div class="row">
     @{foreach (var product in Model.Products)
         {
-            <div class="col-sm-6  col-md-4 col-lg-3 ml-auto mr-auto mt-4">
+            <div class="col-sm-6  col-md-4 col-lg-3 ml-auto mr-auto mt-4" id="tile_@product.Id">
                 <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id">
                     <div class="tile">
                         @{
@@ -51,25 +51,40 @@
 <script type="text/javascript">
     function updateFavourite(productId, e) {
         event.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "/Product/UpdateFavourite",
-            dataType: "json",
-            data: {
-                productId: productId
-            },
-            success: function (data) {
-                if (data.isAdd) {
+        if (!$('#favourite_' + productId).hasClass("favourite")) {
+            $.ajax({
+                type: "POST",
+                url: "/Product/AddFavourite",
+                dataType: "json",
+                data: {
+                    productId: productId
+                },
+                success: function (data) {
                     $('#favourite_' + productId).addClass("favourite");
                     $('#favourite_' + productId).removeClass("far");
                     $('#favourite_' + productId).addClass("fas");
                 }
-                else {
+            })
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/Product/RemoveFavourite",
+                dataType: "json",
+                data: {
+                    productId: productId
+                },
+                success: function (data) {
                     $('#favourite_' + productId).removeClass("favourite");
                     $('#favourite_' + productId).removeClass("fas");
                     $('#favourite_' + productId).addClass("far");
                 }
-            }
-        })
+            })
+        }
+
+        if ($('#searchForm').attr('action') === "/Product/MyFavourites") {
+            $('#actualPage').val(null);
+            $('#searchForm').submit();
+        }
     }
 </script>

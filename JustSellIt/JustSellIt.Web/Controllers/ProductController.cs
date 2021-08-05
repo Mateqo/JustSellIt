@@ -33,11 +33,11 @@ namespace JustSellIt.Web.Controllers
         public IActionResult SearchProducts(string searchString, string searchLocation, int? searchCategory, int? searchMinPrice, int? searchMaxPrice, string searchCondition, string sorting, bool isNewSearch, int? actualPage)
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
-                var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, searchMinPrice,
-                    searchMaxPrice, searchCondition, sorting, isNewSearch, pageSize, actualPage);
-         
+            var model = _productService.GetAllProduct(searchString, searchLocation, searchCategory, searchMinPrice,
+                searchMaxPrice, searchCondition, sorting, isNewSearch, pageSize, actualPage);
 
-                return View(model);
+
+            return View(model);
         }
 
         [HttpGet]
@@ -177,28 +177,54 @@ namespace JustSellIt.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult MyFavourites(int id, int? actualPage)
+        public IActionResult MyFavourites(int? actualPage)
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
-            var model = _productService.GetMyProducts(id, actualPage, pageSize);
-            model.Action = "MyProducts";
+            var favouriteIds = !string.IsNullOrEmpty(HttpContext.Session.GetString("favourite")) ?
+                HttpContext.Session.GetString("favourite").Split(',') :
+                null;
 
-            return View("MyFavourites", model);
-        }
-
-        [HttpPost]
-        public IActionResult UpdateFavourite(int productId)
-        {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString($"favourite_{productId}")))
+            if (favouriteIds != null)
             {
-                HttpContext.Session.SetInt32($"favourite_{productId}", productId);
-                return Json(new { IsAdd = true});
+                var products = _productService.GetMyFavourites(favouriteIds, actualPage, pageSize);
+                return View("MyFavourites", products);
             }
             else
             {
-                HttpContext.Session.Remove($"favourite_{productId}");
-                return Json( new { IsAdd = false });
+                return View("MyFavourites", new ListFavouritProducts() { Count = 0 });
             }
+        }
+
+        [HttpPost]
+        public IActionResult AddFavourite(int productId)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("favourite")))
+            {
+                HttpContext.Session.SetString("favourite", productId.ToString());
+            }
+            else
+            {
+                var favouriteIds = HttpContext.Session.GetString("favourite").Split(',').ToList();
+                favouriteIds.Add(productId.ToString());
+                HttpContext.Session.SetString("favourite", string.Join(",", favouriteIds));
+            }
+
+            HttpContext.Session.SetInt32($"favourite_{productId}", productId);
+            return Json(new { Success = true });
+        }
+
+        [HttpPost]
+        public IActionResult RemoveFavourite(int productId)
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("favourite")))
+            {
+                var favouriteIds = HttpContext.Session.GetString("favourite").Split(',').ToList();
+                var newFavouriteIds = favouriteIds.Where(x => x != productId.ToString());
+                HttpContext.Session.SetString("favourite", string.Join(",", newFavouriteIds));
+            }
+
+            HttpContext.Session.Remove($"favourite_{productId}");
+            return Json(new { IsAdd = true });
         }
     }
 }

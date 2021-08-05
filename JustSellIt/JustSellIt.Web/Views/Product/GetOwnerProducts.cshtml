@@ -44,11 +44,10 @@
             else
             {
                 <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Ogłoszenia użytkownika: @Model.Owner</h1>
+
+                <partial name="_ProductTile" />
             }
         }
-
-
-        <partial name="_ProductTile" />
 
         @{
             if (Model.Count != 0)
