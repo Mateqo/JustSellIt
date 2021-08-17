@@ -918,3 +918,10 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_ManagePanel.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_AdvancedSearchPanel.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Product\MyFavourites.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Microsoft.WindowsAzure.Configuration.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Microsoft.WindowsAzure.StorageClient.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Microsoft.WindowsAzure.Storage.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Azure.Core.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Azure.Storage.Blobs.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Azure.Storage.Common.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\System.Memory.Data.dll

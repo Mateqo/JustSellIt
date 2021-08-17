@@ -1,11 +1,17 @@
-﻿using JustSellIt.Application;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using JustSellIt.Application;
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Application.ViewModels.Product;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace JustSellIt.Web.Controllers

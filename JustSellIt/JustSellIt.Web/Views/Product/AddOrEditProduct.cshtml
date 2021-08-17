@@ -102,13 +102,31 @@
                         <div class="mt-4">
                             <span class="add-text ml-3">Zdjęcia</span>
                             <div class="col-12 mt-2 row ml-0">
-                                <div class="add-upload-main col-4"><span>To będzie twoje zdjęcie główne</span></div>
-                                <div class="add-upload col-4 offset-1"><i class="fas fa-camera"></i></div>
+                                <div id="imageDiv1" class="add-upload-main col-4">
+                                    <img id="image1" height="110" width="200" src="" style="position:absolute;top:0px;left:0px;display:none;" />
+                                    <i class="fas fa-home main-icon"></i>
+                                    <span>To będzie twoje zdjęcie główne</span>
+                                    <i id="deleteImage1" class="fas fa-times delete-icon" style="display:none;"></i>
+                                </div>
+                                <div id="imageDiv2" class="add-upload col-4 offset-1">
+                                    <i class="fas fa-camera"></i>
+                                    <i class="fas fa-times delete-icon"></i>
+                                </div>
                             </div>
                             <div class="col-md-12 mt-5 row ml-0 add-images">
-                                <div class="add-upload col-4"><i class="fas fa-camera"></i></div>
-                                <div class="add-upload col-4  offset-1"><i class="fas fa-camera"></i></div>
+                                <div id="imageDiv3" class="add-upload col-4">
+                                    <i class="fas fa-camera"></i>
+                                    <i class="fas fa-times delete-icon"></i>
+                                </div>
+                                <div id="imageDiv4" class="add-upload col-4  offset-1">
+                                    <i class="fas fa-camera"></i>
+                                    <i class="fas fa-times delete-icon"></i>
+                                </div>
                             </div>
+                            <input type="file" id="inpImage1" accept="image/*" hidden="hidden" oninput="image1.src=window.URL.createObjectURL(this.files[0])" />
+                            <input type="file" id="inpImage2" accept="image/*" hidden="hidden" oninput="image2.src=window.URL.createObjectURL(this.files[0])" />
+                            <input type="file" id="inpImage3" accept="image/*" hidden="hidden" oninput="image3.src=window.URL.createObjectURL(this.files[0])" />
+                            <input type="file" id="inpImage4" accept="image/*" hidden="hidden" oninput="image4.src=window.URL.createObjectURL(this.files[0])" />
                         </div>
                     </div>
                 </div>
@@ -177,7 +195,9 @@
                     <input asp-for="StorePolicy" type="hidden" />
                 }
             }
-
+            <div class="spinner-grow image-loader" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
             <div class="form-group mt-4 float-md-right text-center">
                 @{ if (Model.Action == "AddProduct")
                     {
@@ -186,8 +206,8 @@
                     }
                     else
                     {
-                        <input value="Aktualizuj" class="btn btn-submit-sm mb-3" data-toggle="modal" data-target="#editModalPublish" readonly/>
-                        <input value="Zapisz jako wersja robocza" class="btn add-btn mb-3" data-toggle="modal" data-target="#editModalDraft" readonly/>
+                        <input value="Aktualizuj" class="btn btn-submit-sm mb-3" data-toggle="modal" data-target="#editModalPublish" readonly />
+                        <input value="Zapisz jako wersja robocza" class="btn add-btn mb-3" data-toggle="modal" data-target="#editModalDraft" readonly />
                     }
                 }
             </div>
@@ -281,6 +301,37 @@
             $('#category').val($(category).data('id'))
             $('#categoryImage').val("/images/categories/" + $(category).data('img'))
             $('#categoryName').val($(category).data('name'))
+        }
+
+        $('#imageDiv1').on('click', function () {
+            showFileFialogIfEmpty(1);
+        });
+        $('#inpImage1').on('change', function () {
+            addImage(1);
+        });
+        $('#deleteImage1').on('click', function (e) {
+            deleteImage(1);
+        });
+
+
+        function showFileFialogIfEmpty(index) {
+            if ($("#image" + index).css('display') == 'none')
+                $('#inpImage' + index).click();
+        }
+        function addImage(index) {
+            $('#imageDiv' + index).css('cursor', 'auto');
+            $('#image' + index).show();
+            $('#deleteImage' + index).show();
+        }
+        function deleteImage(index) {
+            $("#inpImage" + index).val('');
+            $('#imageDiv' + index).css('cursor', 'pointer');
+            $('#deleteImage' + index).hide();
+            setTimeout(
+                function () {
+                    $('#image' + index).hide();
+                    $('#image' + index).attr('src', '')
+                }, 100);
         }
 
         autosize(document.querySelectorAll('textarea'));

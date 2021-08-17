@@ -83,7 +83,10 @@
         }
 
         if ($('#searchForm').attr('action') === "/Product/MyFavourites") {
-            $('#actualPage').val(null);
+            if (@Model.Products.Count() == 1) {
+                var actualPage = $('#actualPage').val();
+                $('#actualPage').val(actualPage-1);
+            }
             $('#searchForm').submit();
         }
     }
