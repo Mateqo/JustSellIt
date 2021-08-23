@@ -103,27 +103,42 @@
                             <span class="add-text ml-3">Zdjęcia</span>
                             <div class="col-12 mt-2 row ml-0">
                                 <div id="imageDiv1" class="add-upload-main col-4">
-                                    <img id="image1" height="110" width="200" src="" style="position:absolute;top:0px;left:0px;display:none;" />
+                                    <div id="loaderImg1" class="spinner-grow image-loader-main" role="status" style="display:none;">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <img class="cover" id="image1" height="110" width="200" src="" style="position:absolute;top:0px;left:0px;display:none;" />
                                     <i class="fas fa-home main-icon"></i>
                                     <span>To będzie twoje zdjęcie główne</span>
                                     <i id="deleteImage1" class="fas fa-times delete-icon" style="display:none;"></i>
                                 </div>
                                 <div id="imageDiv2" class="add-upload col-4 offset-1">
+                                    <div id="loaderImg2" class="spinner-grow image-loader-sub d-none" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <img id="image2" height="110" width="200" src="" style="position:absolute;top:0px;left:0px;display:none;" />
                                     <i class="fas fa-camera"></i>
-                                    <i class="fas fa-times delete-icon"></i>
+                                    <i id="deleteImage2" class="fas fa-times delete-icon" style="display:none;"></i>
                                 </div>
                             </div>
                             <div class="col-md-12 mt-5 row ml-0 add-images">
                                 <div id="imageDiv3" class="add-upload col-4">
+                                    <div id="loaderImg3" class="spinner-grow image-loader-sub d-none" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <img id="image3" height="110" width="200" src="" style="position:absolute;top:0px;left:0px;display:none;" />
                                     <i class="fas fa-camera"></i>
-                                    <i class="fas fa-times delete-icon"></i>
+                                    <i id="deleteImage3" class="fas fa-times delete-icon" style="display:none;"></i>
                                 </div>
                                 <div id="imageDiv4" class="add-upload col-4  offset-1">
+                                    <div id="loaderImg4" class="spinner-grow image-loader-sub d-none" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <img id="image4" height="110" width="200" src="" style="position:absolute;top:0px;left:0px;display:none;" />
                                     <i class="fas fa-camera"></i>
-                                    <i class="fas fa-times delete-icon"></i>
+                                    <i id="deleteImage4" class="fas fa-times delete-icon" style="display:none;"></i>
                                 </div>
                             </div>
-                            <input type="file" id="inpImage1" accept="image/*" hidden="hidden" oninput="image1.src=window.URL.createObjectURL(this.files[0])" />
+                            <input type="file" id="inpImage1" accept="image/*" hidden="hidden" />
                             <input type="file" id="inpImage2" accept="image/*" hidden="hidden" oninput="image2.src=window.URL.createObjectURL(this.files[0])" />
                             <input type="file" id="inpImage3" accept="image/*" hidden="hidden" oninput="image3.src=window.URL.createObjectURL(this.files[0])" />
                             <input type="file" id="inpImage4" accept="image/*" hidden="hidden" oninput="image4.src=window.URL.createObjectURL(this.files[0])" />
@@ -195,7 +210,7 @@
                     <input asp-for="StorePolicy" type="hidden" />
                 }
             }
-            <div class="spinner-grow image-loader" role="status">
+            <div class="spinner-grow submit-form-loader" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
             <div class="form-group mt-4 float-md-right text-center">
@@ -304,19 +319,52 @@
         }
 
         $('#imageDiv1').on('click', function () {
-            showFileFialogIfEmpty(1);
+            showFileDialogIfEmpty(1);
         });
         $('#inpImage1').on('change', function () {
+            $('#loaderImg1').show();
+            image1.src = window.URL.createObjectURL(this.files[0]);
             addImage(1);
         });
         $('#deleteImage1').on('click', function (e) {
             deleteImage(1);
         });
 
+        $('#imageDiv2').on('click', function () {
+            showFileDialogIfEmpty(2);
+        });
+        $('#inpImage2').on('change', function () {
+            addImage(2);
+        });
+        $('#deleteImage2').on('click', function (e) {
+            deleteImage(2);
+        });
 
-        function showFileFialogIfEmpty(index) {
-            if ($("#image" + index).css('display') == 'none')
+        $('#imageDiv3').on('click', function () {
+            showFileDialogIfEmpty(3);
+        });
+        $('#inpImage3').on('change', function () {
+            addImage(3);
+        });
+        $('#deleteImage3').on('click', function (e) {
+            deleteImage(3);
+        });
+
+        $('#imageDiv4').on('click', function () {
+            showFileDialogIfEmpty(4);
+        });
+        $('#inpImage4').on('change', function () {
+            addImage(4);
+        });
+        $('#deleteImage4').on('click', function (e) {
+            deleteImage(4);
+        });
+
+
+        function showFileDialogIfEmpty(index) {
+            if ($("#image" + index).css('display') == 'none') {
                 $('#inpImage' + index).click();
+            }
         }
         function addImage(index) {
             $('#imageDiv' + index).css('cursor', 'auto');

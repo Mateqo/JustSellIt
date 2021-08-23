@@ -52,7 +52,6 @@ namespace JustSellIt.Web.Controllers
                 blockBlob.DeleteIfExists();
 
 
-
                 return Json(new { Success = true });
             }
             catch (Exception ex)

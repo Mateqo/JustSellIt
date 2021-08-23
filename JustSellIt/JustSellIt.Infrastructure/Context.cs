@@ -1,15 +1,13 @@
 ﻿using JustSellIt.Domain.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JustSellIt.Infrastructure
 {
     public class Context : IdentityDbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Image> Images { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<OwnerContact> OwnersContact { get; set; }

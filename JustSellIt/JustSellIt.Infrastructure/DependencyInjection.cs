@@ -1,10 +1,6 @@
 ﻿using JustSellIt.Domain.Interface;
 using JustSellIt.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
 
 namespace JustSellIt.Infrastructure
 {
@@ -13,6 +9,7 @@ namespace JustSellIt.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
 
             return services;
         }

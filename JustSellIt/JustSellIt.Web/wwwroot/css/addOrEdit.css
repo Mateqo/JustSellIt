@@ -163,14 +163,40 @@
     }
 
 
-.image-loader {
-    color: var(--main-color);
-    display:block;
+.image-loader-main {
+    position: absolute;
     margin-left: auto;
     margin-right: auto;
-    margin-top:50px;
-    height:70px;
-    width:70px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    color: white;
+}
+
+.image-loader-main {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    color: white;
+}
+
+.image-loader-sub {
+    color: var(--main-color);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 40px;
+    width: 40px;
 }
 
 .delete-icon {
@@ -180,9 +206,9 @@
     right: 10px;
 }
 
-.delete-icon:hover {
-    cursor:pointer;
-}
+    .delete-icon:hover {
+        cursor: pointer;
+    }
 
 .main-icon {
     position: absolute;
