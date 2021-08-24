@@ -27,6 +27,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public bool StorePolicy { get; set; }
         public DateTime CreatedOn { get; set; }
         public List<CategoryProductVm> Categories { get; set; }
+        public List<ImageProductVm> Images { get; set; }
         public string Action { get; set; }
 
         public void Mapping(MappingProfile profile)

@@ -62,6 +62,7 @@ namespace JustSellIt.Infrastructure.Repositories
         {
             _context.Attach(image);
             _context.Entry(image).Property("IsMain").IsModified = true;
+            _context.Entry(image).Property("Url").IsModified = true;
             _context.SaveChanges();
         }
     }

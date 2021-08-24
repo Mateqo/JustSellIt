@@ -210,13 +210,15 @@
                     <input asp-for="StorePolicy" type="hidden" />
                 }
             }
-            <div class="spinner-grow submit-form-loader" role="status">
+            <div class="spinner-grow submit-form-loader" role="status" style="display:none;">
                 <span class="sr-only">Loading...</span>
             </div>
             <div class="form-group mt-4 float-md-right text-center">
                 @{ if (Model.Action == "AddProduct")
                     {
-                        <input type="submit" asp-route-businessAction="publish" value="Dodaj" class="btn btn-submit-sm mb-3" />
+                        <input onclick="addProduct(addPublish);" @*type="submit"*@ asp-route-businessAction="publish" value="Dodaj" class="btn btn-submit-sm mb-3" />
+                        <input id="addPublish" type="submit" asp-route-businessAction="publish" hidden="hidden"/>
+
                         <input type="submit" asp-route-businessAction="draft" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" />
                     }
                     else
@@ -380,6 +382,25 @@
                     $('#image' + index).hide();
                     $('#image' + index).attr('src', '')
                 }, 100);
+        }
+
+        function addProduct(idSubmit) {
+            //$.ajax({
+            //    url: '/Image/Upload',
+            //    data: { images:  },
+            //    type: 'POST',
+            //    dataType: 'json',
+            //    success: function (json) {
+            //        ('#' + idSubmit).click();
+            //    },
+            //    error: function (xhr, status) {
+            //        alert('Przepraszamy, wystąpił problem!');
+            //    },
+            //    complete: function (xhr, status) {
+            //    }
+            //});
+            $('.submit-form-loader').show();
+            $('#addPublish').click();
         }
 
         autosize(document.querySelectorAll('textarea'));

@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace JustSellIt.Web.Controllers
 {
@@ -71,6 +72,7 @@ namespace JustSellIt.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(NewOrEditProductVm model, string businessAction)
         {
+            Thread.Sleep(5000);
             if (ModelState.IsValid)
             {
                 model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();

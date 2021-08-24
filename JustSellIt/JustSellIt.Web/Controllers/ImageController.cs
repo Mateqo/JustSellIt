@@ -1,36 +1,49 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 
 namespace JustSellIt.Web.Controllers
 {
     public class ImageController : BaseController
     {
+        private readonly IConfiguration configuration;
 
-
-        public ImageController()
+        public ImageController(IConfiguration configuration)
         {
-
+            this.configuration = configuration;
         }
 
         [HttpPost]
-        public IActionResult UploadImage()
+        public IActionResult Upload(List<string> imageUrls)
         {
             try
             {
-                string connectionString = "";
-                BlobContainerClient container = new BlobContainerClient(connectionString, "name");
+                List<string> names = new List<string>();
+                string connectionString = configuration.GetConnectionString("AzureConnection");
+                BlobContainerClient container = new BlobContainerClient(connectionString, "ProductImages");
                 container.CreateIfNotExists(PublicAccessType.Blob);
-                var blockBlob = container.GetBlobClient("mikepic.png");
 
-                using (var fileStream = System.IO.File.OpenRead(@""))
+                foreach (var imageUrl in imageUrls)
                 {
-                    blockBlob.Upload(fileStream);
+                    var name = Guid.NewGuid();
+                    names.Add(name.ToString());
+                    var blockBlob = container.GetBlobClient(name.ToString());
+
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imageUrl);
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    Stream receiveStream = response.GetResponseStream();
+                    receiveStream.Close();
+                    response.Close();
+
+                    blockBlob.Upload(receiveStream);
                 }
 
-
-                return Json(new { Success = true });
+                return Json(new { Success = true, Names = names });
             }
             catch (Exception ex)
             {
@@ -39,18 +52,16 @@ namespace JustSellIt.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteImage()
+        public IActionResult Delete(string imageName)
         {
             try
             {
-                string connectionString = "";
-                BlobContainerClient container = new BlobContainerClient(connectionString, "name");
+                string connectionString = configuration.GetConnectionString("AzureConnection");
+                BlobContainerClient container = new BlobContainerClient(connectionString, "ProductImages");
                 container.CreateIfNotExists(PublicAccessType.Blob);
-                var blockBlob = container.GetBlobClient("mikepic.png");
-
+                var blockBlob = container.GetBlobClient(imageName);
 
                 blockBlob.DeleteIfExists();
-
 
                 return Json(new { Success = true });
             }

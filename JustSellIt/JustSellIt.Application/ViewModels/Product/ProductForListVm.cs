@@ -1,7 +1,5 @@
 ﻿using JustSellIt.Application.Mapping;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JustSellIt.Application.ViewModels.Product
 {
@@ -13,6 +11,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public string Location { get; set; }
         public string Status { get; set; }
         public bool IsFavorite { get; set; }
+        public string MainImageUrl { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public void Mapping(MappingProfile profile)
