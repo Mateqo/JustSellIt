@@ -56,6 +56,10 @@
               "target": "Package",
               "version": "[8.1.0, )"
             },
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.9.1, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[9.3.0, )"

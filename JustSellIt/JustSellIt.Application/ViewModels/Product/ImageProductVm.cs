@@ -6,6 +6,7 @@ namespace JustSellIt.Application.ViewModels.Product
     {
         public int Id { get; set; }
         public string Url { get; set; }
+        public string Name { get; set; }
         public bool isMain { get; set; }
 
         public void Mapping(MappingProfile profile)

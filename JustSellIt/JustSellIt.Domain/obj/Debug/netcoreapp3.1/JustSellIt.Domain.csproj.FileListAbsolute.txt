@@ -15,3 +15,4 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Domain\obj\D
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.csproj.CoreCompileInputs.cache
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.dll
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.pdb
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Domain\obj\Debug\netcoreapp3.1\JustSellIt.Domain.csprojAssemblyReference.cache

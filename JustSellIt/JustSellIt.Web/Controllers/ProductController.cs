@@ -21,11 +21,13 @@ namespace JustSellIt.Web.Controllers
     {
         private readonly IProductService _productService;
         private readonly IStatusService _statusService;
+        private readonly IImageService _imageService;
 
-        public ProductController(IProductService productService, IStatusService statusService)
+        public ProductController(IProductService productService, IStatusService statusService, IImageService imageService)
         {
             _productService = productService;
             _statusService = statusService;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -72,12 +74,22 @@ namespace JustSellIt.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(NewOrEditProductVm model, string businessAction)
         {
-            Thread.Sleep(5000);
+            _imageService.UploadToAzure(model.Image);
+
+
             if (ModelState.IsValid)
             {
                 model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
                 model.CreatedOn = DateTime.Now;
                 _productService.AddProduct(model);
+
+                //foreach (var image in model.Images)
+                //{
+                //    var imageName =_imageService.UploadToAzure(image.Url);
+                //    image.Name = imageName;
+                //}
+
+                _imageService.AddImages(model.Images,model.Id);
 
                 if (businessAction == "publish")
                     SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);

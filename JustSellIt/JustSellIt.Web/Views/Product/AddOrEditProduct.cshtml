@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-md-12 mt-3">
-        <form asp-action="@Model.Action" asp-route-id="@Model.Id" method="post">
+        <form asp-action="@Model.Action" asp-route-id="@Model.Id" method="post" enctype='multipart/form-data'>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
@@ -138,7 +138,8 @@
                                     <i id="deleteImage4" class="fas fa-times delete-icon" style="display:none;"></i>
                                 </div>
                             </div>
-                            <input type="file" id="inpImage1" accept="image/*" hidden="hidden" />
+                            <input asp-for="ImageNames" hidden="hidden" />
+                            <input asp-for="Image" type="file" id="inpImage1" accept="image/*" hidden="hidden" />
                             <input type="file" id="inpImage2" accept="image/*" hidden="hidden" oninput="image2.src=window.URL.createObjectURL(this.files[0])" />
                             <input type="file" id="inpImage3" accept="image/*" hidden="hidden" oninput="image3.src=window.URL.createObjectURL(this.files[0])" />
                             <input type="file" id="inpImage4" accept="image/*" hidden="hidden" oninput="image4.src=window.URL.createObjectURL(this.files[0])" />
@@ -323,8 +324,30 @@
         $('#imageDiv1').on('click', function () {
             showFileDialogIfEmpty(1);
         });
+        var file;
         $('#inpImage1').on('change', function () {
             $('#loaderImg1').show();
+            file = this.files[0];
+
+            var reader = new FileReader();
+            var fileByteArray = [];
+            reader.readAsArrayBuffer(file);
+            reader.onloadend = function (evt) {
+                if (evt.target.readyState == FileReader.DONE) {
+                    var arrayBuffer = evt.target.result,
+                        array = new Uint8Array(arrayBuffer);
+                    for (var i = 0; i < array.length; i++) {
+                        fileByteArray.push(array[i]);
+                    }
+                }
+            }
+            //let fileReader = new FileReader();
+
+            //fileReader.readAsArrayBuffer(file);
+            //fileReader.onload = function (ev) {
+            //    const result = ev.target.result;
+            //    console.log(result); // here it is
+            //}
             image1.src = window.URL.createObjectURL(this.files[0]);
             addImage(1);
         });
@@ -385,20 +408,18 @@
         }
 
         function addProduct(idSubmit) {
-            //$.ajax({
-            //    url: '/Image/Upload',
-            //    data: { images:  },
-            //    type: 'POST',
-            //    dataType: 'json',
-            //    success: function (json) {
-            //        ('#' + idSubmit).click();
-            //    },
-            //    error: function (xhr, status) {
-            //        alert('Przepraszamy, wystąpił problem!');
-            //    },
-            //    complete: function (xhr, status) {
-            //    }
-            //});
+
+            var imagesArray = [];
+            for (var i = 1; i < 5; i++) {
+                if ($("#image" + i).attr('src') != "") {
+                    imagesArray.push($("#image" + i).attr('src'));
+                }
+            }
+
+            var imagaNames = imagesArray.join(",");
+            console.log(imagaNames);
+            $('#Image').val(file);
+
             $('.submit-form-loader').show();
             $('#addPublish').click();
         }

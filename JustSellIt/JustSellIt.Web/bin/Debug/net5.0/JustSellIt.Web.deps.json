@@ -2844,6 +2844,7 @@
         "dependencies": {
           "AutoMapper": "10.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.0",
+          "Azure.Storage.Blobs": "12.9.1",
           "FluentValidation": "9.3.0",
           "FluentValidation.AspNetCore": "9.3.0",
           "FluentValidation.DependencyInjectionExtensions": "9.3.0",

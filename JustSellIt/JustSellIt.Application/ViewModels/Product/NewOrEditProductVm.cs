@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using JustSellIt.Application.Mapping;
 using JustSellIt.Domain.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -28,6 +30,8 @@ namespace JustSellIt.Application.ViewModels.Product
         public DateTime CreatedOn { get; set; }
         public List<CategoryProductVm> Categories { get; set; }
         public List<ImageProductVm> Images { get; set; }
+        public IFormFile Image { get; set; }
+        public string ImageNames{ get; set; }
         public string Action { get; set; }
 
         public void Mapping(MappingProfile profile)
