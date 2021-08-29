@@ -29,7 +29,7 @@ namespace JustSellIt.Application.Services
             _configuration = configuration;
         }
 
-        public void AddImages(List<ImageProductVm> images, int productId)
+        public void AddImages(List<ImageProductVm> images)
         {
             foreach (var image in images)
             {
@@ -46,7 +46,7 @@ namespace JustSellIt.Application.Services
                 {
                     var imageToUpdate = images.FirstOrDefault(x => x.Id == image.Id);
                     image.Name = imageToUpdate.Name;
-                    image.isMain = imageToUpdate.isMain;
+                    image.isMain = imageToUpdate.IsMain;
 
                     _imageRepo.Update(image);
                 }
@@ -70,29 +70,16 @@ namespace JustSellIt.Application.Services
 
         public string UploadToAzure(IFormFile file)
         {
+            if (file == null)
+                return null;
+
             string connectionString = _configuration.GetValue<string>("AzureConnection");
             BlobContainerClient container = new BlobContainerClient(connectionString, "product-images");
             container.CreateIfNotExists(PublicAccessType.Blob);
 
             var name = Guid.NewGuid().ToString();
-            var blockBlob = container.GetBlobClient(name+".png");
+            var blockBlob = container.GetBlobClient(name + ".png");
 
-            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imageUrl);
-            //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            //Stream receiveStream = response.GetResponseStream();
-            //receiveStream.Close();
-            //response.Close();
-
-            //if (file.Length > 0)
-            //{
-            //    using (var ms = new MemoryStream())
-            //    {
-            //        file.CopyTo(ms);
-            //        // act on the Base64 data
-            //        blockBlob.Upload(ms);
-            //        blockBlob.Upload(ms);
-            //    }
-            //}
             blockBlob.Upload(file.OpenReadStream());
 
             return name;

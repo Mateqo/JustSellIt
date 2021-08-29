@@ -138,11 +138,10 @@
                                     <i id="deleteImage4" class="fas fa-times delete-icon" style="display:none;"></i>
                                 </div>
                             </div>
-                            <input asp-for="ImageNames" hidden="hidden" />
-                            <input asp-for="Image" type="file" id="inpImage1" accept="image/*" hidden="hidden" />
-                            <input type="file" id="inpImage2" accept="image/*" hidden="hidden" oninput="image2.src=window.URL.createObjectURL(this.files[0])" />
-                            <input type="file" id="inpImage3" accept="image/*" hidden="hidden" oninput="image3.src=window.URL.createObjectURL(this.files[0])" />
-                            <input type="file" id="inpImage4" accept="image/*" hidden="hidden" oninput="image4.src=window.URL.createObjectURL(this.files[0])" />
+                            <input asp-for="Image1" type="file" id="inpImage1" accept="image/*" hidden="hidden" />
+                            <input asp-for="Image2" type="file" id="inpImage2" accept="image/*" hidden="hidden" oninput="image2.src=window.URL.createObjectURL(this.files[0])" />
+                            <input asp-for="Image3" type="file" id="inpImage3" accept="image/*" hidden="hidden" oninput="image3.src=window.URL.createObjectURL(this.files[0])" />
+                            <input asp-for="Image4" type="file" id="inpImage4" accept="image/*" hidden="hidden" oninput="image4.src=window.URL.createObjectURL(this.files[0])" />
                         </div>
                     </div>
                 </div>
@@ -326,28 +325,6 @@
         });
         var file;
         $('#inpImage1').on('change', function () {
-            $('#loaderImg1').show();
-            file = this.files[0];
-
-            var reader = new FileReader();
-            var fileByteArray = [];
-            reader.readAsArrayBuffer(file);
-            reader.onloadend = function (evt) {
-                if (evt.target.readyState == FileReader.DONE) {
-                    var arrayBuffer = evt.target.result,
-                        array = new Uint8Array(arrayBuffer);
-                    for (var i = 0; i < array.length; i++) {
-                        fileByteArray.push(array[i]);
-                    }
-                }
-            }
-            //let fileReader = new FileReader();
-
-            //fileReader.readAsArrayBuffer(file);
-            //fileReader.onload = function (ev) {
-            //    const result = ev.target.result;
-            //    console.log(result); // here it is
-            //}
             image1.src = window.URL.createObjectURL(this.files[0]);
             addImage(1);
         });

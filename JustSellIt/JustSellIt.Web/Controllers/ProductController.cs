@@ -74,29 +74,46 @@ namespace JustSellIt.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(NewOrEditProductVm model, string businessAction)
         {
-            _imageService.UploadToAzure(model.Image);
-
-
             if (ModelState.IsValid)
             {
-                model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
-                model.CreatedOn = DateTime.Now;
-                _productService.AddProduct(model);
+                try
+                {
+                    model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
+                    model.CreatedOn = DateTime.Now;
 
-                //foreach (var image in model.Images)
-                //{
-                //    var imageName =_imageService.UploadToAzure(image.Url);
-                //    image.Name = imageName;
-                //}
+                    List<ImageProductVm> images = new List<ImageProductVm>();
 
-                _imageService.AddImages(model.Images,model.Id);
+                    var imageName1 = _imageService.UploadToAzure(model.Image1) ?? null;
+                    var imageName2 = _imageService.UploadToAzure(model.Image2) ?? null;
+                    var imageName3 = _imageService.UploadToAzure(model.Image3) ?? null;
+                    var imageName4 = _imageService.UploadToAzure(model.Image4) ?? null;
 
-                if (businessAction == "publish")
-                    SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
-                else
-                    SetMessage("Ogłoszenie zapisano w wersji roboczej", MessageType.Success);
+                    if (!string.IsNullOrEmpty(imageName1)) images.Add(new ImageProductVm(imageName1));
+                    if (!string.IsNullOrEmpty(imageName2)) images.Add(new ImageProductVm(imageName2));
+                    if (!string.IsNullOrEmpty(imageName3)) images.Add(new ImageProductVm(imageName3));
+                    if (!string.IsNullOrEmpty(imageName4)) images.Add(new ImageProductVm(imageName4));
 
-                return RedirectToAction("MyProducts", new { id = model.OwnerId });
+                    if (images.Count > 0)
+                    {
+                        var mainImage = images.FirstOrDefault();
+                        mainImage.IsMain = true;
+                        model.MainImageName = mainImage.Name;
+                        model.Id = _productService.AddProduct(model);
+                        images.ForEach(x => x.ProductId = model.Id);
+                        _imageService.AddImages(images);
+                    }
+
+                    if (businessAction == "publish")
+                        SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
+                    else
+                        SetMessage("Ogłoszenie zapisano w wersji roboczej", MessageType.Success);
+
+                    return RedirectToAction("MyProducts", new { id = model.OwnerId });
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Add/Edit Product Failed " + ex);
+                }
             }
             else
             {

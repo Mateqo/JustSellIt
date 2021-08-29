@@ -6,7 +6,7 @@ namespace JustSellIt.Application.Interfaces
 {
     public interface IImageService
     {
-        void AddImages(List<ImageProductVm> images, int productId);
+        void AddImages(List<ImageProductVm> images);
         void UpdateImages(List<ImageProductVm> images, int productId);
         bool DeleteImages(int productId);
         List<ImageProductVm> GetImages(int productId);

@@ -19,7 +19,7 @@ namespace JustSellIt.Domain.Model
         public int ProductStatusId { get; set; }
         public bool StorePolicy { get; set; }
         public string RejectionReason { get; set; }
-        public string MainImageUrl { get; set; }
+        public string MainImageName { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public virtual Category Category { get; set; }
