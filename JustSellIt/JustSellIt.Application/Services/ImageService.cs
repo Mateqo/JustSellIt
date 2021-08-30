@@ -31,30 +31,34 @@ namespace JustSellIt.Application.Services
 
         public void AddImages(List<ImageProductVm> images)
         {
+            int imagePosition = 1;
+
             foreach (var image in images)
             {
+                image.Position = 1;
                 _imageRepo.AddImage(_mapper.Map<Image>(image));
+                imagePosition++;
             }
         }
 
         public void UpdateImages(List<ImageProductVm> images, int productId)
         {
-            var imagesBefore = _imageRepo.GetImages(productId);
-            foreach (var image in imagesBefore)
-            {
-                if (images.Any(x => x.Id == image.Id))
-                {
-                    var imageToUpdate = images.FirstOrDefault(x => x.Id == image.Id);
-                    image.Name = imageToUpdate.Name;
-                    image.isMain = imageToUpdate.IsMain;
+            //var imagesBefore = _imageRepo.GetImages(productId);
+            //foreach (var image in imagesBefore)
+            //{
+            //    if (images.Any(x => x.Name == image.Name))
+            //    {
+            //        var imageToUpdate = images.FirstOrDefault(x => x.Name == image.Name);
+            //        image.Name = imageToUpdate.Name;
+            //        image.isMain = imageToUpdate.IsMain;
 
-                    _imageRepo.Update(image);
-                }
-                else
-                {
-                    _imageRepo.DeleteImage(image.Id);
-                }
-            }
+            //        _imageRepo.Update(image);
+            //    }
+            //    else
+            //    {
+            //        _imageRepo.DeleteImage(image.Id);
+            //    }
+            //}
         }
 
         public bool DeleteImages(int productId)
@@ -85,12 +89,12 @@ namespace JustSellIt.Application.Services
             return name;
         }
 
-        public void DeleteToAzure(string imageName)
+        public void DeleteFromAzure(string imageName)
         {
             string connectionString = _configuration.GetValue<string>("AzureConnection");
-            BlobContainerClient container = new BlobContainerClient(connectionString, "ProductImages");
+            BlobContainerClient container = new BlobContainerClient(connectionString, "product-images");
             container.CreateIfNotExists(PublicAccessType.Blob);
-            var blockBlob = container.GetBlobClient(imageName);
+            var blockBlob = container.GetBlobClient(imageName + ".png");
 
             blockBlob.DeleteIfExists();
         }

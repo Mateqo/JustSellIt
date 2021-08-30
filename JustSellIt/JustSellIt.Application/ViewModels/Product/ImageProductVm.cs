@@ -7,6 +7,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsMain { get; set; }
+        public int Position { get; set; }
         public int ProductId { get; set; }
 
         public ImageProductVm()

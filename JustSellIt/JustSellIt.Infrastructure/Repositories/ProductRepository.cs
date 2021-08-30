@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JustSellIt.Infrastructure.Repositories
 {
-    public class ProductRepository: IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly Context _context;
 
@@ -20,8 +20,9 @@ namespace JustSellIt.Infrastructure.Repositories
         public bool DeleteProduct(int productId)
         {
             var item = _context.Products.Find(productId);
-            if(item!=null)
+            if (item != null)
             {
+                item.MainImageName = null;
                 item.ProductStatusId = _context.ProductStatuses.FirstOrDefault(x => x.Name == "Deleted").Id;
                 _context.SaveChanges();
 
@@ -31,7 +32,7 @@ namespace JustSellIt.Infrastructure.Repositories
             return false;
         }
 
-        public bool RejectProduct(int productId,string reason)
+        public bool RejectProduct(int productId, string reason)
         {
             var item = _context.Products.Find(productId);
             if (item != null)
@@ -77,7 +78,7 @@ namespace JustSellIt.Infrastructure.Repositories
 
         public Product GetProductById(int productId)
         {
-            var product = _context.Products.Include(x=>x.Owner).Include(x=>x.Category).Include(x => x.ProductStatus).FirstOrDefault(x => x.Id == productId);
+            var product = _context.Products.Include(x => x.Owner).Include(x => x.Category).Include(x => x.ProductStatus).FirstOrDefault(x => x.Id == productId);
 
             return product;
         }
@@ -98,7 +99,7 @@ namespace JustSellIt.Infrastructure.Repositories
 
         public IQueryable<Product> GetAllProducts()
         {
-            var products = _context.Products.Include(x=>x.ProductStatus).Where(x => x.ProductStatus.Name != "Deleted");
+            var products = _context.Products.Include(x => x.ProductStatus).Where(x => x.ProductStatus.Name != "Deleted");
 
             return products;
         }
@@ -138,7 +139,7 @@ namespace JustSellIt.Infrastructure.Repositories
 
         public Category GetCategoryById(int id)
         {
-            return _context.Categories.FirstOrDefault(x=>x.Id==id);
+            return _context.Categories.FirstOrDefault(x => x.Id == id);
         }
 
         public void ClearReason(int id)

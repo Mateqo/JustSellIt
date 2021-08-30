@@ -26,6 +26,10 @@ namespace JustSellIt.Application.ViewModels.Product
         public DateTime CreatedOn { get; set; }
         public List<CategoryProductVm> Categories { get; set; }
         public string MainImageName { get; set; }
+        public string ImageUrl1 { get; set; }
+        public string ImageUrl2 { get; set; }
+        public string ImageUrl3 { get; set; }
+        public string ImageUrl4 { get; set; }
         public IFormFile Image1 { get; set; }
         public IFormFile Image2 { get; set; }
         public IFormFile Image3 { get; set; }

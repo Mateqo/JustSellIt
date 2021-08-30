@@ -98,10 +98,11 @@ namespace JustSellIt.Web.Controllers
                         var mainImage = images.FirstOrDefault();
                         mainImage.IsMain = true;
                         model.MainImageName = mainImage.Name;
-                        model.Id = _productService.AddProduct(model);
-                        images.ForEach(x => x.ProductId = model.Id);
-                        _imageService.AddImages(images);
                     }
+
+                    model.Id = _productService.AddProduct(model);
+                    images.ForEach(x => x.ProductId = model.Id);
+                    _imageService.AddImages(images);
 
                     if (businessAction == "publish")
                         SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
@@ -131,6 +132,16 @@ namespace JustSellIt.Web.Controllers
             product.CategoryName = _productService.GetNameCategoryById(product.CategoryId);
             product.Categories = _productService.GetAllCategory();
             product.Action = "EditProduct";
+            var images = _imageService.GetImages(id);
+            product.ImageUrl1 = images.Any(x => x.Position == 1) ?
+                SystemConfiguration.ProductImageUrl.Replace("{{name}}", images.FirstOrDefault(x => x.Position == 1).Name) : null;
+            product.ImageUrl2 = images.Any(x => x.Position == 2) ?
+             SystemConfiguration.ProductImageUrl.Replace("{{name}}", images.FirstOrDefault(x => x.Position == 2).Name) : null;
+            product.ImageUrl3 = images.Any(x => x.Position == 3) ?
+             SystemConfiguration.ProductImageUrl.Replace("{{name}}", images.FirstOrDefault(x => x.Position == 3).Name) : null;
+            product.ImageUrl4 = images.Any(x => x.Position == 4) ?
+             SystemConfiguration.ProductImageUrl.Replace("{{name}}", images.FirstOrDefault(x => x.Position == 4).Name) : null;
+
             return View("AddOrEditProduct", product);
         }
 
@@ -142,7 +153,28 @@ namespace JustSellIt.Web.Controllers
             {
                 model.CreatedOn = DateTime.Now;
                 model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
-                _productService.UpdateProduct(model);
+
+                List<ImageProductVm> images = new List<ImageProductVm>();
+
+                var imageName1 = _imageService.UploadToAzure(model.Image1) ?? "";
+                var imageName2 = _imageService.UploadToAzure(model.Image2) ?? "";
+                var imageName3 = _imageService.UploadToAzure(model.Image3) ?? "";
+                var imageName4 = _imageService.UploadToAzure(model.Image4) ?? "";
+
+                if (!string.IsNullOrEmpty(imageName1)) images.Add(new ImageProductVm(imageName1));
+                if (!string.IsNullOrEmpty(imageName2)) images.Add(new ImageProductVm(imageName2));
+                if (!string.IsNullOrEmpty(imageName3)) images.Add(new ImageProductVm(imageName3));
+                if (!string.IsNullOrEmpty(imageName4)) images.Add(new ImageProductVm(imageName4));
+
+                if (images.Count > 0)
+                {
+                    var mainImage = images.FirstOrDefault();
+                    mainImage.IsMain = true;
+                    model.MainImageName = mainImage.Name;
+                    _productService.UpdateProduct(model);
+                    images.ForEach(x => x.ProductId = model.Id);
+                    _imageService.UpdateImages(images, model.Id);
+                }
 
                 if (businessAction == "publish")
                     SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
@@ -163,6 +195,14 @@ namespace JustSellIt.Web.Controllers
         public IActionResult DeleteProduct(int id)
         {
             _productService.DeleteProduct(id);
+            var images = _imageService.GetImages(id);
+            _imageService.DeleteImages(id);
+
+            foreach (var image in images)
+            {
+                _imageService.DeleteFromAzure(image.Name);
+            }
+
             SetMessage("Ogłoszenie zostało usunięte", MessageType.Error);
             return RedirectToAction("MyProducts", new { id = _productService.GetOwnerIdByProductId(id) });
         }
