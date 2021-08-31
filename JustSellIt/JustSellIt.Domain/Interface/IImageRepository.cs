@@ -10,6 +10,7 @@ namespace JustSellIt.Domain.Interface
         bool DeleteImagesByProductId(int productId);
         IQueryable<Image> GetImages(int productId);
         void Update(Image image);
+        Image GetImageByPosition(int productId, int position);
 
     }
 }

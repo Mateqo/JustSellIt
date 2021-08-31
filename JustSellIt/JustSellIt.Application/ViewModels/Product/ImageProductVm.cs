@@ -18,13 +18,22 @@ namespace JustSellIt.Application.ViewModels.Product
         public ImageProductVm(string name)
         {
             Name = name;
+            Position = 0;
             IsMain = false;
         }
 
-        public ImageProductVm(string name, bool isMain)
+        public ImageProductVm(string name, int position)
+        {
+            Name = name;
+            Position = position;
+            IsMain = false;
+        }
+
+        public ImageProductVm(string name, int position, bool isMain)
         {
             Name = name;
             IsMain = isMain;
+            Position = position;
         }
 
         public void Mapping(MappingProfile profile)

@@ -31,39 +31,47 @@ namespace JustSellIt.Application.Services
 
         public void AddImages(List<ImageProductVm> images)
         {
-            int imagePosition = 1;
-
             foreach (var image in images)
             {
-                image.Position = 1;
                 _imageRepo.AddImage(_mapper.Map<Image>(image));
-                imagePosition++;
             }
         }
 
         public void UpdateImages(List<ImageProductVm> images, int productId)
         {
-            //var imagesBefore = _imageRepo.GetImages(productId);
-            //foreach (var image in imagesBefore)
-            //{
-            //    if (images.Any(x => x.Name == image.Name))
-            //    {
-            //        var imageToUpdate = images.FirstOrDefault(x => x.Name == image.Name);
-            //        image.Name = imageToUpdate.Name;
-            //        image.isMain = imageToUpdate.IsMain;
+            var imagesBefore = _imageRepo.GetImages(productId);
 
-            //        _imageRepo.Update(image);
-            //    }
-            //    else
-            //    {
-            //        _imageRepo.DeleteImage(image.Id);
-            //    }
-            //}
+            foreach (var image in images)
+            {
+                var imageToChange = _imageRepo.GetImageByPosition(productId, image.Position);
+                if(imageToChange != null)
+                {
+                    imageToChange.Name = image.Name;
+                    imageToChange.IsMain = image.IsMain;
+
+                    _imageRepo.Update(imageToChange);
+                }
+                else
+                {
+                    _imageRepo.AddImage(_mapper.Map<Image>(image));
+                }
+            }
+        }
+
+        public bool DeleteImage(int imageId)
+        {
+            return _imageRepo.DeleteImage(imageId);
         }
 
         public bool DeleteImages(int productId)
         {
             return _imageRepo.DeleteImagesByProductId(productId);
+        }
+
+        public ImageProductVm GetImageByPosition(int productId, int position)
+        {
+            var image = _imageRepo.GetImageByPosition(productId, position);
+            return _mapper.Map<ImageProductVm>(image);
         }
 
         public List<ImageProductVm> GetImages(int productId)

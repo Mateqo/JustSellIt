@@ -109,15 +109,16 @@
                                     @if (string.IsNullOrEmpty(Model.ImageUrl1))
                                     {
                                         <img class="cover" id="image1" height="110" width="200" src="@Model.ImageUrl1" style="position:absolute;top:0px;left:0px;display:none;" />
+                                        <i id="deleteImage1" class="fas fa-times delete-icon" style="display:none;"></i>
                                     }
                                     else
                                     {
                                         <img class="cover" id="image1" height="110" width="200" src="@Model.ImageUrl1" style="position:absolute;top:0px;left:0px;" />
+                                        <i id="deleteImage1" class="fas fa-times delete-icon"></i>
                                     }
 
                                     <i class="fas fa-home main-icon"></i>
                                     <span>To będzie twoje zdjęcie główne</span>
-                                    <i id="deleteImage1" class="fas fa-times delete-icon" style="display:none;"></i>
                                 </div>
                                 <div id="imageDiv2" class="add-upload col-4 offset-1">
                                     <div id="loaderImg2" class="spinner-grow image-loader-sub d-none" role="status">
@@ -126,13 +127,16 @@
                                     @if (string.IsNullOrEmpty(Model.ImageUrl2))
                                     {
                                         <img class="cover" id="image2" height="110" width="200" src="@Model.ImageUrl2" style="position:absolute;top:0px;left:0px;display:none;" />
+                                        <i id="deleteImage2" class="fas fa-times delete-icon" style="display:none;"></i>
+
                                     }
                                     else
                                     {
                                         <img class="cover" id="image2" height="110" width="200" src="@Model.ImageUrl2" style="position:absolute;top:0px;left:0px;" />
-                                    }                                    
+                                        <i id="deleteImage2" class="fas fa-times delete-icon"></i>
+
+                                    }
                                     <i class="fas fa-camera"></i>
-                                    <i id="deleteImage2" class="fas fa-times delete-icon" style="display:none;"></i>
                                 </div>
                             </div>
                             <div class="col-md-12 mt-5 row ml-0 add-images">
@@ -143,12 +147,16 @@
                                     @if (string.IsNullOrEmpty(Model.ImageUrl3))
                                     {
                                         <img class="cover" id="image3" height="110" width="200" src="@Model.ImageUrl3" style="position:absolute;top:0px;left:0px;display:none;" />
+                                        <i id="deleteImage3" class="fas fa-times delete-icon" style="display:none;"></i>
+
                                     }
                                     else
                                     {
                                         <img class="cover" id="image3" height="110" width="200" src="@Model.ImageUrl3" style="position:absolute;top:0px;left:0px;" />
-                                    }                                    <i class="fas fa-camera"></i>
-                                    <i id="deleteImage3" class="fas fa-times delete-icon" style="display:none;"></i>
+                                        <i id="deleteImage3" class="fas fa-times delete-icon"></i>
+
+                                    }
+                                    <i class="fas fa-camera"></i>
                                 </div>
                                 <div id="imageDiv4" class="add-upload col-4  offset-1">
                                     <div id="loaderImg4" class="spinner-grow image-loader-sub d-none" role="status">
@@ -157,18 +165,26 @@
                                     @if (string.IsNullOrEmpty(Model.ImageUrl4))
                                     {
                                         <img class="cover" id="image4" height="110" width="200" src="@Model.ImageUrl4" style="position:absolute;top:0px;left:0px;display:none;" />
+                                        <i id="deleteImage4" class="fas fa-times delete-icon" style="display:none;"></i>
+
                                     }
                                     else
                                     {
                                         <img class="cover" id="image4" height="110" width="200" src="@Model.ImageUrl4" style="position:absolute;top:0px;left:0px;" />
-                                    }                                    <i class="fas fa-camera"></i>
-                                    <i id="deleteImage4" class="fas fa-times delete-icon" style="display:none;"></i>
+                                        <i id="deleteImage4" class="fas fa-times delete-icon"></i>
+
+                                    }
+                                    <i class="fas fa-camera"></i>
                                 </div>
                             </div>
                             <input asp-for="Image1" type="file" id="inpImage1" accept="image/*" hidden="hidden" />
                             <input asp-for="Image2" type="file" id="inpImage2" accept="image/*" hidden="hidden" oninput="image2.src=window.URL.createObjectURL(this.files[0])" />
                             <input asp-for="Image3" type="file" id="inpImage3" accept="image/*" hidden="hidden" oninput="image3.src=window.URL.createObjectURL(this.files[0])" />
                             <input asp-for="Image4" type="file" id="inpImage4" accept="image/*" hidden="hidden" oninput="image4.src=window.URL.createObjectURL(this.files[0])" />
+                            <input asp-for="ImageUrl1" hidden="hidden" />
+                            <input asp-for="ImageUrl2" hidden="hidden" />
+                            <input asp-for="ImageUrl3" hidden="hidden" />
+                            <input asp-for="ImageUrl4" hidden="hidden" />
                         </div>
                     </div>
                 </div>
@@ -243,10 +259,11 @@
             <div class="form-group mt-4 float-md-right text-center">
                 @{ if (Model.Action == "AddProduct")
                     {
-                        <input onclick="addProduct(addPublish);" @*type="submit"*@ asp-route-businessAction="publish" value="Dodaj" class="btn btn-submit-sm mb-3" />
+                        <input onclick="addProduct('Publish');" asp-route-businessAction="publish" value="Dodaj" class="btn btn-submit-sm mb-3" />
                         <input id="addPublish" type="submit" asp-route-businessAction="publish" hidden="hidden" />
 
-                        <input type="submit" asp-route-businessAction="draft" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" />
+                        <input onclick="addProduct('Draft');" asp-route-businessAction="draft" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" />
+                        <input id="addDraft" type="submit" asp-route-businessAction="draft" hidden="hidden" />
                     }
                     else
                     {
@@ -292,7 +309,8 @@
                             Spowoduje to, że ogłoszenie <span class="font-weight-bold">@Model.Title</span> zostanie zdjęte z tablicy.
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" asp-route-businessAction="draft" class="btn btn-success">Zapisz jako wersja robocza</button>
+                            <button onclick="editProduct('draft');" asp-route-businessAction="draft" class="btn btn-success">Zapisz jako wersja robocza</button>
+                            <input id="editDraft" type="submit" asp-route-businessAction="draft" hidden="hidden" />
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
                         </div>
                     </div>
@@ -309,7 +327,8 @@
                             Jeśli ogłoszenie <span class="font-weight-bold">@Model.Title</span> było zweryfikowane, automatycznie zostanie zdjęte z tablicy do momentu ponownej weryfikacji.
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" asp-route-businessAction="publish" class="btn btn-success">Publikuj</button>
+                            <button onclick="editProduct('publish');" asp-route-businessAction="publish" class="btn btn-success">Publikuj</button>
+                            <input id="editPublish" type="submit" asp-route-businessAction="draft" hidden="hidden" />
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
                         </div>
                     </div>
@@ -322,6 +341,20 @@
 @section Scripts {
     <script src="~/js/autosize.min.js"></script>
     <script type="text/javascript">
+
+        if ($("#image1").css('display') != 'none') {
+            $("#imageDiv1").css("cursor", "default");
+        }
+        if ($("#image2").css('display') != 'none') {
+            $("#imageDiv2").css("cursor", "default");
+        }
+        if ($("#image3").css('display') != 'none') {
+            $("#imageDiv3").css("cursor", "default");
+        }
+        if ($("#image4").css('display') != 'none') {
+            $("#imageDiv4").css("cursor", "default");
+        }
+
 
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -350,7 +383,6 @@
         $('#imageDiv1').on('click', function () {
             showFileDialogIfEmpty(1);
         });
-        var file;
         $('#inpImage1').on('change', function () {
             image1.src = window.URL.createObjectURL(this.files[0]);
             addImage(1);
@@ -404,6 +436,7 @@
             $("#inpImage" + index).val('');
             $('#imageDiv' + index).css('cursor', 'pointer');
             $('#deleteImage' + index).hide();
+            $('#ImageUrl' + index).val(null);
             setTimeout(
                 function () {
                     $('#image' + index).hide();
@@ -411,21 +444,21 @@
                 }, 100);
         }
 
-        function addProduct(idSubmit) {
-
-            var imagesArray = [];
-            for (var i = 1; i < 5; i++) {
-                if ($("#image" + i).attr('src') != "") {
-                    imagesArray.push($("#image" + i).attr('src'));
-                }
-            }
-
-            var imagaNames = imagesArray.join(",");
-            console.log(imagaNames);
-            $('#Image').val(file);
+        function addProduct(typeSubmit) {
 
             $('.submit-form-loader').show();
-            $('#addPublish').click();
+            if (typeSubmit == "Publish")
+                $('#addPublish').click();
+            else
+                $('#addDraft').click();
+        }
+        function editProduct(typeSubmit) {
+
+            $('.submit-form-loader').show();
+            if (typeSubmit == "Publish")
+                $('#editPublish').click();
+            else
+                $('#editDraft').click();
         }
 
         autosize(document.querySelectorAll('textarea'));

@@ -88,10 +88,10 @@ namespace JustSellIt.Web.Controllers
                     var imageName3 = _imageService.UploadToAzure(model.Image3) ?? null;
                     var imageName4 = _imageService.UploadToAzure(model.Image4) ?? null;
 
-                    if (!string.IsNullOrEmpty(imageName1)) images.Add(new ImageProductVm(imageName1));
-                    if (!string.IsNullOrEmpty(imageName2)) images.Add(new ImageProductVm(imageName2));
-                    if (!string.IsNullOrEmpty(imageName3)) images.Add(new ImageProductVm(imageName3));
-                    if (!string.IsNullOrEmpty(imageName4)) images.Add(new ImageProductVm(imageName4));
+                    if (!string.IsNullOrEmpty(imageName1)) images.Add(new ImageProductVm(imageName1, 1));
+                    if (!string.IsNullOrEmpty(imageName2)) images.Add(new ImageProductVm(imageName2, 2));
+                    if (!string.IsNullOrEmpty(imageName3)) images.Add(new ImageProductVm(imageName3, 3));
+                    if (!string.IsNullOrEmpty(imageName4)) images.Add(new ImageProductVm(imageName4, 4));
 
                     if (images.Count > 0)
                     {
@@ -154,23 +154,64 @@ namespace JustSellIt.Web.Controllers
                 model.CreatedOn = DateTime.Now;
                 model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
 
-                List<ImageProductVm> images = new List<ImageProductVm>();
-
                 var imageName1 = _imageService.UploadToAzure(model.Image1) ?? "";
                 var imageName2 = _imageService.UploadToAzure(model.Image2) ?? "";
                 var imageName3 = _imageService.UploadToAzure(model.Image3) ?? "";
                 var imageName4 = _imageService.UploadToAzure(model.Image4) ?? "";
 
-                if (!string.IsNullOrEmpty(imageName1)) images.Add(new ImageProductVm(imageName1));
-                if (!string.IsNullOrEmpty(imageName2)) images.Add(new ImageProductVm(imageName2));
-                if (!string.IsNullOrEmpty(imageName3)) images.Add(new ImageProductVm(imageName3));
-                if (!string.IsNullOrEmpty(imageName4)) images.Add(new ImageProductVm(imageName4));
+                if (string.IsNullOrEmpty(model.ImageUrl1))
+                {
+                    var imageToDelete = _imageService.GetImageByPosition(model.Id, 1);
+                    if (imageToDelete != null)
+                    {
+                        _imageService.DeleteImage(imageToDelete.Id);
+                        _imageService.DeleteFromAzure(imageToDelete.Name);
+                    }
+                }
+                if (string.IsNullOrEmpty(model.ImageUrl2))
+                {
+                    var imageToDelete = _imageService.GetImageByPosition(model.Id, 2);
+                    if (imageToDelete != null)
+                    {
+                        _imageService.DeleteImage(imageToDelete.Id);
+                        _imageService.DeleteFromAzure(imageToDelete.Name);
+                    }
+                }
+                if (string.IsNullOrEmpty(model.ImageUrl3))
+                {
+                    var imageToDelete = _imageService.GetImageByPosition(model.Id, 3);
+                    if (imageToDelete != null)
+                    {
+                        _imageService.DeleteImage(imageToDelete.Id);
+                        _imageService.DeleteFromAzure(imageToDelete.Name);
+                    }
+                }
+                if (string.IsNullOrEmpty(model.ImageUrl4))
+                {
+                    var imageToDelete = _imageService.GetImageByPosition(model.Id, 4);
+                    if (imageToDelete != null)
+                    {
+                        _imageService.DeleteImage(imageToDelete.Id);
+                        _imageService.DeleteFromAzure(imageToDelete.Name);
+                    }
+                }
+
+                List<ImageProductVm> images = new List<ImageProductVm>();
+                if (model.Image1 != null) images.Add(new ImageProductVm(imageName1, 1));
+                if (model.Image2 != null) images.Add(new ImageProductVm(imageName2, 2));
+                if (model.Image3 != null) images.Add(new ImageProductVm(imageName3, 3));
+                if (model.Image4 != null) images.Add(new ImageProductVm(imageName4, 4));
 
                 if (images.Count > 0)
                 {
-                    var mainImage = images.FirstOrDefault();
-                    mainImage.IsMain = true;
-                    model.MainImageName = mainImage.Name;
+                    var imagesBefore = _imageService.GetImages(model.Id);
+                    if (!imagesBefore.Any(x => x.IsMain))
+                    {
+                        var mainImage = images.FirstOrDefault();
+                        mainImage.IsMain = true;
+                        model.MainImageName = mainImage.Name;
+                    }
+
                     _productService.UpdateProduct(model);
                     images.ForEach(x => x.ProductId = model.Id);
                     _imageService.UpdateImages(images, model.Id);

@@ -53,6 +53,11 @@ namespace JustSellIt.Infrastructure.Repositories
             return false;
         }
 
+        public Image GetImageByPosition(int productId, int position)
+        {
+            return _context.Images.FirstOrDefault(x => x.ProductId == productId && x.Position == position);
+        }
+
         public IQueryable<Image> GetImages(int productId)
         {
             return _context.Images.Where(x => x.ProductId == productId);
@@ -62,7 +67,7 @@ namespace JustSellIt.Infrastructure.Repositories
         {
             _context.Attach(image);
             _context.Entry(image).Property("IsMain").IsModified = true;
-            _context.Entry(image).Property("Url").IsModified = true;
+            _context.Entry(image).Property("Name").IsModified = true;
             _context.SaveChanges();
         }
     }

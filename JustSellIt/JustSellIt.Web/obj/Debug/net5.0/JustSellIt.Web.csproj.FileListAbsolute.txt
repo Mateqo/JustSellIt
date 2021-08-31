@@ -924,3 +924,4 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Azure.Storage.Blobs.dll
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\Azure.Storage.Common.dll
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\bin\Debug\net5.0\System.Memory.Data.dll
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\JustSellIt.Web.MvcApplicationPartsAssemblyInfo.cs
