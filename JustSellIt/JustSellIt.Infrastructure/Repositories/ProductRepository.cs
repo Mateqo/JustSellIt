@@ -134,6 +134,7 @@ namespace JustSellIt.Infrastructure.Repositories
             _context.Entry(product).Property("PhoneContact").IsModified = true;
             _context.Entry(product).Property("CreatedOn").IsModified = true;
             _context.Entry(product).Property("RejectionReason").IsModified = true;
+            _context.Entry(product).Property("MainImageName").IsModified = true;
             _context.SaveChanges();
         }
 

@@ -17,7 +17,8 @@ namespace JustSellIt.Application.ViewModels.Product
         public void Mapping(MappingProfile profile)
         {
             profile.CreateMap<JustSellIt.Domain.Model.Product, ProductForListVm>()
-                .ForMember(s => s.Status, opt => opt.MapFrom(d => d.ProductStatus.Name));
+                .ForMember(s => s.Status, opt => opt.MapFrom(d => d.ProductStatus.Name))
+                .ForMember(s => s.MainImageUrl, opt => opt.MapFrom(d => SystemConfiguration.ProductImageUrl.Replace("{{name}}", d.MainImageName)));
         }
 
     }

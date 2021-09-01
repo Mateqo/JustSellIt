@@ -39,7 +39,12 @@ namespace JustSellIt.Application.Services
 
         public void UpdateImages(List<ImageProductVm> images, int productId)
         {
-            var imagesBefore = _imageRepo.GetImages(productId);
+            var imagesBefore = _imageRepo.GetImages(productId).ToList();
+            foreach (var item in imagesBefore)
+            {
+                item.IsMain = false;
+                _imageRepo.Update(item);
+            }
 
             foreach (var image in images)
             {
@@ -55,6 +60,16 @@ namespace JustSellIt.Application.Services
                 {
                     _imageRepo.AddImage(_mapper.Map<Image>(image));
                 }
+            }
+
+            var imageToMain = _imageRepo.GetImages(productId)
+                .OrderBy(x=>x.Position)
+                .FirstOrDefault();
+
+            if(imageToMain != null)
+            {
+                imageToMain.IsMain = true;
+                _imageRepo.Update(imageToMain);
             }
         }
 

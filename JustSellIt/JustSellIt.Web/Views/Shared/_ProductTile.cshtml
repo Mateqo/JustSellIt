@@ -26,7 +26,15 @@
                                 }
                             }
                         }
-                        <img src="/images/other/none.png" alt="Image product" class="img-fluid mb-3" />
+                        @if (product.MainImageUrl != null)
+                        {
+                            <img src="@product.MainImageUrl" alt="Image product" class="img-fluid mb-3" height="210" width="210"/>
+                        }
+                        else
+                        {
+                            <img src="/images/other/none.png" alt="Image product" class="img-fluid mb-3" />
+                        }
+
                         <div class="title">
                             <h3>@product.Title</h3>
                         </div>

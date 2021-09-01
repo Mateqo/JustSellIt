@@ -1,19 +1,12 @@
-﻿using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using JustSellIt.Application;
+﻿using JustSellIt.Application;
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Application.ViewModels.Product;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading;
 
 namespace JustSellIt.Web.Controllers
 {
@@ -202,20 +195,13 @@ namespace JustSellIt.Web.Controllers
                 if (model.Image3 != null) images.Add(new ImageProductVm(imageName3, 3));
                 if (model.Image4 != null) images.Add(new ImageProductVm(imageName4, 4));
 
-                if (images.Count > 0)
-                {
-                    var imagesBefore = _imageService.GetImages(model.Id);
-                    if (!imagesBefore.Any(x => x.IsMain))
-                    {
-                        var mainImage = images.FirstOrDefault();
-                        mainImage.IsMain = true;
-                        model.MainImageName = mainImage.Name;
-                    }
+                images.ForEach(x => x.ProductId = model.Id);
+                _imageService.UpdateImages(images, model.Id);
 
-                    _productService.UpdateProduct(model);
-                    images.ForEach(x => x.ProductId = model.Id);
-                    _imageService.UpdateImages(images, model.Id);
-                }
+                model.MainImageName = _imageService.GetImages(model.Id)
+                    .FirstOrDefault(x=>x.IsMain == true)?.Name ?? null;
+
+                _productService.UpdateProduct(model);
 
                 if (businessAction == "publish")
                     SetMessage("Ogłoszenie w trakcie weryfikacji", MessageType.Success);
