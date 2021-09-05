@@ -28,7 +28,7 @@
                         }
                         @if (product.MainImageUrl != null)
                         {
-                            <img src="@product.MainImageUrl" alt="Image product" class="img-fluid mb-3" height="210" width="210"/>
+                            <img src="@product.MainImageUrl" alt="@product.Title Image" class="img-fluid mb-3" />
                         }
                         else
                         {
@@ -71,6 +71,7 @@
                     $('#favourite_' + productId).addClass("favourite");
                     $('#favourite_' + productId).removeClass("far");
                     $('#favourite_' + productId).addClass("fas");
+                    $('#favouriteNumber').html(data.favouriteNumber);
                 }
             })
         }
@@ -86,6 +87,7 @@
                     $('#favourite_' + productId).removeClass("favourite");
                     $('#favourite_' + productId).removeClass("fas");
                     $('#favourite_' + productId).addClass("far");
+                    $('#favouriteNumber').html(data.favouriteNumber);
                 }
             })
         }

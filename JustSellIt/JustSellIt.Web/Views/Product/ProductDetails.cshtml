@@ -1,5 +1,6 @@
 ﻿@model JustSellIt.Application.ViewModels.Product.ProductDetailsVm
-
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Index";
 }
@@ -11,7 +12,33 @@
     <div class="col-xl-7 col-lg-6 pr-lg-5">
         <div class="row">
             <div class="col-12 product-details-images mb-2 text-center">
-                <div class="col-12"><img class="img-fluid" src="~/images/other/none.png" alt="@Model.Title image" /></div>
+                <div class="col-12">
+                    @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString($"favourite_{Model.Id}")))
+                    {
+                        <i id="favourite_@Model.Id" onclick="updateFavourite(@Model.Id);" class="far fa-heart"></i>
+                    }
+                    else
+                    {
+                        <i id="favourite_@Model.Id" onclick="updateFavourite(@Model.Id);" class="fas fa-heart favourite"></i>
+                    }
+                    @if (Model.Images.Count() > 0)
+                    {
+                        <i id="previousImage" class="fas fa-chevron-left" style="display:none;"></i>
+                        <img data-toggle="modal" data-target="#imageCarousel" id="imageView" class="img-fluid" src="@Model.Images[0]" alt="@Model.Title image" />
+                        if (Model.Images.Count() > 1)
+                        {
+                            <i id="nextImage" class="fas fa-chevron-right"></i>
+                        }
+                        else
+                        {
+                            <i id="nextImage" class="fas fa-chevron-right" style="display:none;"></i>
+                        }
+                    }
+                    else
+                    {
+                        <img id="imageView" class="img-fluid" src="~/images/other/none.png" alt="@Model.Title image" style="cursor:default;" />
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -104,11 +131,84 @@
     </div>
 </div>
 
+<div id="imageCarousel" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    @for (int i = 1; i < Model.Images.Length; i++)
+                    {
+                        <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.Images.Length; i++)
+                    {
+                        if (i == 0)
+                        {
+                            <div class="carousel-item active">
+                                <img class="d-block w-100 imageModal" src="@Model.Images[0]" alt="1 slide">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="carousel-item">
+                                <img class="d-block w-100 imageModal" src="@Model.Images[i]" alt="@i++ slide">
+                            </div>
+                        }
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="modal-footer imageListModal">
+                @for (int i = 0; i < Model.Images.Length; i++)
+                {
+                    <img onclick="changeImage(@i)" src="@Model.Images[i]" alt="Image List @i" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts{
     <script type="text/javascript">
         function goBack() {
             window.history.back();
         }
+        function changeImage(index) {
+            $('#imageCarousel').carousel(index);
+        }
+        var images = [];
+         @foreach (var image in Model.Images)
+         {
+            @:images.push("@image");
+         }
+        var indexImage = 0;
+
+
+        $('#nextImage').on('click', function () {
+            indexImage++;
+            $('#imageView').attr('src', images[indexImage]);
+            $('#previousImage').show();
+            if (indexImage >= images.length - 1)
+                $('#nextImage').hide();
+        });
+        $('#previousImage').on('click', function () {
+            indexImage--;
+            $('#imageView').attr('src', images[indexImage]);
+            $('#nextImage').show();
+            if (indexImage == 0)
+                $('#previousImage').hide();
+        });
+
     </script>
     <script type="text/javascript">
         function contact(productId) {
@@ -129,5 +229,40 @@
                 }
             });
         }
+        function updateFavourite(productId, e) {
+        event.preventDefault();
+        if (!$('#favourite_' + productId).hasClass("favourite")) {
+            $.ajax({
+                type: "POST",
+                url: "/Product/AddFavourite",
+                dataType: "json",
+                data: {
+                    productId: productId
+                },
+                success: function (data) {
+                    $('#favourite_' + productId).addClass("favourite");
+                    $('#favourite_' + productId).removeClass("far");
+                    $('#favourite_' + productId).addClass("fas");
+                    $('#favouriteNumber').html(data.favouriteNumber);
+                }
+            })
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/Product/RemoveFavourite",
+                dataType: "json",
+                data: {
+                    productId: productId
+                },
+                success: function (data) {
+                    $('#favourite_' + productId).removeClass("favourite");
+                    $('#favourite_' + productId).removeClass("fas");
+                    $('#favourite_' + productId).addClass("far");
+                    $('#favouriteNumber').html(data.favouriteNumber);
+                }
+            })
+        }
+    }
     </script>
 }

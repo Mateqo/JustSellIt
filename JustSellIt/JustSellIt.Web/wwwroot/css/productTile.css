@@ -55,7 +55,7 @@
         display: flex;
         margin-right: auto;
         margin-left: auto;
-        border: solid 3px var(--bg-color);
+        border-bottom: solid 3px var(--bg-color);
     }
 
     .tile .info-tile-veryfication {
@@ -89,4 +89,10 @@
         border-radius: 0 0 0 5px;
         color: white;
         font-weight: bold;
+    }
+
+    .tile img{
+        height:255px !important;
+        width:255px !important;
+        object-fit:contain;
     }

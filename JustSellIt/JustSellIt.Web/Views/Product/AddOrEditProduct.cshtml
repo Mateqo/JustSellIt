@@ -31,7 +31,7 @@
                             <div class="add-caption">
                                 <label class="control-label">Tytuł<span class="add-required">*</span></label>
                             </div>
-                            <input placeholder="Produkt" asp-for="Title" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Dobierz odpowiedni tytuł do swojego produktu. Prosimy, nie pisz WIELKIMI LITERAMI." />
+                            <input placeholder="Produkt" asp-for="Title" class="form-control add-field" autocomplete="off" />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
 
@@ -96,11 +96,11 @@
                             <div class="add-caption">
                                 <label class="control-label">Opis<span class="add-required">*</span></label>
                             </div>
-                            <textarea placeholder="Sprzedam produkt..." asp-for="Description" class="form-control add-field" rows="7" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Opisz szczegółowo, co oferujesz. To ważne, ponieważ dobrze opisane oferty dostają więcej odpowiedzi. Nie używaj wulgaryzmów i WIELKICH LITER."></textarea>
+                            <textarea placeholder="Sprzedam produkt..." asp-for="Description" class="form-control add-field" rows="7" autocomplete="off"></textarea>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <div class="mt-4">
-                            <span class="add-text ml-3">Zdjęcia</span>
+                            <span class="add-text ml-3">Zdjęcia</span><p id="imageError" class="ml-3" style="color:#e02020;display:none;">Maksymalny rozmiar zdjęcia to 1MB</p>
                             <div class="col-12 mt-2 row ml-0">
                                 <div id="imageDiv1" class="add-upload-main col-4">
                                     <div id="loaderImg1" class="spinner-grow image-loader-main" role="status" style="display:none;">
@@ -178,9 +178,9 @@
                                 </div>
                             </div>
                             <input asp-for="Image1" type="file" id="inpImage1" accept="image/*" hidden="hidden" />
-                            <input asp-for="Image2" type="file" id="inpImage2" accept="image/*" hidden="hidden" oninput="image2.src=window.URL.createObjectURL(this.files[0])" />
-                            <input asp-for="Image3" type="file" id="inpImage3" accept="image/*" hidden="hidden" oninput="image3.src=window.URL.createObjectURL(this.files[0])" />
-                            <input asp-for="Image4" type="file" id="inpImage4" accept="image/*" hidden="hidden" oninput="image4.src=window.URL.createObjectURL(this.files[0])" />
+                            <input asp-for="Image2" type="file" id="inpImage2" accept="image/*" hidden="hidden" />
+                            <input asp-for="Image3" type="file" id="inpImage3" accept="image/*" hidden="hidden" />
+                            <input asp-for="Image4" type="file" id="inpImage4" accept="image/*" hidden="hidden" />
                             <input asp-for="ImageUrl1" hidden="hidden" />
                             <input asp-for="ImageUrl2" hidden="hidden" />
                             <input asp-for="ImageUrl3" hidden="hidden" />
@@ -206,7 +206,7 @@
                         </div>
                         @*TO DO - pobrać deafultowe miasto od użytkownika*@
                         @{ var locationValue = Model.Location ?? "Wrocław"; }
-                        <input asp-for="Location" value="@locationValue" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Wpisz nazwe miejscowości, a następnie wybierz ją z listy. " />
+                        <input asp-for="Location" value="@locationValue" class="form-control add-field" autocomplete="off"/>
                         <span asp-validation-for="Location" class="text-danger"></span>
                     </div>
                     <div class="col-md-4 offset-md-2">
@@ -214,14 +214,14 @@
                             <label class="control-label">Imię<span class="add-required">*</span></label>
                         </div>
                         @*TO DO - na sztywno póki co*@
-                        <input value="Jan" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twoje imię możesz zmienić w ustawieniach." />
+                        <input value="Jan" class="form-control add-field" autocomplete="off" readonly/>
                     </div>
                     <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
                             <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
                         </div>
                         @*TO DO - na sztywno póki co*@
-                        <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly data-toggle="tooltip" data-placement="right" title="Twój adres e-mail możesz zmienić w ustawieniach." />
+                        <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly/>
                     </div>
                     <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
@@ -229,7 +229,7 @@
                         </div>
                         @*TO DO - pobrać deafultowy numer od użytkownika*@
                         @{ var phoneValue = Model.PhoneContact ?? "666486954"; }
-                        <input asp-for="PhoneContact" value="@phoneValue" class="form-control add-field" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Podaj swój numer telefonu, aby inni użytkownicy mogli sie z tobą skontaktować." />
+                        <input asp-for="PhoneContact" value="@phoneValue" class="form-control add-field" autocomplete="off"/>
                         <span asp-validation-for="PhoneContact" class="text-danger"></span>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
                 if (Model.Action == "AddProduct")
                 {
                     <div class="form-group form-check mt-4">
-                        <label class="form-check-label">
+                        <label class="form-check-label" style="cursor:pointer !important;">
                             <input class="form-check-input add-checkbox" asp-for="StorePolicy" /> <span class="add-storePolicy">Wyrażam zgodę na używanie przez Grupę JustSellIt środków komunikacji elektronicznej oraz telekomunikacyjnych urządzeń końcowych w celu przesyłania mi informacji handlowych oraz prowadzenia marketingu (np. newsletter) przez Grupę JustSellIt, podmioty powiązane i partnerów biznesowych. Moja zgoda obejmuje numery telefonów i adresy e-mail wykorzystywane podczas korzystania z usług Grupy JustSellIT. Wyrażoną zgodę można wycofać lub ograniczyć w dowolnej chwili za pomocą odpowiednich ustawień konta lub zgłaszając nam takie żądanie.</span><span class="add-required">*</span>
                         </label>
                         <span asp-validation-for="StorePolicy" class="text-danger"></span>
@@ -259,16 +259,16 @@
             <div class="form-group mt-4 float-md-right text-center">
                 @{ if (Model.Action == "AddProduct")
                     {
-                        <input onclick="addProduct('Publish');" asp-route-businessAction="publish" value="Dodaj" class="btn btn-submit-sm mb-3" />
+                        <input type="button" onclick="addProduct('Publish');" asp-route-businessAction="publish" value="Dodaj" class="btn btn-submit-sm mb-3" />
                         <input id="addPublish" type="submit" asp-route-businessAction="publish" hidden="hidden" />
 
-                        <input onclick="addProduct('Draft');" asp-route-businessAction="draft" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" />
+                        <input type="button" onclick="addProduct('Draft');" asp-route-businessAction="draft" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" />
                         <input id="addDraft" type="submit" asp-route-businessAction="draft" hidden="hidden" />
                     }
                     else
                     {
-                        <input value="Aktualizuj" class="btn btn-submit-sm mb-3" data-toggle="modal" data-target="#editModalPublish" readonly />
-                        <input value="Zapisz jako wersja robocza" class="btn add-btn mb-3" data-toggle="modal" data-target="#editModalDraft" readonly />
+                        <input type="button" value="Aktualizuj" class="btn btn-submit-sm mb-3" data-toggle="modal" data-target="#editModalPublish" readonly />
+                        <input type="button" value="Zapisz jako wersja robocza" class="btn add-btn mb-3" data-toggle="modal" data-target="#editModalDraft" readonly />
                     }
                 }
             </div>
@@ -355,11 +355,6 @@
             $("#imageDiv4").css("cursor", "default");
         }
 
-
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-
         function setNew(button) {
             $(button).addClass("btn-checked");
             $("#used").removeClass("btn-checked");
@@ -384,8 +379,7 @@
             showFileDialogIfEmpty(1);
         });
         $('#inpImage1').on('change', function () {
-            image1.src = window.URL.createObjectURL(this.files[0]);
-            addImage(1);
+            addImage(1, this.files[0]);
         });
         $('#deleteImage1').on('click', function (e) {
             deleteImage(1);
@@ -395,7 +389,7 @@
             showFileDialogIfEmpty(2);
         });
         $('#inpImage2').on('change', function () {
-            addImage(2);
+            addImage(2, this.files[0]);
         });
         $('#deleteImage2').on('click', function (e) {
             deleteImage(2);
@@ -405,7 +399,7 @@
             showFileDialogIfEmpty(3);
         });
         $('#inpImage3').on('change', function () {
-            addImage(3);
+            addImage(3, this.files[0]);
         });
         $('#deleteImage3').on('click', function (e) {
             deleteImage(3);
@@ -415,7 +409,7 @@
             showFileDialogIfEmpty(4);
         });
         $('#inpImage4').on('change', function () {
-            addImage(4);
+            addImage(4, this.files[0]);
         });
         $('#deleteImage4').on('click', function (e) {
             deleteImage(4);
@@ -427,10 +421,18 @@
                 $('#inpImage' + index).click();
             }
         }
-        function addImage(index) {
-            $('#imageDiv' + index).css('cursor', 'auto');
-            $('#image' + index).show();
-            $('#deleteImage' + index).show();
+        function addImage(index,file) {
+            if (file.size <= 1048576) {
+                $('#image' + index).attr('src', window.URL.createObjectURL(file));
+                $('#imageDiv' + index).css('cursor', 'auto');
+                $('#image' + index).show();
+                $('#deleteImage' + index).show();
+                $('#imageError').hide();
+            }
+            else {
+                $('#imageError').show();
+            }
+
         }
         function deleteImage(index) {
             $("#inpImage" + index).val('');

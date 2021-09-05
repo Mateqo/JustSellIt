@@ -7,6 +7,23 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+#favouriteInfo i {
+    font-size: 20px !important;
+    color: #d71e1e;
+}
+#favouriteInfo span {
+    margin-top:2px !important;
+    margin-left:5px;
+}
+
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: inherit;

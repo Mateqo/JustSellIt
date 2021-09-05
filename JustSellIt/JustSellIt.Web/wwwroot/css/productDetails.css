@@ -3,9 +3,58 @@
     box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
 }
 
-    .product-details-images img {
-        border: solid 3px var(--bg-color);
+    .product-details-images #previousImage, .product-details-images #nextImage {
+        font-size: 30px;
+        color: var(--main-color);
+        cursor: pointer;
+        position: absolute;
     }
+
+        .product-details-images #previousImage:hover, .product-details-images #nextImage:hover {
+            color: var(--second-color);
+        }
+
+    .product-details-images #previousImage {
+        top:140px;
+        left:10px;
+    }
+
+    .product-details-images #nextImage {
+        top: 140px;
+        right: 10px;
+    }
+
+    .product-details-images img {
+        /*border-left: solid 3px var(--bg-color);
+        border-right: solid 3px var(--bg-color);*/
+        height: 300px !important;
+        width: 300px !important;
+        object-fit: contain;
+        background-color: #EFEFEF;
+        cursor:pointer;
+    }
+#imageCarousel .modal-footer{
+    border:none;
+}
+
+.imageModal {
+    height: 500px !important;
+    width: 500px !important;
+    object-fit: contain;
+    background-color: #EFEFEF;
+}
+
+.imageListModal img{
+    height: 110px !important;
+    width: 110px !important;
+    object-fit: contain;
+    background-color: #EFEFEF;
+    cursor:pointer;
+}
+
+.imageListModal{
+    margin-right:auto;
+}
 
 .product-details-info {
     background-color: white;
@@ -79,6 +128,23 @@
         transition: 0.4s;
     }
 
+.product-details-images .fa-heart {
+    font-size: 20px;
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    cursor: pointer;
+    color: var(--main-color) !important;
+}
+
+    .product-details-images .favourite {
+        color: #d71e1e !important;
+    }
+
+    .product-details-images .fa-heart:hover {
+        color: #d71e1e;
+    }
+
 .contact-btn:hover {
     cursor: pointer;
     background-color: var(--second-color);
@@ -130,15 +196,15 @@
         }
 
 .product-manage {
-    text-align:center;
-    margin-bottom:20px !important;
+    text-align: center;
+    margin-bottom: 20px !important;
 }
 
 .btn-delete {
     background-color: #990033;
     padding: 8px 20px;
     font-weight: bold;
-    color:white !important;
+    color: white !important;
 }
 
 .btn-edit {
@@ -148,14 +214,14 @@
     color: white !important;
 }
 
-    .product-details-info .btn-edit+.btn-delete{
-        margin-left:10px;
-    }
+.product-details-info .btn-edit + .btn-delete {
+    margin-left: 10px;
+}
 
-    .btn-delete:hover, .btn-edit:hover {
-        opacity: 0.8;
-        cursor: pointer;
-    }
+.btn-delete:hover, .btn-edit:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
 
 .product-details-info .info-veryfication {
     position: absolute;
@@ -190,8 +256,7 @@
     font-weight: bold;
 }
 
-.details-reason{
-    
+.details-reason {
 }
 
 @media (max-width:485px) {
@@ -213,7 +278,28 @@
     }
 }
 
-@media (max-width:459px) {
+@media (max-width:575px) {
+    #carouselExampleIndicators {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .imageModal {
+        height: 300px !important;
+        width: 300px !important;
+        object-fit: contain;
+        background-color: #EFEFEF;
+    }
+
+    .imageListModal img {
+        height: 60px !important;
+        width: 60px !important;
+        object-fit: contain;
+        background-color: #EFEFEF;
+        cursor: pointer;
+    }
+}
+
+@media (max-width:483px) {
     .btn-info-details:nth-child(6) {
         margin-left: 0px !important;
         display: table;
@@ -227,13 +313,25 @@
     }
 }
 
-@media (max-width:387px) {
+@media (max-width:430px) {
+    #nextImage{
+        right:-10px !important;
+    }
+    #previousImage {
+        left: -10px !important;
+    }
+    .fa-heart {
+        left: -10px !important;
+    }
+}
+
+@media (max-width:402px) {
     .product-details-contact .user-products {
         margin-bottom: 20px;
     }
 }
 
-@media (max-width:371px) {
+@media (max-width:388px) {
     .user-image {
         margin-left: auto !important;
         margin-right: auto !important;
@@ -249,9 +347,10 @@
         border-top: 1px solid #dee2e6;
         border-bottom: 1px solid #dee2e6;
     }
+    
 }
 
-@media (max-width:318px) {
+@media (max-width:450px) {
     .btn-info-details:nth-child(3) {
         margin-left: 0px !important;
         display: table;

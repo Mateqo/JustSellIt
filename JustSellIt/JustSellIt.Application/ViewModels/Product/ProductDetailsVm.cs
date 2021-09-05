@@ -21,6 +21,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public string Status { get; set; }
         public string RejectionReason { get; set; }
         public DateTime CreatedOn { get; set; }
+        public string[] Images { get; set; }
 
         public void Mapping(MappingProfile profile)
         {

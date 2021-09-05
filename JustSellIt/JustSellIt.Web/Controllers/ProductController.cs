@@ -46,6 +46,10 @@ namespace JustSellIt.Web.Controllers
         public IActionResult ProductDetails(int id)
         {
             var model = _productService.GetProductDetails(id);
+            model.Images = _imageService.GetImages(id)
+                .OrderBy(x=>x.Position)
+                .Select(x=>SystemConfiguration.ProductImageUrl.Replace("{{name}}", x.Name))
+                .ToArray();
 
             return View("ProductDetails", model);
         }
@@ -302,33 +306,42 @@ namespace JustSellIt.Web.Controllers
         [HttpPost]
         public IActionResult AddFavourite(int productId)
         {
+            var favouriteNumber = 0;
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("favourite")))
             {
                 HttpContext.Session.SetString("favourite", productId.ToString());
+                HttpContext.Session.SetInt32("favouriteNumber", 1);
+                favouriteNumber = 1;
             }
             else
             {
                 var favouriteIds = HttpContext.Session.GetString("favourite").Split(',').ToList();
                 favouriteIds.Add(productId.ToString());
                 HttpContext.Session.SetString("favourite", string.Join(",", favouriteIds));
+                HttpContext.Session.SetInt32("favouriteNumber", favouriteIds.Count());
+                favouriteNumber = favouriteIds.Count();
             }
 
             HttpContext.Session.SetInt32($"favourite_{productId}", productId);
-            return Json(new { Success = true });
+            return Json(new { Success = true, FavouriteNumber = favouriteNumber });
         }
 
         [HttpPost]
         public IActionResult RemoveFavourite(int productId)
         {
+            var favouriteNumber = 0;
+
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("favourite")))
             {
                 var favouriteIds = HttpContext.Session.GetString("favourite").Split(',').ToList();
                 var newFavouriteIds = favouriteIds.Where(x => x != productId.ToString());
                 HttpContext.Session.SetString("favourite", string.Join(",", newFavouriteIds));
+                HttpContext.Session.SetInt32("favouriteNumber", newFavouriteIds.Count());
+                favouriteNumber = newFavouriteIds.Count();
             }
 
             HttpContext.Session.Remove($"favourite_{productId}");
-            return Json(new { IsAdd = true });
+            return Json(new { IsAdd = true, FavouriteNumber = favouriteNumber });
         }
     }
 }

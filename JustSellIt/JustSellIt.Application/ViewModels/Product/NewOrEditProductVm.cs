@@ -1,13 +1,14 @@
 ﻿using FluentValidation;
 using JustSellIt.Application.Mapping;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace JustSellIt.Application.ViewModels.Product
 {
-    public class NewOrEditProductVm :IMapFrom<JustSellIt.Domain.Model.Product>
+    public class NewOrEditProductVm : IMapFrom<JustSellIt.Domain.Model.Product>
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -43,7 +44,7 @@ namespace JustSellIt.Application.ViewModels.Product
 
     }
 
-    public class NewOrEditProductValidation:AbstractValidator<NewOrEditProductVm>
+    public class NewOrEditProductValidation : AbstractValidator<NewOrEditProductVm>
     {
         public NewOrEditProductValidation()
         {

@@ -47,6 +47,7 @@
 
 .add-checkbox {
     transform: scale(1.5);
+    cursor:pointer;
 }
 
 .add-btn {
@@ -239,6 +240,13 @@
     add-category span {
         margin-left: 0 !important;
         text-align: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #selectCategoryModal .row{
+        margin-left:0 !important;
+        margin-right:0 !important;
     }
 }
 
