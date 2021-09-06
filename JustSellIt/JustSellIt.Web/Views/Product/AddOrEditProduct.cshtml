@@ -366,6 +366,10 @@
             $('#status').val("false")
         }
 
+        if ($('#category').val() == 12) {
+            $('#Price').val(0);
+            $('#Price').attr('readonly', true);
+        }
         function selectCategory(category) {
             $('#selectCategoryModal').modal('hide')
             $('.add-category span').text($(category).data('name'))
@@ -373,6 +377,15 @@
             $('#category').val($(category).data('id'))
             $('#categoryImage').val("/images/categories/" + $(category).data('img'))
             $('#categoryName').val($(category).data('name'))
+            //Oddam
+            if ($('#category').val() == 12) {
+                $('#Price').val(0);
+                $('#Price').attr('readonly', true);
+            }
+            else {
+                console.log("de");
+                $('#Price').attr('readonly', false);
+            }
         }
 
         $('#imageDiv1').on('click', function () {

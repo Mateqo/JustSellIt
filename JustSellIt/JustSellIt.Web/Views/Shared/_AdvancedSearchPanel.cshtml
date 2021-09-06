@@ -63,8 +63,28 @@
 
 
 <script type="text/javascript">
+    console.log("faw");
+    if ($('#catAdvancedSearch').val() == 12) {
+        $('.price-min').hide();
+        $('.price-max').hide();
+    }
+    else {
+        $('.price-min').show();
+        $('.price-max').show();
+    }
+    $('#catAdvancedSearch').on('change', function () {
+    /*Oddam*/
+        if ($('#catAdvancedSearch').val() == 12) {
+            $('.price-min').hide();
+            $('.price-max').hide();
+        }
+        else {
+            $('.price-min').show();
+            $('.price-max').show();
+        }
+    });
     function ShowButton() {
-        $("#buttonConfirm").css("display","inline");
+        $("#buttonConfirm").css("display", "inline");
     }
     function SearchProducts() {
         $("#submitSearch").click();

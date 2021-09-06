@@ -72,6 +72,16 @@ namespace JustSellIt.Application.ViewModels.Product
 
             RuleFor(x => x.PhoneContact).NotNull().WithMessage("Podaj numer kontaktowy");
             RuleFor(x => x.PhoneContact).Must(BeAValidPhone).WithMessage("Podano nieprawidłowy format");
+
+            //Oddam
+            When(x => x.CategoryId != 12, () => {
+                RuleFor(x => x.Price).GreaterThan(0).WithMessage("Przy tej kategori cena musi być większa od 0zł"); ;
+            });
+
+            //Oddam
+            When(x => x.CategoryId == 12, () => {
+                RuleFor(x => x.Price).Equal(0).WithMessage("Przy tej kategori cena musi być równa 0zł"); ;
+            });
         }
 
         private bool BeAValidPrice(decimal price)
