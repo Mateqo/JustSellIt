@@ -13,6 +13,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string PriceField { get; set; }
         public decimal Price { get; set; }
         public bool IsNegotiate { get; set; }
         public bool IsNew { get; set; }
@@ -58,8 +59,8 @@ namespace JustSellIt.Application.ViewModels.Product
             RuleFor(x => x.Description).MinimumLength(10).WithMessage("Minimalna długość to 10");
             RuleFor(x => x.Description).MaximumLength(600).WithMessage("Maksymalna długosć to 600");
 
-            RuleFor(x => x.Price).NotNull().WithMessage("Cena jest wymagana");
-            RuleFor(x => x.Price).Must(BeAValidPrice).WithMessage("Nieprawidłowy format ceny");
+            RuleFor(x => x.PriceField).NotNull().NotEmpty().WithMessage("Cena jest wymagana");
+            RuleFor(x => x.PriceField).Must(BeAValidPrice).WithMessage("Nieprawidłowy format ceny, oczekiwany np. 37,48");
 
             RuleFor(x => x.CategoryId).NotNull().WithMessage("Wybierz kategorię");
             RuleFor(x => x.CategoryId).GreaterThan(0).WithMessage("Wybierz kategorię");
@@ -73,18 +74,24 @@ namespace JustSellIt.Application.ViewModels.Product
             RuleFor(x => x.PhoneContact).NotNull().WithMessage("Podaj numer kontaktowy");
             RuleFor(x => x.PhoneContact).Must(BeAValidPhone).WithMessage("Podano nieprawidłowy format");
 
-            //Oddam
-            When(x => x.CategoryId != 12, () => {
-                RuleFor(x => x.Price).GreaterThan(0).WithMessage("Przy tej kategori cena musi być większa od 0zł"); ;
-            });
+            decimal value;
+            When(x => Decimal.TryParse(x.PriceField, out value), () =>
+            {
+                //Oddam
+                When(x => x.CategoryId != 12, () =>
+                {
+                    RuleFor(x => Convert.ToDecimal(x.PriceField)).GreaterThan(0).WithMessage("Przy tej kategori cena musi być większa od 0zł").OverridePropertyName("PriceField"); 
+                });
 
-            //Oddam
-            When(x => x.CategoryId == 12, () => {
-                RuleFor(x => x.Price).Equal(0).WithMessage("Przy tej kategori cena musi być równa 0zł"); ;
+                //Oddam
+                When(x => x.CategoryId == 12, () =>
+                {
+                    RuleFor(x => Convert.ToDecimal(x.PriceField)).Equal(0).WithMessage("Przy tej kategori cena musi być równa 0zł").OverridePropertyName("PriceField");
+                });
             });
         }
 
-        private bool BeAValidPrice(decimal price)
+        private bool BeAValidPrice(string price)
         {
             Regex properPrice = new Regex(@"^\d+(,\d{2})?$");
             if (properPrice.IsMatch(price.ToString()))

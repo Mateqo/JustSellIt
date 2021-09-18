@@ -22,6 +22,7 @@ namespace JustSellIt.Application.Services
         }
         public int AddProduct(NewOrEditProductVm productVM)
         {
+            productVM.Price = Convert.ToDecimal(productVM.PriceField);
             var product = _mapper.Map<Product>(productVM);
             var id = _productRepo.AddProduct(product);
 
@@ -210,6 +211,7 @@ namespace JustSellIt.Application.Services
 
         public void UpdateProduct(NewOrEditProductVm model)
         {
+            model.Price = Convert.ToDecimal(model.PriceField);
             var product = _mapper.Map<Product>(model);
             _productRepo.UpdateProduct(product);
         }

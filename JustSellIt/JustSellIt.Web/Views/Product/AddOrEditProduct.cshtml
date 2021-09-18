@@ -13,9 +13,9 @@
 <partial name="_AlertPanel" />
 
 <div class="row">
-    <div class="col-md-12 mt-3">
+    <div class="col-md-12 mt-2">
         <form asp-action="@Model.Action" asp-route-id="@Model.Id" method="post" enctype='multipart/form-data'>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <input type="hidden" asp-for="Id" />
 
             <div class="add-section">
@@ -40,12 +40,12 @@
                                 <label class="control-label">Cena<span class="add-required">*</span></label>
                             </div>
                             <div class="input-group">
-                                <input placeholder="1 000,00" asp-for="Price" class="form-control add-field" autocomplete="off" />
+                                <input asp-for="PriceField" class="form-control add-field" autocomplete="off"/>
                                 <div class="input-group-append">
                                     <span class="input-group-text">zł</span>
                                 </div>
                             </div>
-                            <span asp-validation-for="Price" class="text-danger"></span>
+                            <span asp-validation-for="PriceField" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 mt-5 add-negotiate">
                             <span class="add-text">Do negocjacji</span>
@@ -367,8 +367,8 @@
         }
 
         if ($('#category').val() == 12) {
-            $('#Price').val(0);
-            $('#Price').attr('readonly', true);
+            $('#PriceField').val(0);
+            $('#PriceField').attr('readonly', true);
         }
         function selectCategory(category) {
             $('#selectCategoryModal').modal('hide')
@@ -379,12 +379,11 @@
             $('#categoryName').val($(category).data('name'))
             //Oddam
             if ($('#category').val() == 12) {
-                $('#Price').val(0);
-                $('#Price').attr('readonly', true);
+                $('#PriceField').val(0);
+                $('#PriceField').attr('readonly', true);
             }
             else {
-                console.log("de");
-                $('#Price').attr('readonly', false);
+                $('#PriceField').attr('readonly', false);
             }
         }
 

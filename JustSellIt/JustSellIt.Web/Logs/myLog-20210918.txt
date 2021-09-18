@@ -1,0 +1,361 @@
+2021-09-18T18:34:33.0847954+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T18:34:33.1257998+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T18:34:33.1275430+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T18:34:44.2639401+02:00 80000007-0000-fd00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T18:57:26.6900696+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T18:57:26.7072193+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T18:57:26.7091684+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T18:57:28.2553105+02:00 8000006a-0000-ff00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T18:57:46.0242171+02:00 8000001a-0007-fd00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at JustSellIt.Web.Controllers.ProductController.ProductDetails(Int32 id) in D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\Controllers\ProductController.cs:line 49
+   at lambda_method51(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-09-18T19:14:38.3949155+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T19:14:38.4135660+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T19:14:38.4150989+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T19:14:39.5226400+02:00 8000002a-0003-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T19:17:34.8102179+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T19:17:34.8189645+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T19:17:34.8206000+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T19:17:35.7129159+02:00 8000001b-0005-d400-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T19:26:15.2429267+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T19:26:15.2534749+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T19:26:15.2554726+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T19:26:16.1406156+02:00 80000037-0003-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T19:36:46.0239656+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T19:36:46.0322889+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T19:36:46.0338141+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T19:36:46.8758158+02:00 8000000c-0001-fb00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T19:38:01.2933543+02:00 80000026-0005-e600-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseDecimal(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToDecimal(String value)
+   at FluentValidation.Internal.Extensions.<>c__DisplayClass9_0`2.<CoerceToNonGeneric>b__0(Object x) in C:\Projects\FluentValidation\src\FluentValidation\Internal\Extensions.cs:line 155
+   at FluentValidation.Internal.PropertyRule.GetPropertyValue(Object instanceToValidate) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 489
+   at FluentValidation.Internal.PropertyRule.<>c__DisplayClass66_0.<Validate>b__0() in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 297
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Validators.AbstractComparisonValidator.IsValid(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\AbstractComparisonValidator.cs:line 81
+   at FluentValidation.Validators.PropertyValidator.Validate(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\PropertyValidator.cs:line 76
+   at FluentValidation.Internal.PropertyRule.InvokePropertyValidator(IValidationContext context, IPropertyValidator validator, String propertyName) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 480
+   at FluentValidation.Internal.PropertyRule.Validate(IValidationContext context)+MoveNext() in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 312
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 95
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 48
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationModelValidatorProvider.cs:line 106
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 49
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 67
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 51
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-09-18T19:38:21.0655389+02:00 80000015-0003-fd00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseDecimal(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToDecimal(String value)
+   at FluentValidation.Internal.Extensions.<>c__DisplayClass9_0`2.<CoerceToNonGeneric>b__0(Object x) in C:\Projects\FluentValidation\src\FluentValidation\Internal\Extensions.cs:line 155
+   at FluentValidation.Internal.PropertyRule.GetPropertyValue(Object instanceToValidate) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 491
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Validators.AbstractComparisonValidator.IsValid(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\AbstractComparisonValidator.cs:line 81
+   at FluentValidation.Validators.PropertyValidator.Validate(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\PropertyValidator.cs:line 79
+   at FluentValidation.Internal.PropertyRule.InvokePropertyValidator(IValidationContext context, IPropertyValidator validator, String propertyName) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 480
+   at FluentValidation.Internal.PropertyRule.Validate(IValidationContext context)+MoveNext() in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 312
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 95
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 48
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationModelValidatorProvider.cs:line 60
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 49
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 67
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 51
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-09-18T19:39:25.4208468+02:00 8000004e-0006-cf00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseDecimal(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToDecimal(String value)
+   at FluentValidation.Internal.Extensions.<>c__DisplayClass9_0`2.<CoerceToNonGeneric>b__0(Object x) in C:\Projects\FluentValidation\src\FluentValidation\Internal\Extensions.cs:line 155
+   at FluentValidation.Internal.PropertyRule.GetPropertyValue(Object instanceToValidate) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 491
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Validators.AbstractComparisonValidator.IsValid(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\AbstractComparisonValidator.cs:line 81
+   at FluentValidation.Validators.PropertyValidator.Validate(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\PropertyValidator.cs:line 79
+   at FluentValidation.Internal.PropertyRule.InvokePropertyValidator(IValidationContext context, IPropertyValidator validator, String propertyName) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 480
+   at FluentValidation.Internal.PropertyRule.Validate(IValidationContext context)+MoveNext() in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 312
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 95
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 48
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationModelValidatorProvider.cs:line 60
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 49
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 67
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 51
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-09-18T19:41:47.6739457+02:00 80000050-0006-cf00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseDecimal(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToDecimal(String value)
+   at FluentValidation.Internal.Extensions.<>c__DisplayClass9_0`2.<CoerceToNonGeneric>b__0(Object x) in C:\Projects\FluentValidation\src\FluentValidation\Internal\Extensions.cs:line 155
+   at FluentValidation.Internal.PropertyRule.GetPropertyValue(Object instanceToValidate) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 491
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Validators.AbstractComparisonValidator.IsValid(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\AbstractComparisonValidator.cs:line 81
+   at FluentValidation.Validators.PropertyValidator.Validate(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\PropertyValidator.cs:line 79
+   at FluentValidation.Internal.PropertyRule.InvokePropertyValidator(IValidationContext context, IPropertyValidator validator, String propertyName) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 480
+   at FluentValidation.Internal.PropertyRule.Validate(IValidationContext context)+MoveNext() in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 312
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 95
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 48
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationModelValidatorProvider.cs:line 60
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 49
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 67
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 51
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-09-18T19:42:36.8596295+02:00 80000069-0004-ff00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseDecimal(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToDecimal(String value)
+   at FluentValidation.Internal.Extensions.<>c__DisplayClass9_0`2.<CoerceToNonGeneric>b__0(Object x) in C:\Projects\FluentValidation\src\FluentValidation\Internal\Extensions.cs:line 155
+   at FluentValidation.Internal.PropertyRule.GetPropertyValue(Object instanceToValidate) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 491
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Validators.AbstractComparisonValidator.IsValid(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\AbstractComparisonValidator.cs:line 81
+   at FluentValidation.Validators.PropertyValidator.Validate(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\PropertyValidator.cs:line 79
+   at FluentValidation.Internal.PropertyRule.InvokePropertyValidator(IValidationContext context, IPropertyValidator validator, String propertyName) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 480
+   at FluentValidation.Internal.PropertyRule.Validate(IValidationContext context)+MoveNext() in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 312
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 95
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 48
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationModelValidatorProvider.cs:line 60
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 49
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 67
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 51
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-09-18T19:43:43.3273003+02:00 80000058-0006-cf00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseDecimal(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToDecimal(String value)
+   at FluentValidation.Internal.Extensions.<>c__DisplayClass9_0`2.<CoerceToNonGeneric>b__0(Object x) in C:\Projects\FluentValidation\src\FluentValidation\Internal\Extensions.cs:line 155
+   at FluentValidation.Internal.PropertyRule.GetPropertyValue(Object instanceToValidate) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 491
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Validators.AbstractComparisonValidator.IsValid(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\AbstractComparisonValidator.cs:line 81
+   at FluentValidation.Validators.PropertyValidator.Validate(PropertyValidatorContext context) in C:\Projects\FluentValidation\src\FluentValidation\Validators\PropertyValidator.cs:line 79
+   at FluentValidation.Internal.PropertyRule.InvokePropertyValidator(IValidationContext context, IPropertyValidator validator, String propertyName) in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 480
+   at FluentValidation.Internal.PropertyRule.Validate(IValidationContext context)+MoveNext() in C:\Projects\FluentValidation\src\FluentValidation\Internal\PropertyRule.cs:line 312
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 95
+   at FluentValidation.AbstractValidator`1.FluentValidation.IValidator.Validate(IValidationContext context) in C:\Projects\FluentValidation\src\FluentValidation\AbstractValidator.cs:line 48
+   at FluentValidation.AspNetCore.FluentValidationModelValidator.Validate(ModelValidationContext mvContext) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationModelValidatorProvider.cs:line 60
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>n__1(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container)
+   at FluentValidation.AspNetCore.FluentValidationVisitor.<>c__DisplayClass2_0.<Validate>g__BaseValidate|0() in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 49
+   at FluentValidation.AspNetCore.FluentValidationVisitor.ValidateInternal(ModelMetadata metadata, String key, Object model, Func`1 continuation) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 67
+   at FluentValidation.AspNetCore.FluentValidationVisitor.Validate(ModelMetadata metadata, String key, Object model, Boolean alwaysValidateAtTopLevel, Object container) in C:\Projects\FluentValidation\src\FluentValidation.AspNetCore\FluentValidationVisitor.cs:line 51
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-09-18T19:48:52.6958579+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T19:48:52.7038614+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T19:48:52.7052050+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T19:48:53.5887496+02:00 8000000e-0001-fb00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T20:00:38.6121320+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T20:00:38.6206692+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T20:00:38.6222625+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T20:00:39.4531570+02:00 8000001d-0003-fd00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T20:02:31.6588180+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T20:02:31.6665894+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T20:02:31.6681250+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T20:02:32.5321994+02:00 80000041-0003-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T20:03:30.5173096+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T20:03:30.5289581+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T20:03:30.5307720+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T20:03:31.5499962+02:00 80000026-0005-d400-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T20:06:55.7078290+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T20:06:55.7189340+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T20:06:55.7212990+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T20:06:56.6274832+02:00 80000043-0003-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T20:08:36.5157653+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T20:08:36.5258914+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T20:08:36.5274691+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T20:08:37.4121896+02:00 80000023-0003-fd00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T20:09:36.8723758+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T20:09:36.8812281+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T20:09:36.8829668+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T20:09:37.7407850+02:00 8000005b-0006-cf00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T20:10:59.7156916+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T20:10:59.7232633+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T20:10:59.7246459+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T20:11:00.5559386+02:00 8000000c-0001-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T21:11:45.9886450+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T21:11:45.9972346+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T21:11:45.9985461+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T21:11:46.9221600+02:00 80000033-0002-ff00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-09-18T21:21:00.8048486+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-09-18T21:21:00.8132279+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-09-18T21:21:00.8147637+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
+2021-09-18T21:21:01.7540507+02:00 80000041-0005-e600-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)

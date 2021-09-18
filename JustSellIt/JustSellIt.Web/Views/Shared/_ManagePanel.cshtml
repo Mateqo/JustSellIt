@@ -1,11 +1,13 @@
 ﻿@model JustSellIt.Application.ViewModels.Product.ProductDetailsVm
-
 @*TO DO sprawdzenie czy admin oraz czy do weryfikacji*@
 <div class="admin-manage-product col-12 order-4 mt-4">
     <h4 class="mb-0">Panel administratora</h4>
     <img alt="admin-icon" src="~/images/other/admin.png" />
     <div class="mt-3">
-        <a asp-action="AcceptProduct" asp-controller="Admin" asp-route-id="@Model.Id" class="btn btn-edit">Akceptuj</a>
+        @if (Model.Status == "ForVeryfication")
+        {
+            <a asp-action="AcceptProduct" asp-controller="Admin" asp-route-id="@Model.Id" class="btn btn-edit">Akceptuj</a>
+        }
         <a data-toggle="modal" data-target="#rejectModal" class="btn btn-delete">Odrzuć</a>
     </div>
 </div>

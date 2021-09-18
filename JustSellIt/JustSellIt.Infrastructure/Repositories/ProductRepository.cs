@@ -53,6 +53,7 @@ namespace JustSellIt.Infrastructure.Repositories
             if (item != null)
             {
                 item.ProductStatusId = _context.ProductStatuses.FirstOrDefault(x => x.Name == "Published").Id;
+                item.RejectionReason = null;
                 _context.SaveChanges();
 
                 return true;

@@ -61,7 +61,8 @@ namespace JustSellIt.Web.Controllers
             {
                 ProductStatusId = _statusService.GetIdBeforeNew(),
                 Categories = _productService.GetAllCategory(),
-                Action = "AddProduct"
+                Action = "AddProduct",
+                PriceField = "0,00"
             };
 
             return View("AddOrEditProduct", newProduct);
@@ -129,6 +130,7 @@ namespace JustSellIt.Web.Controllers
             product.CategoryName = _productService.GetNameCategoryById(product.CategoryId);
             product.Categories = _productService.GetAllCategory();
             product.Action = "EditProduct";
+            product.PriceField = product.Price.ToString();
             var images = _imageService.GetImages(id);
             product.ImageUrl1 = images.Any(x => x.Position == 1) ?
                 SystemConfiguration.ProductImageUrl.Replace("{{name}}", images.FirstOrDefault(x => x.Position == 1).Name) : null;
