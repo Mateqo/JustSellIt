@@ -47,7 +47,7 @@
 
 .add-checkbox {
     transform: scale(1.5);
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .add-btn {
@@ -110,6 +110,29 @@
     text-align: center;
     cursor: pointer;
     min-width: 105px;
+}
+
+
+    .add-upload-main img {
+        object-fit: contain;
+        max-height: 107px;
+        display: block;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .add-upload img {
+        object-fit: contain;
+        max-height: 100px;
+        display: block;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+#image2 {
+    max-height: 106px;
 }
 
     .add-upload-main span {
@@ -202,10 +225,10 @@
 
 .submit-form-loader {
     color: var(--main-color);
-    display:block;
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top:20px;
+    margin-top: 20px;
     text-align: center;
     height: 40px;
     width: 40px;
@@ -244,9 +267,24 @@
 }
 
 @media only screen and (max-width: 767px) {
-    #selectCategoryModal .row{
-        margin-left:0 !important;
-        margin-right:0 !important;
+    #selectCategoryModal .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .add-upload-main img {
+        max-height: 102px;
+    }
+    #image2 {
+        max-height: 101px;
+    }
+}
+
+@media only screen and (max-width: 581px) {
+    .add-images {
+        margin-top: 30px !important;
     }
 }
 
@@ -271,6 +309,9 @@
     .add-upload {
         margin: auto;
         margin-bottom: 20px;
+    }
+    .add-images {
+        padding-right: 0px !important;
     }
 }
 
@@ -309,6 +350,45 @@
 @media only screen and (max-width: 313px) {
     .add-upload:nth-child(1) {
         margin-top: -40px;
+    }
+}
+
+@media only screen and (max-width: 365px) {
+    .add-images {
+        margin-top: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 398px) {
+    .add-images {
+        margin-top: 30px !important;
+    }
+}
+
+@media only screen and (min-width: 334px) and (max-width: 349px) {
+    #imageDiv1 {
+        left: 63px !important;
+    }
+
+    #imageDiv2 {
+        margin-top:20px;
+        left: 45px !important;
+    }
+
+    #imageDiv3 {
+        margin-top:-5px;
+        left: 63px !important;
+    }
+
+    #imageDiv4 {
+        margin-top: 20px;
+        left: 45px !important;
+    }
+}
+
+@media only screen and (max-width: 313px) {
+    .add-images {
+        margin-top: 40px !important;
     }
 }
 

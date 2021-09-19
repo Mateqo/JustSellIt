@@ -101,7 +101,7 @@
                         </div>
                         <div class="mt-4">
                             <span class="add-text ml-3">Zdjęcia</span><p id="imageError" class="ml-3" style="color:#e02020;display:none;">Maksymalny rozmiar zdjęcia to 1MB</p>
-                            <div class="col-12 mt-2 row ml-0">
+                            <div class="col-12 mt-2 row ml-0 add-images">
                                 <div id="imageDiv1" class="add-upload-main col-4">
                                     <div id="loaderImg1" class="spinner-grow image-loader-main" role="status" style="display:none;">
                                         <span class="sr-only">Loading...</span>
@@ -118,7 +118,7 @@
                                     }
 
                                     <i class="fas fa-home main-icon"></i>
-                                    <span>To będzie twoje zdjęcie główne</span>
+                                    <span id="text-main-image">To będzie twoje zdjęcie główne</span>
                                 </div>
                                 <div id="imageDiv2" class="add-upload col-4 offset-1">
                                     <div id="loaderImg2" class="spinner-grow image-loader-sub d-none" role="status">
@@ -136,10 +136,10 @@
                                         <i id="deleteImage2" class="fas fa-times delete-icon"></i>
 
                                     }
-                                    <i class="fas fa-camera"></i>
+                                    <i id="cameraImage2" class="fas fa-camera"></i>
                                 </div>
                             </div>
-                            <div class="col-md-12 mt-5 row ml-0 add-images">
+                            <div class="col-md-12 mt-sm-5 mt-0 row ml-0 add-images">
                                 <div id="imageDiv3" class="add-upload col-4">
                                     <div id="loaderImg3" class="spinner-grow image-loader-sub d-none" role="status">
                                         <span class="sr-only">Loading...</span>
@@ -156,7 +156,7 @@
                                         <i id="deleteImage3" class="fas fa-times delete-icon"></i>
 
                                     }
-                                    <i class="fas fa-camera"></i>
+                                    <i id="cameraImage3" class="fas fa-camera"></i>
                                 </div>
                                 <div id="imageDiv4" class="add-upload col-4  offset-1">
                                     <div id="loaderImg4" class="spinner-grow image-loader-sub d-none" role="status">
@@ -174,7 +174,7 @@
                                         <i id="deleteImage4" class="fas fa-times delete-icon"></i>
 
                                     }
-                                    <i class="fas fa-camera"></i>
+                                    <i id="cameraImage4" class="fas fa-camera"></i>
                                 </div>
                             </div>
                             <input asp-for="Image1" type="file" id="inpImage1" accept="image/*" hidden="hidden" />
@@ -344,15 +344,19 @@
 
         if ($("#image1").css('display') != 'none') {
             $("#imageDiv1").css("cursor", "default");
+            $("#text-main-image").css("color","#92a8d1");
         }
         if ($("#image2").css('display') != 'none') {
             $("#imageDiv2").css("cursor", "default");
+            $("#cameraImage2").css("color", "#f2f4f5");
         }
         if ($("#image3").css('display') != 'none') {
             $("#imageDiv3").css("cursor", "default");
+            $("#cameraImage3").css("color", "#f2f4f5");
         }
         if ($("#image4").css('display') != 'none') {
             $("#imageDiv4").css("cursor", "default");
+            $("#cameraImage4").css("color", "#f2f4f5");
         }
 
         function setNew(button) {
@@ -392,9 +396,11 @@
         });
         $('#inpImage1').on('change', function () {
             addImage(1, this.files[0]);
+            $("#text-main-image").css("color", "#92a8d1");
         });
         $('#deleteImage1').on('click', function (e) {
             deleteImage(1);
+            $('#text-main-image').css('color', 'white');
         });
 
         $('#imageDiv2').on('click', function () {
@@ -402,9 +408,11 @@
         });
         $('#inpImage2').on('change', function () {
             addImage(2, this.files[0]);
+            $("#cameraImage2").css("color", "#f2f4f5");
         });
         $('#deleteImage2').on('click', function (e) {
             deleteImage(2);
+            $("#cameraImage2").css("color", "#36486b");
         });
 
         $('#imageDiv3').on('click', function () {
@@ -412,9 +420,11 @@
         });
         $('#inpImage3').on('change', function () {
             addImage(3, this.files[0]);
+            $("#cameraImage3").css("color", "#f2f4f5");
         });
         $('#deleteImage3').on('click', function (e) {
             deleteImage(3);
+            $("#cameraImage3").css("color", "#36486b");
         });
 
         $('#imageDiv4').on('click', function () {
@@ -422,9 +432,11 @@
         });
         $('#inpImage4').on('change', function () {
             addImage(4, this.files[0]);
+            $("#cameraImage4").css("color", "#f2f4f5");
         });
         $('#deleteImage4').on('click', function (e) {
             deleteImage(4);
+            $("#cameraImage4").css("color", "#36486b");
         });
 
 
