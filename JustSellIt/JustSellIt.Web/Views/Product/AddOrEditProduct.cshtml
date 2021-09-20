@@ -40,7 +40,7 @@
                                 <label class="control-label">Cena<span class="add-required">*</span></label>
                             </div>
                             <div class="input-group">
-                                <input asp-for="PriceField" class="form-control add-field" autocomplete="off"/>
+                                <input asp-for="PriceField" class="form-control add-field" autocomplete="off" />
                                 <div class="input-group-append">
                                     <span class="input-group-text">zł</span>
                                 </div>
@@ -206,7 +206,7 @@
                         </div>
                         @*TO DO - pobrać deafultowe miasto od użytkownika*@
                         @{ var locationValue = Model.Location ?? "Wrocław"; }
-                        <input asp-for="Location" value="@locationValue" class="form-control add-field" autocomplete="off"/>
+                        <input asp-for="Location" value="@locationValue" class="form-control add-field" autocomplete="off" />
                         <span asp-validation-for="Location" class="text-danger"></span>
                     </div>
                     <div class="col-md-4 offset-md-2">
@@ -214,14 +214,14 @@
                             <label class="control-label">Imię<span class="add-required">*</span></label>
                         </div>
                         @*TO DO - na sztywno póki co*@
-                        <input value="Jan" class="form-control add-field" autocomplete="off" readonly/>
+                        <input value="Jan" class="form-control add-field" autocomplete="off" readonly />
                     </div>
                     <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
                             <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
                         </div>
                         @*TO DO - na sztywno póki co*@
-                        <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly/>
+                        <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly />
                     </div>
                     <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
@@ -229,7 +229,7 @@
                         </div>
                         @*TO DO - pobrać deafultowy numer od użytkownika*@
                         @{ var phoneValue = Model.PhoneContact ?? "666486954"; }
-                        <input asp-for="PhoneContact" value="@phoneValue" class="form-control add-field" autocomplete="off"/>
+                        <input asp-for="PhoneContact" value="@phoneValue" class="form-control add-field" autocomplete="off" />
                         <span asp-validation-for="PhoneContact" class="text-danger"></span>
                     </div>
                 </div>
@@ -344,7 +344,7 @@
 
         if ($("#image1").css('display') != 'none') {
             $("#imageDiv1").css("cursor", "default");
-            $("#text-main-image").css("color","#92a8d1");
+            $("#text-main-image").css("color", "#92a8d1");
         }
         if ($("#image2").css('display') != 'none') {
             $("#imageDiv2").css("cursor", "default");
@@ -445,7 +445,7 @@
                 $('#inpImage' + index).click();
             }
         }
-        function addImage(index,file) {
+        function addImage(index, file) {
             if (file.size <= 1048576) {
                 $('#image' + index).attr('src', window.URL.createObjectURL(file));
                 $('#imageDiv' + index).css('cursor', 'auto');

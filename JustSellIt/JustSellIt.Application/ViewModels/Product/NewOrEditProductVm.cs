@@ -104,7 +104,7 @@ namespace JustSellIt.Application.ViewModels.Product
         {
             if (number != null)
             {
-                Regex properNumber = new Regex(@"^[0-9\-\+]{9,15}$");
+                Regex properNumber = new Regex(@"^[0-9]{9}$");
                 if (properNumber.IsMatch(number.ToString()))
                     return true;
                 else
