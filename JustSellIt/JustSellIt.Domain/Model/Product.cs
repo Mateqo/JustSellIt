@@ -21,6 +21,7 @@ namespace JustSellIt.Domain.Model
         public string RejectionReason { get; set; }
         public string MainImageName { get; set; }
         public DateTime CreatedOn { get; set; }
+        public string UserGuid { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ProductStatus ProductStatus { get; set; }

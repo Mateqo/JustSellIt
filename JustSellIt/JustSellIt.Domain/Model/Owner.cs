@@ -11,6 +11,7 @@ namespace JustSellIt.Domain.Model
         public string AvatarImage { get; set; }
         public int SexId { get; set; }
         public string City { get; set; }
+        public string UserGuid { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
         public virtual Sex Sex { get; set; }

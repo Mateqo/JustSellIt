@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using JustSellIt.Application.Interfaces;
+using JustSellIt.Domain.Model;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,17 +26,23 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IOwnerService _ownerService;
+        private readonly IOwnerContactService _ownerContactService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IOwnerService ownerService,
+            IOwnerContactService ownerContactService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _ownerService = ownerService;
+            _ownerContactService = ownerContactService;
         }
 
         [BindProperty]
@@ -98,9 +106,29 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    //_logger.LogInformation("User created a new account with password.");
+                    var owner = new Owner()
+                    {
+                        Name = Input.Name,
+                        //AvatarImage
+                        SexId = Input.SexId,
+                        City = Input.City,
+                        UserGuid = user.Id
+                    };
+                    var ownerId = _ownerService.AddOwner(owner);
+
+                    var ownerContact = new OwnerContact()
+                    {
+                        Email = Input.Email,
+                        PhoneNumber = Input.PhoneNumber,
+                        OwnerRef = ownerId,
+                    };
+
+                    _ownerContactService.AddOwnerContact(ownerContact);
+
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

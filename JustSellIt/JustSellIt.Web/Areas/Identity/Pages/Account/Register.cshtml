@@ -41,7 +41,7 @@
             <input type="checkbox" id="switchSex">
             <span class="slider round"></span>
         </label>
-        <input type="hidden" asp-for="Input.SexId">
+        <input type="hidden" asp-for="Input.SexId" value="1">
         <h5 class="text-center add-text" id="sexText">mężczyzna</h5>
         <hr />
         <div class="row mb-4">
@@ -99,10 +99,12 @@
             if ($('#switchSex')[0].checked == true) {
                 $('#sexText').text('kobieta');
                 $('#sexImage').attr("src", "/images/sex/woman.png");
+                $('#Input_SexId').val(2);
             }
             else {
                 $('#sexText').text('mężczyzna');
-                $('#sexImage').attr("src","/images/sex/man.png");
+                $('#sexImage').attr("src", "/images/sex/man.png");
+                $('#Input_SexId').val(1);
             }
         });
     </script>

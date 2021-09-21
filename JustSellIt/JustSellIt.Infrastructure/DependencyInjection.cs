@@ -10,6 +10,8 @@ namespace JustSellIt.Infrastructure
         {
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IImageRepository, ImageRepository>();
+            services.AddTransient<IOwnerRepository, OwnerRepository>();
+            services.AddTransient<IOwnerContactRepository, OwnerContactRepository>();
 
             return services;
         }
