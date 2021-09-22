@@ -9,6 +9,10 @@
     --border-color: #dee2e6;
 }
 
+.hoverText {
+    object-fit: contain;
+}
+
 .hoverText:hover {
     cursor: pointer;
     opacity:0.7;

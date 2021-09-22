@@ -396,7 +396,6 @@
         });
         $('#inpImage1').on('change', function () {
             addImage(1, this.files[0]);
-            $("#text-main-image").css("color", "#92a8d1");
         });
         $('#deleteImage1').on('click', function (e) {
             deleteImage(1);
@@ -408,7 +407,6 @@
         });
         $('#inpImage2').on('change', function () {
             addImage(2, this.files[0]);
-            $("#cameraImage2").css("color", "#f2f4f5");
         });
         $('#deleteImage2').on('click', function (e) {
             deleteImage(2);
@@ -420,7 +418,6 @@
         });
         $('#inpImage3').on('change', function () {
             addImage(3, this.files[0]);
-            $("#cameraImage3").css("color", "#f2f4f5");
         });
         $('#deleteImage3').on('click', function (e) {
             deleteImage(3);
@@ -432,7 +429,6 @@
         });
         $('#inpImage4').on('change', function () {
             addImage(4, this.files[0]);
-            $("#cameraImage4").css("color", "#f2f4f5");
         });
         $('#deleteImage4').on('click', function (e) {
             deleteImage(4);
@@ -452,6 +448,22 @@
                 $('#image' + index).show();
                 $('#deleteImage' + index).show();
                 $('#imageError').hide();
+
+                switch (index) {
+                    case 1:
+                        $("#text-main-image").css("color", "#92a8d1");
+                        break;
+                    case 2:
+                        $("#cameraImage2").css("color", "#f2f4f5");
+                        break;
+                    case 3:
+                        $("#cameraImage3").css("color", "#f2f4f5");
+                        break;
+                    case 4:
+                        $("#cameraImage4").css("color", "#f2f4f5");
+                        break;
+                    default:
+                }
             }
             else {
                 $('#imageError').show();

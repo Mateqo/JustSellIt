@@ -95,13 +95,30 @@ namespace JustSellIt.Application.Services
             return images.ProjectTo<ImageProductVm>(_mapper.ConfigurationProvider).ToList();
         }
 
-        public string UploadToAzure(IFormFile file)
+        public string UploadProductToAzure(IFormFile file)
         {
             if (file == null)
                 return null;
 
             string connectionString = _configuration.GetValue<string>("AzureConnection");
             BlobContainerClient container = new BlobContainerClient(connectionString, "product-images");
+            container.CreateIfNotExists(PublicAccessType.Blob);
+
+            var name = Guid.NewGuid().ToString();
+            var blockBlob = container.GetBlobClient(name + ".png");
+
+            blockBlob.Upload(file.OpenReadStream());
+
+            return name;
+        }
+
+        public string UploadOwnerToAzure(IFormFile file)
+        {
+            if (file == null)
+                return null;
+
+            string connectionString = _configuration.GetValue<string>("AzureConnection");
+            BlobContainerClient container = new BlobContainerClient(connectionString, "owner-images");
             container.CreateIfNotExists(PublicAccessType.Blob);
 
             var name = Guid.NewGuid().ToString();

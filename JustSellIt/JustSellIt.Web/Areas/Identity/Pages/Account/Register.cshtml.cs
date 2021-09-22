@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using JustSellIt.Application.Interfaces;
+using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Domain.Model;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -28,6 +29,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly IOwnerService _ownerService;
         private readonly IOwnerContactService _ownerContactService;
+        private readonly IImageService _imageService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -35,7 +37,8 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             IOwnerService ownerService,
-            IOwnerContactService ownerContactService)
+            IOwnerContactService ownerContactService,
+            IImageService imageService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -43,6 +46,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
             _emailSender = emailSender;
             _ownerService = ownerService;
             _ownerContactService = ownerContactService;
+            _imageService = imageService;
         }
 
         [BindProperty]
@@ -54,7 +58,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required (ErrorMessage ="Adres e-mail jest wymagany")]
+            [Required(ErrorMessage = "Adres e-mail jest wymagany")]
             [EmailAddress(ErrorMessage = "Format adresu e-mail nie jest poprawny")]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -98,22 +102,40 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
+        public void SetMessage(string message, MessageType type)
+        {
+            TempData["SM"] = message;
+            TempData["SMT"] = type;
+        }
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            bool isExistsConfirmedEmail = false;
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            var userToVerify = await _userManager.FindByEmailAsync(Input.Email);
+
+            if (userToVerify != null && userToVerify.EmailConfirmed)
+            {
+                isExistsConfirmedEmail = true;
+            }
+
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                
+
                 if (result.Succeeded)
                 {
                     //_logger.LogInformation("User created a new account with password.");
+
+                    var imageName = _imageService.UploadOwnerToAzure(Input.AvatarImage);
+
                     var owner = new Owner()
                     {
                         Name = Input.Name,
-                        //AvatarImage
+                        AvatarImage = imageName,
                         SexId = Input.SexId,
                         City = Input.City,
                         UserGuid = user.Id
@@ -153,6 +175,30 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                 }
                 foreach (var error in result.Errors)
                 {
+                    switch (error.Code)
+                    {
+                        case "PasswordRequiresLower":
+                            SetMessage("Hasło musi zawierać co najmniej jedną małą literę ('a' - 'z')", MessageType.Error);
+                            break;
+                        case "PasswordRequiresUpper":
+                            SetMessage("Hasło musi zawierać co najmniej jedną wielką literę ('A' - 'Z')", MessageType.Error);
+                            break;
+                        case "PasswordRequiresDigit":
+                            SetMessage("Hasło musi zawierać co najmniej jedną cyfrę ('0' - '9')", MessageType.Error);
+                            break;
+                        case "PasswordRequiresNonAlphanumeric":
+                            SetMessage("Hasło musi zawierać co najmniej jeden znak specjalny", MessageType.Error);
+                            break;
+                        case "DuplicateUserName":
+                            if (isExistsConfirmedEmail)
+                                SetMessage("Konto o podanym adresie e-mail już istnieje", MessageType.Error);
+                            else
+                                SetMessage("Na podany adres e-mail został wysłany już link aktywacyjny", MessageType.Error);
+                            break;
+                        default:
+                            SetMessage(error.Description, MessageType.Error);
+                            break;
+                    }
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }

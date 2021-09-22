@@ -10,7 +10,8 @@ namespace JustSellIt.Application.Interfaces
         void UpdateImages(List<ImageProductVm> images, int productId);
         bool DeleteImages(int productId);
         List<ImageProductVm> GetImages(int productId);
-        string UploadToAzure(IFormFile file);
+        string UploadProductToAzure(IFormFile file);
+        string UploadOwnerToAzure(IFormFile file);
         void DeleteFromAzure(string imageName);
         bool DeleteImage(int imageId);
         ImageProductVm GetImageByPosition(int productId, int position);

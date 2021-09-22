@@ -81,10 +81,10 @@ namespace JustSellIt.Web.Controllers
 
                     List<ImageProductVm> images = new List<ImageProductVm>();
 
-                    var imageName1 = _imageService.UploadToAzure(model.Image1) ?? null;
-                    var imageName2 = _imageService.UploadToAzure(model.Image2) ?? null;
-                    var imageName3 = _imageService.UploadToAzure(model.Image3) ?? null;
-                    var imageName4 = _imageService.UploadToAzure(model.Image4) ?? null;
+                    var imageName1 = _imageService.UploadProductToAzure(model.Image1) ?? null;
+                    var imageName2 = _imageService.UploadProductToAzure(model.Image2) ?? null;
+                    var imageName3 = _imageService.UploadProductToAzure(model.Image3) ?? null;
+                    var imageName4 = _imageService.UploadProductToAzure(model.Image4) ?? null;
 
                     if (!string.IsNullOrEmpty(imageName1)) images.Add(new ImageProductVm(imageName1, 1));
                     if (!string.IsNullOrEmpty(imageName2)) images.Add(new ImageProductVm(imageName2, 2));
@@ -153,10 +153,10 @@ namespace JustSellIt.Web.Controllers
                 model.CreatedOn = DateTime.Now;
                 model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
 
-                var imageName1 = _imageService.UploadToAzure(model.Image1) ?? "";
-                var imageName2 = _imageService.UploadToAzure(model.Image2) ?? "";
-                var imageName3 = _imageService.UploadToAzure(model.Image3) ?? "";
-                var imageName4 = _imageService.UploadToAzure(model.Image4) ?? "";
+                var imageName1 = _imageService.UploadProductToAzure(model.Image1) ?? "";
+                var imageName2 = _imageService.UploadProductToAzure(model.Image2) ?? "";
+                var imageName3 = _imageService.UploadProductToAzure(model.Image3) ?? "";
+                var imageName4 = _imageService.UploadProductToAzure(model.Image4) ?? "";
 
                 if (string.IsNullOrEmpty(model.ImageUrl1))
                 {
