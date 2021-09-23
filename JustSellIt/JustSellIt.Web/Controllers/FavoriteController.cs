@@ -20,8 +20,6 @@ namespace JustSellIt.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var favorite = SessionHelper.GetObjectFromJson<List<ProductForListVm>>(HttpContext.Session, "favorite");
-            ViewBag.favorite = favorite;
             return View();
         }
 

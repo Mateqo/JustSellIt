@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Domain.Model;
+using JustSellIt.Web.Helpers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -130,27 +131,26 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                 {
                     //_logger.LogInformation("User created a new account with password.");
 
-                    var imageName = _imageService.UploadOwnerToAzure(Input.AvatarImage);
+                    //var imageName = _imageService.UploadOwnerToAzure(Input.AvatarImage);
 
-                    var owner = new Owner()
-                    {
-                        Name = Input.Name,
-                        AvatarImage = imageName,
-                        SexId = Input.SexId,
-                        City = Input.City,
-                        UserGuid = user.Id
-                    };
-                    var ownerId = _ownerService.AddOwner(owner);
+                    //var owner = new Owner()
+                    //{
+                    //    Name = Input.Name,
+                    //    AvatarImage = null,
+                    //    SexId = Input.SexId,
+                    //    City = Input.City,
+                    //    UserGuid = user.Id
+                    //};
+                    //var ownerId = _ownerService.AddOwner(owner);
 
-                    var ownerContact = new OwnerContact()
-                    {
-                        Email = Input.Email,
-                        PhoneNumber = Input.PhoneNumber,
-                        OwnerRef = ownerId,
-                    };
+                    //var ownerContact = new OwnerContact()
+                    //{
+                    //    Email = Input.Email,
+                    //    PhoneNumber = Input.PhoneNumber,
+                    //    OwnerRef = ownerId,
+                    //};
 
-                    _ownerContactService.AddOwnerContact(ownerContact);
-
+                    //_ownerContactService.AddOwnerContact(ownerContact);
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -160,8 +160,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    EmailSender.SendEmail(callbackUrl, Input.Email, Input.Name);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
