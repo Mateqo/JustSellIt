@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using JustSellIt.Web.Helpers;
+using JustSellIt.Application;
+using JustSellIt.Application.ViewModels.Base;
 
 namespace JustSellIt.Web.Areas.Identity.Pages.Account
 {
@@ -30,9 +33,15 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Adres e-mail jest wymagany")]
+            [EmailAddress(ErrorMessage = "Format adresu e-mail nie jest poprawny")]
             public string Email { get; set; }
+        }
+
+        public void SetMessage(string message, MessageType type)
+        {
+            TempData["SM"] = message;
+            TempData["SMT"] = type;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -42,8 +51,9 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                 var user = await _userManager.FindByEmailAsync(Input.Email);
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
+                    SetMessage("Konto o podanym adresie e-mail nie istnieje", MessageType.Error);
                     // Don't reveal that the user does not exist or is not confirmed
-                    return RedirectToPage("./ForgotPasswordConfirmation");
+                    return Page();
                 }
 
                 // For more information on how to enable account confirmation and password reset please 
@@ -56,10 +66,8 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                EmailSender.SendEmail(callbackUrl, Input.Email, Input.Email, SystemConfiguration.EmailResendBody);
+
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

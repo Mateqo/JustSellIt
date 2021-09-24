@@ -1,0 +1,13 @@
+﻿@page
+@model RegisterConfirmationModel
+
+<div class="text-center add-title">
+    <h1 class="mt-5">Potwierdzenie rejestracji</h1>
+    <img style="height:150px;width:150px;margin-top:30px;" src="~/images/other/registerConfirmation.png" alt="registerConfirmation" />
+    <p class="mt-4" style="font-size:18px;">
+        Na adres e-mail <span style="font-weight:bold;">@Model.Email</span> została wysłana wiadomość w celu weryfikacji konta.
+        Prosimy sprawdzić pocztę oraz aktywować konto aby móc w pełni korzystać z portalu.
+        Jeżeli wiadomość nie dotarła spróbuj wysłać jeszcze raz klikająć 
+        <a href="/Identity/Account/ResendEmailConfirmation" style="font-weight:bold;">tutaj</a>.
+    </p>
+</div>

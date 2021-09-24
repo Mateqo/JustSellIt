@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using JustSellIt.Application;
+using JustSellIt.Application.ViewModels.Base;
+using JustSellIt.Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Identity;
@@ -38,6 +41,13 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
         public void OnGet()
         {
         }
+
+        public void SetMessage(string message, MessageType type)
+        {
+            TempData["SM"] = message;
+            TempData["SMT"] = type;
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -48,32 +58,30 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                SetMessage("Podany adres e-mail nie istnieje", MessageType.Error);
                 return Page();
             }
 
-            if(user.EmailConfirmed)
+            if (user.EmailConfirmed)
             {
-
+                SetMessage("Adres e-mail został już potwierdzony", MessageType.Warning);
             }
             else
             {
+                var userId = await _userManager.GetUserIdAsync(user);
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                var callbackUrl = Url.Page(
+                    "/Account/ConfirmEmail",
+                    pageHandler: null,
+                    values: new { userId = userId, code = code },
+                    protocol: Request.Scheme);
 
+                EmailSender.SendEmail(callbackUrl, Input.Email, Input.Email, SystemConfiguration.EmailResendBody);
+
+                SetMessage("Potwierdzenie zostało wysłane ponownie", MessageType.Success);
             }
-            var userId = await _userManager.GetUserIdAsync(user);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
-                "/Account/ConfirmEmail",
-                pageHandler: null,
-                values: new { userId = userId, code = code },
-                protocol: Request.Scheme);
-            await _emailSender.SendEmailAsync(
-                Input.Email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-            ModelState.AddModelError(string.Empty, "Verification email sent. Proszę spwadź pocztę.");
+            
             return Page();
         }
     }

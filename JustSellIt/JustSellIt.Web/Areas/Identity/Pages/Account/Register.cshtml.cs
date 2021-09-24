@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using JustSellIt.Application;
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Domain.Model;
@@ -160,17 +161,11 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    EmailSender.SendEmail(callbackUrl, Input.Email, Input.Name);
+                    EmailSender.SendEmail(callbackUrl, Input.Email, Input.Name, SystemConfiguration.EmailConfirmBody);
 
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                    return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+
+
                 }
                 foreach (var error in result.Errors)
                 {

@@ -1,0 +1,15 @@
+2021-09-25T00:03:41.8592346+02:00 800001dc-0005-ef00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.CompilationFailedException: One or more compilation failures occurred:
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml(21,70): error CS1061: Element „ResendEmailConfirmationModel” nie zawiera definicji „ReturnUrl” i nie odnaleziono dostępnej metody rozszerzenia „ReturnUrl”, która przyjmuje pierwszy argument typu „ResendEmailConfirmationModel” (czy nie brakuje dyrektywy using lub odwołania do zestawu?).
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(RazorCodeDocument codeDocument, String generatedCode)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.DefaultPageLoader.LoadAsyncCore(PageActionDescriptor actionDescriptor, EndpointMetadataCollection endpointMetadata)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageLoaderMatcherPolicy.ApplyAsyncAwaited(CandidateSet candidates, Task`1 actionDescriptorTask, Int32 index)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.SelectEndpointWithPoliciesAsync(HttpContext httpContext, IEndpointSelectorPolicy[] policies, CandidateSet candidateSet)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.<Invoke>g__AwaitMatch|8_1(EndpointRoutingMiddleware middleware, HttpContext httpContext, Task matchTask)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
