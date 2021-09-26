@@ -66,7 +66,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                EmailSender.SendEmail(callbackUrl, Input.Email, Input.Email, SystemConfiguration.EmailResendBody);
+                EmailSender.SendEmail(callbackUrl, Input.Email, Input.Email, EmailType.ForgotPassword);
 
 
                 return RedirectToPage("./ForgotPasswordConfirmation");

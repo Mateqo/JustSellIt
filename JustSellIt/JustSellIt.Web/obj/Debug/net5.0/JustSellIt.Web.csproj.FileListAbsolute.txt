@@ -937,3 +937,6 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResetPassword.cshtml.g.cs

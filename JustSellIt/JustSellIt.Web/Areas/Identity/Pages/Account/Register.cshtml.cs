@@ -161,7 +161,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    EmailSender.SendEmail(callbackUrl, Input.Email, Input.Name, SystemConfiguration.EmailConfirmBody);
+                    EmailSender.SendEmail(callbackUrl, Input.Email, Input.Name, EmailType.Confirmation);
 
                     return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
 

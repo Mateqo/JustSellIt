@@ -56,5 +56,35 @@
     display: inline-block;
     margin-left: 20px;
     margin-right: 20px;
-    width: 30%;
+    width: 40%;
+}
+
+.registerInputs {
+    display: flex;
+    justify-content: center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+@media(max-width: 768px) {
+    .registerInputs {
+
+        display:block !important;
+    }
+    .inputCommon {
+        width: 60%;
+        margin-left:auto;
+        margin-right:auto;
+        display: block !important;
+    }
+}
+
+@media(max-width: 508px) {
+    .inputCommon {
+        width: 80%;
+    }
+    .flex-btn{
+        font-size:17px;
+        width:170px;
+    }
 }

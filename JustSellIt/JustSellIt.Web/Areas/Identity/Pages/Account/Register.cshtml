@@ -2,7 +2,6 @@
 @model RegisterModel
 
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype='multipart/form-data'>
-    <partial name="_AlertPanel" />
     <div class="add-section pb-0 ml-auto mr-auto" style="margin-top:100px;max-width:800px;">
         <div class="add-user-profile">
             <i id="deleteImage" class="fas fa-times" style="display:none;position:absolute;margin-left:70px;margin-top:5px;cursor:pointer;color:#e02020;"></i>
@@ -19,11 +18,12 @@
         <hr />
         <div class="add-subtitle text-center mt-2 mb-2">
             <span style="font-weight:bold;font-size:40px;margin-left:0px;">Rejestracja</span>
+            <partial name="_AlertPanel" />
         </div>
         <hr />
         <input asp-for="Input.AvatarImage" type="file" accept="image/*" hidden="hidden" />
         <input type="hidden" asp-for="Input.SexId" value="1">
-        <div style="display:flex;justify-content:center;" class="ml-auto mr-auto">
+        <div class="registerInputs">
             <div class="inputCommon">
                 <div class="add-caption">
                     <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
@@ -32,50 +32,38 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="inputCommon">
-                <div class="add-caption">
-                    <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
-                </div>
-                <input asp-for="Input.Email" class="form-control add-field" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-4 offset-md-1">
-                <div class="add-caption">
-                    <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
-                </div>
-                <input asp-for="Input.Email" class="form-control add-field" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="col-md-4 offset-md-2">
                 <div class="add-caption">
                     <label class="control-label">Imię<span class="add-required">*</span></label>
                 </div>
                 <input asp-for="Input.Name" class="form-control add-field" />
                 <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
-            <div class="col-md-4 offset-md-1">
+        </div>
+        <div class="registerInputs">
+            <div class="inputCommon">
                 <div class="add-caption">
                     <label class="control-label">Hasło<span class="add-required">*</span></label>
                 </div>
                 <input asp-for="Input.Password" class="form-control add-field" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
-            <div class="col-md-4 offset-md-2">
+            <div class="inputCommon">
                 <div class="add-caption">
                     <label class="control-label">Powtórz hasło<span class="add-required">*</span></label>
                 </div>
                 <input asp-for="Input.ConfirmPassword" class="form-control add-field" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="col-md-4 offset-md-1">
+        </div>
+        <div class="registerInputs">
+            <div class="inputCommon">
                 <div class="add-caption">
                     <label class="control-label">Miasto</label>
                 </div>
                 <input asp-for="Input.City" class="form-control add-field" />
                 <span asp-validation-for="Input.City" class="text-danger"></span>
             </div>
-            <div class="col-md-4 offset-md-2">
+            <div class="inputCommon">
                 <div class="add-caption">
                     <label class="control-label">Numer telefonu</label>
                 </div>
@@ -83,6 +71,7 @@
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
         </div>
+
         <button type="submit" class="d-block ml-auto mr-auto mt-4 mb-4 btn btn-submit-sm">Zarejestruj</button>
         <hr />
         <div class="form-group mb-0 otherLink text-center">
@@ -90,7 +79,7 @@
                 <a href="/Identity/Account/Login">Zaloguj się</a>
             </p>
             <p>
-                <a href="/Identity/Account/Register">Utwórz nowe konto</a>
+                <a asp-page="./ResendEmailConfirmation">Wyślij ponownie potwierdzenie</a>
             </p>
         </div>
     </div>

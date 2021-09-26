@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using JustSellIt.Application.ViewModels.Base;
 
 namespace JustSellIt.Web.Areas.Identity.Pages.Account
 {
@@ -42,11 +43,11 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Adres e-mail jest wymagany")]
+            [EmailAddress(ErrorMessage = "Format adresu e-mail nie jest poprawny")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Hasło jest wymagane")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -71,12 +72,19 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        public void SetMessage(string message, MessageType type)
+        {
+            TempData["SM"] = message;
+            TempData["SMT"] = type;
+        }
+
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -98,7 +106,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    SetMessage("Nieprawidłowe dane logowania", MessageType.Error);
                     return Page();
                 }
             }

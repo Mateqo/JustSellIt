@@ -77,7 +77,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                     values: new { userId = userId, code = code },
                     protocol: Request.Scheme);
 
-                EmailSender.SendEmail(callbackUrl, Input.Email, Input.Email, SystemConfiguration.EmailResendBody);
+                EmailSender.SendEmail(callbackUrl, Input.Email, Input.Email, EmailType.Confirmation);
 
                 SetMessage("Potwierdzenie zostało wysłane ponownie", MessageType.Success);
             }
