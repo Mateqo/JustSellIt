@@ -13,6 +13,10 @@
     object-fit: contain;
 }
 
+.color {
+    color: #36486b;
+}
+
 .hoverText:hover {
     cursor: pointer;
     opacity:0.7;
@@ -123,12 +127,30 @@ body {
     max-width: 150px;
 }
 
+.btn-submit-xsm {
+    color: var(--main-color);
+    font-size: 17px;
+    transition: 0.2s;
+    font-weight: 400;
+    background-color: white;
+    padding: 6px 25px 6px 25px;
+    border: solid 3px var(--main-color);
+    max-width: 100px;
+}
+
     .btn-submit-sm:hover {
         color: var(--main-color) !important;
         padding: 5px 27px 5px 27px;
         border: solid 6px var(--main-color);
         cursor: pointer;
     }
+
+.btn-submit-xsm:hover {
+    color: var(--main-color) !important;
+    padding: 3px 22px 3px 22px;
+    border: solid 6px var(--main-color);
+    cursor: pointer;
+}
 
 .row-full {
     width: 100vw;

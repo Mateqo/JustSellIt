@@ -21,7 +21,7 @@ namespace JustSellIt.Web.Helpers
                     break;
                 case EmailType.ForgotPassword:
                     mailMessage.Body = emailForgotPasswordBody;
-                    mailMessage.Subject = "Restartowanie hasła JustSellIt";
+                    mailMessage.Subject = "Resetowanie hasła JustSellIt";
                     break;
                 default:
                     break;

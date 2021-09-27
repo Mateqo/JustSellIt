@@ -1,4 +1,0 @@
-2021-03-02T20:23:41.1314143+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
-2021-03-02T20:23:41.1482495+01:00  [INF] Hosting environment: "Development" (c3307c92)
-2021-03-02T20:23:41.1498065+01:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
-2021-03-02T20:23:42.3091978+01:00 80000002-0004-fd00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
