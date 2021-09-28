@@ -17,5 +17,15 @@ namespace JustSellIt.Application.Services
         {
             return _ownerRepo.AddOwner(owner);
         }
+
+        public void DeactivateOwner(string userGuid)
+        {
+            _ownerRepo.DeactivateOwner(userGuid);
+        }
+
+        public Owner GetOwnerByGuid(string guid)
+        {
+            return _ownerRepo.GetOwnerByGuid(guid);
+        }
     }
 }

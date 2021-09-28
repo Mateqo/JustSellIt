@@ -164,7 +164,7 @@ namespace JustSellIt.Web.Controllers
                     if (imageToDelete != null)
                     {
                         _imageService.DeleteImage(imageToDelete.Id);
-                        _imageService.DeleteFromAzure(imageToDelete.Name);
+                        _imageService.DeleteImageProductFromAzure(imageToDelete.Name);
                     }
                 }
                 if (string.IsNullOrEmpty(model.ImageUrl2))
@@ -173,7 +173,7 @@ namespace JustSellIt.Web.Controllers
                     if (imageToDelete != null)
                     {
                         _imageService.DeleteImage(imageToDelete.Id);
-                        _imageService.DeleteFromAzure(imageToDelete.Name);
+                        _imageService.DeleteImageProductFromAzure(imageToDelete.Name);
                     }
                 }
                 if (string.IsNullOrEmpty(model.ImageUrl3))
@@ -182,7 +182,7 @@ namespace JustSellIt.Web.Controllers
                     if (imageToDelete != null)
                     {
                         _imageService.DeleteImage(imageToDelete.Id);
-                        _imageService.DeleteFromAzure(imageToDelete.Name);
+                        _imageService.DeleteImageProductFromAzure(imageToDelete.Name);
                     }
                 }
                 if (string.IsNullOrEmpty(model.ImageUrl4))
@@ -191,7 +191,7 @@ namespace JustSellIt.Web.Controllers
                     if (imageToDelete != null)
                     {
                         _imageService.DeleteImage(imageToDelete.Id);
-                        _imageService.DeleteFromAzure(imageToDelete.Name);
+                        _imageService.DeleteImageProductFromAzure(imageToDelete.Name);
                     }
                 }
 
@@ -233,7 +233,7 @@ namespace JustSellIt.Web.Controllers
 
             foreach (var image in images)
             {
-                _imageService.DeleteFromAzure(image.Name);
+                _imageService.DeleteImageProductFromAzure(image.Name);
             }
 
             SetMessage("Ogłoszenie zostało usunięte", MessageType.Error);

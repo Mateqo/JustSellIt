@@ -38,5 +38,13 @@ namespace JustSellIt.Infrastructure.Repositories
 
             _context.SaveChanges();
         }
+
+        public void DeactivateOwner(string userGuid)
+        {
+            var owner = _context.Owners.FirstOrDefault(x => x.UserGuid == userGuid);
+            _context.Owners.Remove(owner);
+
+            _context.SaveChanges();
+        }
     }
 }

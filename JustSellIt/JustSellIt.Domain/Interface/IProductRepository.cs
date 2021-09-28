@@ -22,6 +22,7 @@ namespace JustSellIt.Domain.Interface
         void UpdateProduct(Product product);
         Category GetCategoryById(int id);
         void ClearReason(int id);
+        void DeactivateProducts(string userGuid);
 
     }
 }

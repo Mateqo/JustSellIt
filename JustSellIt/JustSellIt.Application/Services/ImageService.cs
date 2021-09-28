@@ -129,10 +129,20 @@ namespace JustSellIt.Application.Services
             return name;
         }
 
-        public void DeleteFromAzure(string imageName)
+        public void DeleteImageProductFromAzure(string imageName)
         {
             string connectionString = _configuration.GetValue<string>("AzureConnection");
             BlobContainerClient container = new BlobContainerClient(connectionString, "product-images");
+            container.CreateIfNotExists(PublicAccessType.Blob);
+            var blockBlob = container.GetBlobClient(imageName + ".png");
+
+            blockBlob.DeleteIfExists();
+        }
+
+        public void DeleteImageOwnerFromAzure(string imageName)
+        {
+            string connectionString = _configuration.GetValue<string>("AzureConnection");
+            BlobContainerClient container = new BlobContainerClient(connectionString, "owner-images");
             container.CreateIfNotExists(PublicAccessType.Blob);
             var blockBlob = container.GetBlobClient(imageName + ".png");
 

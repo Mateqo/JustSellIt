@@ -934,7 +934,6 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ForgotPassword.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml.g.cs
@@ -942,8 +941,7 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResetPassword.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\PersonalData.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Email.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml.g.cs

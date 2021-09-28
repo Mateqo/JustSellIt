@@ -242,6 +242,11 @@ namespace JustSellIt.Application.Services
             return autoComplete;
         }
 
+        public void DeactivateProducts(string userGuid)
+        {
+            _productRepo.DeactivateProducts(userGuid);
+        }
+
         public string GetContactById(int id)
         {
             return _productRepo.GetProductById(id).PhoneContact;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using JustSellIt.Application.ViewModels.Base;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -33,20 +34,20 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Obecne hasło jest wymagane")]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Obecne hasło")]
             public string OldPassword { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Nowe hasło jest wymagane")]
+            [StringLength(50, ErrorMessage = "Hasło powinno składać się od {2} do {1} znaków", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Nowe hasło")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Potwierdź hasło")]
+            [Compare("NewPassword", ErrorMessage = "Hasła nie są identyczne")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -67,6 +68,12 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        public void SetMessage(string message, MessageType type)
+        {
+            TempData["SM"] = message;
+            TempData["SMT"] = type;
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -85,14 +92,34 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
             {
                 foreach (var error in changePasswordResult.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    switch (error.Code)
+                    {
+                        case "PasswordRequiresLower":
+                            SetMessage("Hasło musi zawierać co najmniej jedną małą literę ('a' - 'z')", MessageType.Error);
+                            break;
+                        case "PasswordRequiresUpper":
+                            SetMessage("Hasło musi zawierać co najmniej jedną wielką literę ('A' - 'Z')", MessageType.Error);
+                            break;
+                        case "PasswordRequiresDigit":
+                            SetMessage("Hasło musi zawierać co najmniej jedną cyfrę ('0' - '9')", MessageType.Error);
+                            break;
+                        case "PasswordRequiresNonAlphanumeric":
+                            SetMessage("Hasło musi zawierać co najmniej jeden znak specjalny", MessageType.Error);
+                            break;
+                        case "PasswordMismatch":
+                            SetMessage("Obecne hasło jest nieprawidłowe", MessageType.Error);
+                            break;
+                        default:
+                            SetMessage(error.Description, MessageType.Error);
+                            break;
+                    }
                 }
                 return Page();
             }
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            SetMessage("Hasło zostało zmienione pomyślnie", MessageType.Success);
 
             return RedirectToPage();
         }

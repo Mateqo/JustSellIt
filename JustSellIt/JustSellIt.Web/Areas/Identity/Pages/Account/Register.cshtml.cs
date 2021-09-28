@@ -132,26 +132,26 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
                 {
                     //_logger.LogInformation("User created a new account with password.");
 
-                    //var imageName = _imageService.UploadOwnerToAzure(Input.AvatarImage);
+                    var imageName = _imageService.UploadOwnerToAzure(Input.AvatarImage);
 
-                    //var owner = new Owner()
-                    //{
-                    //    Name = Input.Name,
-                    //    AvatarImage = null,
-                    //    SexId = Input.SexId,
-                    //    City = Input.City,
-                    //    UserGuid = user.Id
-                    //};
-                    //var ownerId = _ownerService.AddOwner(owner);
+                    var owner = new Owner()
+                    {
+                        Name = Input.Name,
+                        AvatarImage = imageName,
+                        SexId = Input.SexId,
+                        City = Input.City,
+                        UserGuid = user.Id
+                    };
+                    var ownerId = _ownerService.AddOwner(owner);
 
-                    //var ownerContact = new OwnerContact()
-                    //{
-                    //    Email = Input.Email,
-                    //    PhoneNumber = Input.PhoneNumber,
-                    //    OwnerRef = ownerId,
-                    //};
+                    var ownerContact = new OwnerContact()
+                    {
+                        Email = Input.Email,
+                        PhoneNumber = Input.PhoneNumber,
+                        OwnerRef = ownerId,
+                    };
 
-                    //_ownerContactService.AddOwnerContact(ownerContact);
+                    _ownerContactService.AddOwnerContact(ownerContact);
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

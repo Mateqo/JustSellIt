@@ -18,5 +18,14 @@ namespace JustSellIt.Application.Services
             return _ownerContactRepo.AddOwnerContact(contact);
         }
 
+        public void DeactivateOwnerContact(int ownerId)
+        {
+            _ownerContactRepo.DeactivateOwnerContact(ownerId);
+        }
+        public OwnerContact GetOwnerContactByOwner(int ownerId)
+        {
+            return _ownerContactRepo.GetContactByOwner(ownerId);
+        }
+
     }
 }

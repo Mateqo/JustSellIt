@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using JustSellIt.Application.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,13 +14,19 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IOwnerService _ownerService;
+        private readonly IOwnerContactService _ownerContactService;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            IOwnerContactService ownerContactService,
+            IOwnerService ownerService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _ownerService = ownerService;
+            _ownerContactService = ownerContactService;
         }
 
         public string Username { get; set; }
@@ -32,22 +39,33 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Phone]
-            [Display(Name = "Phone number")]
+            public string Name { get; set; }
+            public string AvatarImage { get; set; }
+            public int SexId { get; set; }
+            public string City { get; set; }
+            public string Email { get; set; }
             public string PhoneNumber { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var owner = _ownerService.GetOwnerByGuid(user.Id);
+            var ownerContact = _ownerContactService.GetOwnerContactByOwner(owner.Id);
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                Name = owner.Name,
+                AvatarImage = owner.AvatarImage,
+                SexId = owner.SexId,
+                City = owner.City,
+                Email = ownerContact.Email,
+                PhoneNumber = ownerContact.PhoneNumber
             };
+
+
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -76,16 +94,6 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

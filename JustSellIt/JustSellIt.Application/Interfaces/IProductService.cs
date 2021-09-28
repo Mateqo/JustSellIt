@@ -27,5 +27,6 @@ namespace JustSellIt.Application.Interfaces
         int GetOwnerIdByProductId(int id);
         void ClearReason(int id);
         ListFavouritProducts GetMyFavourites(string[] favouritesIds, int? actualPage, int pageSize);
+        void DeactivateProducts(string userGuid);
     }
 }

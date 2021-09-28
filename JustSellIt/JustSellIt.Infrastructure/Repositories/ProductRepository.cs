@@ -150,5 +150,17 @@ namespace JustSellIt.Infrastructure.Repositories
             product.RejectionReason = null;
             _context.SaveChanges();
         }
+
+        public void DeactivateProducts(string userGuid)
+        {
+            var productList = _context.Products.Where(x => x.UserGuid == userGuid);
+
+            foreach (var product in productList)
+            {
+                _context.Products.Remove(product);
+            }
+
+            _context.SaveChanges();
+        }
     }
 }

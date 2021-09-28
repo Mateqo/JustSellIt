@@ -7,5 +7,6 @@ namespace JustSellIt.Domain.Interface
         int AddOwnerContact(OwnerContact conctact);
         OwnerContact GetContactByOwner(int ownerId);
         void UpdateOwnerContact(OwnerContact contact);
+        void DeactivateOwnerContact(int ownerId);
     }
 }
