@@ -7,5 +7,7 @@ namespace JustSellIt.Application.Interfaces
         int AddOwner(Owner owner);
         void DeactivateOwner(string userGuid);
         Owner GetOwnerByGuid(string guid);
+
+        void UpdateOwner(Owner owner);
     }
 }

@@ -77,6 +77,7 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required(ErrorMessage = "Imię jest wymagane")]
+            [RegularExpression(@"^[A-Z a-z]*$", ErrorMessage = "Imię może zawierać tylko litery bez polskich znaków")]
             [StringLength(15, ErrorMessage = "Imię powinno zawierać się od {2} do {1} znaków", MinimumLength = 3)]
             [Display(Name = "Imię")]
             public string Name { get; set; }
@@ -89,7 +90,8 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
             [Display(Name = "Płeć")]
             public int SexId { get; set; }
 
-            [StringLength(30, ErrorMessage = "Miasto powinno zawierać się od {2} do {1} znaków")]
+            [RegularExpression(@"^[A-Z a-z żźćńółęąśŻŹĆĄŚĘŁÓŃ]*$", ErrorMessage = "Miasto może zawierać tylko litery")]
+            [StringLength(30, ErrorMessage = "Miasto powinno zawierać do {1} znaków")]
             [Display(Name = "Miasto")]
             public string City { get; set; }
 
@@ -136,10 +138,10 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
 
                     var owner = new Owner()
                     {
-                        Name = Input.Name,
+                        Name = StringHelper.CapitalizeFirstLetter(Input.Name),
                         AvatarImage = imageName,
                         SexId = Input.SexId,
-                        City = Input.City,
+                        City = StringHelper.CapitalizeFirstLetter(Input.City),
                         UserGuid = user.Id
                     };
                     var ownerId = _ownerService.AddOwner(owner);

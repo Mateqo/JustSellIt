@@ -27,5 +27,10 @@ namespace JustSellIt.Application.Services
         {
             return _ownerRepo.GetOwnerByGuid(guid);
         }
+
+        public void UpdateOwner(Owner owner)
+        {
+            _ownerRepo.UpdateOwner(owner);
+        }
     }
 }

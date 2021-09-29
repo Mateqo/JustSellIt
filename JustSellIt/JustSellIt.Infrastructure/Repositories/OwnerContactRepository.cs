@@ -31,7 +31,7 @@ namespace JustSellIt.Infrastructure.Repositories
         public void UpdateOwnerContact(OwnerContact contact)
         {
             _context.Attach(contact);
-            _context.Entry(contact).Property("Email").IsModified = true;
+            _context.Entry(contact).Property("Email").IsModified = false;
             _context.Entry(contact).Property("PhoneNumber").IsModified = true;
 
             _context.SaveChanges();
