@@ -23,6 +23,7 @@ namespace JustSellIt.Domain.Interface
         Category GetCategoryById(int id);
         void ClearReason(int id);
         void DeactivateProducts(string userGuid);
+        Owner GetOwnerByGuid(string guid);
 
     }
 }

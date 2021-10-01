@@ -1,6 +1,0 @@
-2021-06-08T17:04:24.8366079+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
-2021-06-08T17:04:24.8554678+02:00  [INF] Hosting environment: "Development" (c3307c92)
-2021-06-08T17:04:24.8569963+02:00  [INF] Content root path: "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web" (b5d60022)
-2021-06-08T17:04:25.9593873+02:00 80000002-0002-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
-2021-06-08T17:20:22.2451384+02:00 8000004b-0001-ee00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. (96eb03fe)
-2021-06-08T17:27:09.4478096+02:00 80000086-0006-e800-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. (96eb03fe)

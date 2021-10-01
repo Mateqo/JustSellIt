@@ -14,6 +14,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public bool IsNegotiate { get; set; }
         public bool IsNew { get; set; }
         public string Category { get; set; }
+        public string UserGuid { get; set; }
         public string Owner { get; set; }
         public string OwnerId { get; set; }
         public string PhoneContact { get; set; }
@@ -22,12 +23,16 @@ namespace JustSellIt.Application.ViewModels.Product
         public string RejectionReason { get; set; }
         public DateTime CreatedOn { get; set; }
         public string[] Images { get; set; }
+        public string AvatarUrl { get; set; }
+        public int SexId { get; set; }
 
         public void Mapping(MappingProfile profile)
         {
             profile.CreateMap<JustSellIt.Domain.Model.Product, ProductDetailsVm>()
                 .ForMember(s => s.Category, opt => opt.MapFrom(d => d.Category.Name))
                 .ForMember(s => s.Owner, opt => opt.MapFrom(d => d.Owner.Name))
+                .ForMember(s => s.SexId, opt => opt.MapFrom(d => d.Owner.SexId))
+                .ForMember(s => s.AvatarUrl, opt => opt.MapFrom(d => d.Owner.AvatarImage))
                 .ForMember(s => s.Status, opt => opt.MapFrom(d => d.ProductStatus.Name));
         }
     }

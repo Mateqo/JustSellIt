@@ -2,11 +2,14 @@
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Application.ViewModels.Product;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace JustSellIt.Web.Controllers
 {
@@ -15,12 +18,17 @@ namespace JustSellIt.Web.Controllers
         private readonly IProductService _productService;
         private readonly IStatusService _statusService;
         private readonly IImageService _imageService;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public ProductController(IProductService productService, IStatusService statusService, IImageService imageService)
+        public ProductController(IProductService productService,
+            IStatusService statusService,
+            IImageService imageService,
+            UserManager<IdentityUser> userManager)
         {
             _productService = productService;
             _statusService = statusService;
             _imageService = imageService;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -46,6 +54,7 @@ namespace JustSellIt.Web.Controllers
         public IActionResult ProductDetails(int id)
         {
             var model = _productService.GetProductDetails(id);
+            model.AvatarUrl = model.AvatarUrl == null ? null : SystemConfiguration.OwnerImageUrl.Replace("{{name}}", model.AvatarUrl);
             model.Images = _imageService.GetImages(id)
                 .OrderBy(x=>x.Position)
                 .Select(x=>SystemConfiguration.ProductImageUrl.Replace("{{name}}", x.Name))
@@ -78,6 +87,7 @@ namespace JustSellIt.Web.Controllers
                 {
                     model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
                     model.CreatedOn = DateTime.Now;
+                    model.UserGuid = _userManager.GetUserId(HttpContext.User);
 
                     List<ImageProductVm> images = new List<ImageProductVm>();
 
@@ -271,16 +281,21 @@ namespace JustSellIt.Web.Controllers
         {
             int pageSize = SystemConfiguration.DefaultPageSize;
             var model = _productService.GetOwnerProducts(id, actualPage, pageSize);
+            model.AvatarUrl = model.AvatarUrl == null ? null : SystemConfiguration.OwnerImageUrl.Replace("{{name}}", model.AvatarUrl);
             model.Action = "GetOwnerProducts";
 
             return View(model);
         }
 
         [HttpGet]
-        public IActionResult MyProducts(int id, int? actualPage)
+        [Authorize]
+        public IActionResult MyProducts(int? actualPage)
         {
+            var userGuid = _userManager.GetUserId(HttpContext.User);
+
             int pageSize = SystemConfiguration.DefaultPageSize;
-            var model = _productService.GetMyProducts(id, actualPage, pageSize);
+            var model = _productService.GetMyProducts(userGuid, actualPage, pageSize);
+            model.AvatarUrl = model.AvatarUrl == null ? null : SystemConfiguration.OwnerImageUrl.Replace("{{name}}", model.AvatarUrl);
             model.Action = "MyProducts";
 
             return View("GetOwnerProducts", model);

@@ -37,6 +37,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public IFormFile Image3 { get; set; }
         public IFormFile Image4 { get; set; }
         public string Action { get; set; }
+        public string UserGuid { get; set; }
 
         public void Mapping(MappingProfile profile)
         {

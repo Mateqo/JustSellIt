@@ -117,20 +117,23 @@ namespace JustSellIt.Application.Services
                 Count = productsAfterFiltrs.Count,
                 Id = owner.Id,
                 Owner = owner.Name,
-                Location = owner.City
+                Location = owner.City,
+                SexId = owner.SexId,
+                AvatarUrl = owner.AvatarImage,
+                UserGuid = owner.UserGuid
             };
 
             return productList;
         }
 
-        public ListOwnerProducts GetMyProducts(int ownerId, int? actualPage, int pageSize)
+        public ListOwnerProducts GetMyProducts(string userGuid, int? actualPage, int pageSize)
         {
             if (!actualPage.HasValue)
                 actualPage = 1;
 
-            var owner = _productRepo.GetOwnerById(ownerId);
+            var owner = _productRepo.GetOwnerByGuid(userGuid);
 
-            var products = _productRepo.GetAllProducts().Where(x => x.OwnerId == ownerId && x.ProductStatus.Name != "Deleted");
+            var products = _productRepo.GetAllProducts().Where(x => x.UserGuid == userGuid && x.ProductStatus.Name != "Deleted");
 
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
@@ -144,7 +147,10 @@ namespace JustSellIt.Application.Services
                 Count = productsAfterFiltrs.Count,
                 Id = owner.Id,
                 Owner = owner.Name,
-                Location = owner.City
+                Location = owner.City,
+                SexId = owner.SexId,
+                AvatarUrl = owner.AvatarImage,
+                UserGuid = owner.UserGuid
             };
 
             return productList;

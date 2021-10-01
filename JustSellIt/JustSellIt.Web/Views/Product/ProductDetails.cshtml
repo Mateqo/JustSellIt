@@ -1,6 +1,9 @@
 ﻿@model JustSellIt.Application.ViewModels.Product.ProductDetailsVm
 @using Microsoft.AspNetCore.Http;
 @inject IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager
+@using JustSellIt.Application.ViewModels.Base
 @{
     ViewData["Title"] = "Index";
 }
@@ -45,7 +48,18 @@
     <div class="col-xl-5 col-lg-6 product-details-contact pt-4 mb-2 order-lg-2 order-3">
         <div class="row">
             <div class="col-lg-5 offset-lg-0 col-4 offset-md-2 offset-1 pl-4 user-image">
-                <img src="~/images/sex/man.png" class="avatar" alt="@Model.Owner avatar" />
+                @if (Model.AvatarUrl != null)
+                {
+                    <img src="@Model.AvatarUrl" class="avatar" alt="@Model.Owner avatar" />
+                }
+                else if (Model.SexId == (int)SexType.Male)
+                {
+                    <img src="~/images/sex/man.png" class="avatar" alt="@Model.Owner avatar" />
+                }
+                else
+                {
+                    <img src="~/images/sex/woman.png" class="avatar" alt="@Model.Owner avatar" />
+                }
             </div>
             <div class="col-6 offset-md-0 offset-1 border-left mt-2 user-info">
                 <p class="username mb-0">@Model.Owner</p>
@@ -53,7 +67,7 @@
                 <p class="location"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;@Model.Location</p>
             </div>
             <div class="col-12 mt-5 mb-lg-0 mb-4 text-center user-btns">
-                <a href="@Url.Action("GetOwnerProducts","Product",new {id=Model.OwnerId})" class="user-products">Ogłoszenia użytkownika</a>
+                <a href="@Url.Action("GetOwnerProducts", "Product", new { id = Model.OwnerId })" class="user-products">Ogłoszenia użytkownika</a>
                 <a class="contact-btn" id="showContact" onclick="contact(@Model.Id);">Zadzwoń</a>
             </div>
         </div>
@@ -100,15 +114,21 @@
         <p class="description">@Model.Description</p>
         <div class="col-12 data-border"></div>
         <p class="date">Data dodania:&nbsp;&nbsp;&nbsp;@Model.CreatedOn.ToString("dd/MM/yyyy")</p>
-        @*TO DO sprawdzenie użytkownika*@
-        <div class="product-manage">
-            <h4 class="mb-3">Zarządzaj ogłoszeniem&nbsp;&nbsp;<i class="fas fa-cogs"></i></h4>
-            <a asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-edit">Edytuj</a>
-            <a data-toggle="modal" data-target="#deleteModal" class="btn btn-delete">Usuń</a>
-        </div>
+        @if (Model.UserGuid == _userManager.GetUserId(User))
+        {
+            <div class="product-manage">
+                <h4 class="mb-3">Zarządzaj ogłoszeniem&nbsp;&nbsp;<i class="fas fa-cogs"></i></h4>
+                <a asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-edit">Edytuj</a>
+                <a data-toggle="modal" data-target="#deleteModal" class="btn btn-delete">Usuń</a>
+            </div>
+        }
     </div>
 
-    <partial name="_ManagePanel" />
+    @if (Context.User.HasClaim("AdminManage", "AdminManage"))
+    {
+        <partial name="_ManagePanel" />
+    }
+
 
 </div>
 
@@ -230,39 +250,39 @@
             });
         }
         function updateFavourite(productId, e) {
-        event.preventDefault();
-        if (!$('#favourite_' + productId).hasClass("favourite")) {
-            $.ajax({
-                type: "POST",
-                url: "/Product/AddFavourite",
-                dataType: "json",
-                data: {
-                    productId: productId
-                },
-                success: function (data) {
-                    $('#favourite_' + productId).addClass("favourite");
-                    $('#favourite_' + productId).removeClass("far");
-                    $('#favourite_' + productId).addClass("fas");
-                    $('#favouriteNumber').html(data.favouriteNumber);
-                }
-            })
+            event.preventDefault();
+            if (!$('#favourite_' + productId).hasClass("favourite")) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Product/AddFavourite",
+                    dataType: "json",
+                    data: {
+                        productId: productId
+                    },
+                    success: function (data) {
+                        $('#favourite_' + productId).addClass("favourite");
+                        $('#favourite_' + productId).removeClass("far");
+                        $('#favourite_' + productId).addClass("fas");
+                        $('#favouriteNumber').html(data.favouriteNumber);
+                    }
+                })
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Product/RemoveFavourite",
+                    dataType: "json",
+                    data: {
+                        productId: productId
+                    },
+                    success: function (data) {
+                        $('#favourite_' + productId).removeClass("favourite");
+                        $('#favourite_' + productId).removeClass("fas");
+                        $('#favourite_' + productId).addClass("far");
+                        $('#favouriteNumber').html(data.favouriteNumber);
+                    }
+                })
+            }
         }
-        else {
-            $.ajax({
-                type: "POST",
-                url: "/Product/RemoveFavourite",
-                dataType: "json",
-                data: {
-                    productId: productId
-                },
-                success: function (data) {
-                    $('#favourite_' + productId).removeClass("favourite");
-                    $('#favourite_' + productId).removeClass("fas");
-                    $('#favourite_' + productId).addClass("far");
-                    $('#favouriteNumber').html(data.favouriteNumber);
-                }
-            })
-        }
-    }
     </script>
 }

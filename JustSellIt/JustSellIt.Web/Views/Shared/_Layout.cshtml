@@ -33,15 +33,21 @@
                 </button>
                 <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between ml-lg-3 border-left pl-lg-3">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light"  asp-area="Identity" asp-page="/Account/Manage/Index">Ustawienia konta</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="Product" asp-action="MyProducts" asp-route-id="3">Moje ogłoszenia</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Panel administratora</a>
-                        </li>
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index">Ustawienia konta</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-controller="Product" asp-action="MyProducts" asp-route-id="3">Moje ogłoszenia</a>
+                            </li>
+                        }
+                        @if (Context.User.HasClaim("AdminManage",("AdminManage")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Panel administratora</a>
+                            </li>
+                        }
                         <li class="nav-item mt-1 mb-md-0 mb-1">
                             <a class="nav-link text-light" asp-controller="Product" asp-action="MyFavourites">
                                 @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("favouriteNumber")))

@@ -1,8 +1,5 @@
 ﻿using JustSellIt.Application.Interfaces;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace JustSellIt.Application.ViewModels.Product
 {
@@ -18,6 +15,8 @@ namespace JustSellIt.Application.ViewModels.Product
         public int Count { get; set; }
         public bool IsNewSearch { get; set; }
         public string Action { get; set; }
-
+        public string AvatarUrl { get; set; }
+        public int SexId { get; set; }
+        public string UserGuid { get; set; }     
     }
 }
