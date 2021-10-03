@@ -70,42 +70,50 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            try
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            RequirePassword = await _userManager.HasPasswordAsync(user);
-            if (RequirePassword)
-            {
-                if (!await _userManager.CheckPasswordAsync(user, Input.Password))
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
                 {
-                    SetMessage("Podane hasło jest nieprawidłowe", MessageType.Error);
-                    return Page();
+                    return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
                 }
+
+                RequirePassword = await _userManager.HasPasswordAsync(user);
+                if (RequirePassword)
+                {
+                    if (!await _userManager.CheckPasswordAsync(user, Input.Password))
+                    {
+                        SetMessage("Podane hasło jest nieprawidłowe", MessageType.Error);
+                        return Page();
+                    }
+                }
+
+                var owner = _ownerService.GetOwnerByGuid(user.Id);
+                _imageService.DeleteImageOwnerFromAzure(owner.AvatarImage);
+                _ownerContactService.DeactivateOwnerContact(owner.Id);
+                _productService.DeactivateProducts(user.Id);
+                _ownerService.DeactivateOwner(user.Id);
+
+                var result = await _userManager.DeleteAsync(user);
+                var userId = await _userManager.GetUserIdAsync(user);
+                if (!result.Succeeded)
+                {
+                    SetMessage("Niespodziewany błąd podczas dezaktywacji konta)", MessageType.Error);
+
+                    throw new InvalidOperationException($"Unexpected error occurred deleting user with ID '{userId}'.");
+                }
+
+                await _signInManager.SignOutAsync();
+
+                _logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
+
+                return Redirect("~/");
             }
-
-            var owner = _ownerService.GetOwnerByGuid(user.Id);
-            _imageService.DeleteImageOwnerFromAzure(owner.AvatarImage);
-            _ownerContactService.DeactivateOwnerContact(owner.Id);
-            _productService.DeactivateProducts(user.Id);
-            _ownerService.DeactivateOwner(user.Id);
-
-            var result = await _userManager.DeleteAsync(user);
-            var userId = await _userManager.GetUserIdAsync(user);
-            if (!result.Succeeded)
+            catch (Exception e)
             {
-                SetMessage("Niespodziewany błąd podczas dezaktywacji konta)", MessageType.Error);
-
-                throw new InvalidOperationException($"Unexpected error occurred deleting user with ID '{userId}'.");
+                _logger.LogInformation(String.Format("Data: {0}, Błąd: {1}", DateTime.Now, e));
+                return Redirect("Error");
             }
-
-            await _signInManager.SignOutAsync();
-
-            _logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
-
-            return Redirect("~/");
         }
     }
 }

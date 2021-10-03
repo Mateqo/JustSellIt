@@ -12,7 +12,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public string Status { get; set; }
         public bool IsFavorite { get; set; }
         public string MainImageUrl { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public void Mapping(MappingProfile profile)
         {

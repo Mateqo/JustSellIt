@@ -1,5 +1,8 @@
 ﻿@page
 @model RegisterModel
+@{
+    ViewData["Title"] = "Rejestracja";
+}
 
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype='multipart/form-data'>
     <div class="add-section pb-0 ml-auto mr-auto" style="margin-top:100px;max-width:800px;">

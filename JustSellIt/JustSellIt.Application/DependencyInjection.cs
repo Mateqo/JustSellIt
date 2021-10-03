@@ -14,7 +14,6 @@ namespace JustSellIt.Application
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<IStatusService, StatusService>();
             services.AddTransient<IAdminService, AdminService>();
-            services.AddTransient<IFavoriteService, FavoriteService>();
             services.AddTransient<IOwnerService, OwnerService>();
             services.AddTransient<IOwnerContactService, OwnerContactService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

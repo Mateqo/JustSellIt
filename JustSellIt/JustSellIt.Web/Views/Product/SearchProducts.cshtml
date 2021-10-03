@@ -1,6 +1,6 @@
 ﻿@model JustSellIt.Application.ViewModels.Product.ListProductForListVm
 @{
-    ViewData["Title"] = "SearchProducts";
+    ViewData["Title"] = "Wyszukiwarka ogłoszeń";
 
 }
 
@@ -18,10 +18,7 @@
         }
         else
         {
-            <h1 class="add-title mt-5" style="font-weight: bold; text-align: center">Nie znaleziono produktu</h1>
-            <div class="not-found text-center mb-4">
-                <img class="img-fluid" src="~/images/other/notFound.png" alt="Not Found" />
-            </div>
+            <h1 class="add-title mt-5 mb-5" style="font-weight: bold; text-align: center">Nie znaleziono ogłoszeń</h1>
         }
     }
 

@@ -870,15 +870,10 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\JustSellIt.Web.TagHelpers.output.cache
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\JustSellIt.Web.RazorCoreGenerate.cache
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Home\AllProducts.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Home\Details.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\JustSellIt.Web.RazorTargetAssemblyInfo.cache
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\JustSellIt.Web.RazorTargetAssemblyInfo.cs
@@ -945,3 +940,5 @@ D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debu
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
 D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Error.cshtml.g.cs
+D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs

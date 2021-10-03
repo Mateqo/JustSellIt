@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using JustSellIt.Web.Helpers;
 using JustSellIt.Application;
 using JustSellIt.Application.ViewModels.Base;
+using Microsoft.Extensions.Logging;
 
 namespace JustSellIt.Web.Areas.Identity.Pages.Account
 {
@@ -20,12 +21,13 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IEmailSender _emailSender;
+        private readonly ILogger<ForgotPasswordModel> _logger;
 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<IdentityUser> userManager,
+            ILogger<ForgotPasswordModel> logger)
         {
             _userManager = userManager;
-            _emailSender = emailSender;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -46,33 +48,41 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            try
             {
-                var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                if (ModelState.IsValid)
                 {
-                    SetMessage("Konto o podanym adresie e-mail nie istnieje", MessageType.Error);
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return Page();
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                    {
+                        SetMessage("Konto o podanym adresie e-mail nie istnieje", MessageType.Error);
+                        // Don't reveal that the user does not exist or is not confirmed
+                        return Page();
+                    }
+
+                    // For more information on how to enable account confirmation and password reset please 
+                    // visit https://go.microsoft.com/fwlink/?LinkID=532713
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    var callbackUrl = Url.Page(
+                        "/Account/ResetPassword",
+                        pageHandler: null,
+                        values: new { area = "Identity", code },
+                        protocol: Request.Scheme);
+
+                    EmailSender.SendEmail(callbackUrl, Input.Email, Input.Email, EmailType.ForgotPassword);
+
+
+                    return RedirectToPage("./ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please 
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                    "/Account/ResetPassword",
-                    pageHandler: null,
-                    values: new { area = "Identity", code },
-                    protocol: Request.Scheme);
-
-                EmailSender.SendEmail(callbackUrl, Input.Email, Input.Email, EmailType.ForgotPassword);
-
-
-                return RedirectToPage("./ForgotPasswordConfirmation");
+                return Page();
             }
-
-            return Page();
+            catch (Exception e)
+            {
+                _logger.LogInformation(String.Format("Data: {0}, Błąd: {1}", DateTime.Now, e));
+                return Redirect("Error");
+            }
         }
     }
 }

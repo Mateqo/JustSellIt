@@ -4,14 +4,109 @@
     "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj": {
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Application\\JustSellIt.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
-        "projectName": "JustSellIt.Tests",
-        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
+        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Application\\JustSellIt.Application.csproj",
+        "projectName": "JustSellIt.Application",
+        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Application\\JustSellIt.Application.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\obj\\",
+        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://srv-svn1.veloce.local:8090/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
+                "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.9.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[9.3.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[9.3.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[9.3.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.ViewFeatures": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
+        "projectName": "JustSellIt.Domain",
+        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,10 +138,169 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj",
+        "projectName": "JustSellIt.Infrastructure",
+        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://srv-svn1.veloce.local:8090/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj": {
+                "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Domain\\JustSellIt.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
+        "projectName": "JustSellIt.Tests",
+        "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\JustSellIt.Tests.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://srv-svn1.veloce.local:8090/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Application\\JustSellIt.Application.csproj": {
+                "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Application\\JustSellIt.Application.csproj"
+              },
+              "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj": {
+                "projectPath": "D:\\Users\\User\\Desktop\\repozytorium\\JustSellIt\\JustSellIt\\JustSellIt.Infrastructure\\JustSellIt.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.7.1, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -76,6 +330,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

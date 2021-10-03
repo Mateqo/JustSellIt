@@ -1,9 +1,6 @@
 ﻿using JustSellIt.Application.Interfaces;
 using JustSellIt.Domain.Interface;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace JustSellIt.Application.Services
 {

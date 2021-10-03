@@ -4,7 +4,7 @@
 @using JustSellIt.Application.ViewModels.Base
 
 @{
-    ViewData["Title"] = "GetOwnerProducts";
+    ViewData["Title"] = "Ogłoszenia użytkownika";
 }
 
 <partial name="_AlertPanel" />
@@ -37,8 +37,7 @@
             <div class="col-xl-9 col-sm-7 ml-xl-0 ml-sm-5 ml-0 owner-data">
                 <div class="owner-hr-top"></div>
                 <p class="owner-name mt-2 mb-0">@Model.Owner</p>
-                @*TO DO zamienić potem na dynamiczną date*@
-                <p class="owner-created">Zarejstrowany od 21.01.2021</p>
+                <p class="owner-created">Zarejstrowany od @Model.CreateDate.ToString("dd/MM/yyyy")</p>
                 <div class="owner-count">Liczba ogłoszeń: @Model.Count</div>
                 <p class="owner-location"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;@Model.Location</p>
 
@@ -50,14 +49,19 @@
         @{
             if (Model.Count == 0)
             {
-                <h1 class="add-title mt-5" style="font-weight:bold;text-align:center">Użytkownik nie posiada produktów</h1>
-                <div class="not-found text-center mb-4">
-                    <img class="img-fluid" src="~/images/other/notFound.png" alt="Not Found" />
-                </div>
+                <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center;margin-top:100px !important;margin-bottom:80px !important">Brak aktywnych ogłoszeń</h1>
             }
             else
             {
-                <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Ogłoszenia użytkownika: @Model.Owner</h1>
+                if (Model.Action == "GetOwnerProducts")
+                {
+                    <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Ogłoszenia użytkownika: @Model.Owner</h1>
+
+                }
+                else
+                {
+                    <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Moje ogłoszenia:</h1>
+                }
 
                 <partial name="_ProductTile" />
             }

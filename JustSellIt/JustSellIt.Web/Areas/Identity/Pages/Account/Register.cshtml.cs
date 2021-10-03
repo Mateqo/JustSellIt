@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using JustSellIt.Application;
-using JustSellIt.Application.Interfaces;
+﻿using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
 using JustSellIt.Domain.Model;
 using JustSellIt.Web.Helpers;
@@ -19,6 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace JustSellIt.Web.Areas.Identity.Pages.Account
 {
@@ -114,93 +112,100 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            bool isExistsConfirmedEmail = false;
-            returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
-            var userToVerify = await _userManager.FindByEmailAsync(Input.Email);
-
-            if (userToVerify != null && userToVerify.EmailConfirmed)
+            try
             {
-                isExistsConfirmedEmail = true;
-            }
+                bool isExistsConfirmedEmail = false;
+                returnUrl ??= Url.Content("~/");
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
-            if (ModelState.IsValid)
-            {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                var userToVerify = await _userManager.FindByEmailAsync(Input.Email);
 
-                if (result.Succeeded)
+                if (userToVerify != null && userToVerify.EmailConfirmed)
                 {
-                    //_logger.LogInformation("User created a new account with password.");
-
-                    var imageName = _imageService.UploadOwnerToAzure(Input.AvatarImage);
-
-                    var owner = new Owner()
-                    {
-                        Name = StringHelper.CapitalizeFirstLetter(Input.Name),
-                        AvatarImage = imageName,
-                        SexId = Input.SexId,
-                        City = StringHelper.CapitalizeFirstLetter(Input.City),
-                        UserGuid = user.Id
-                    };
-                    var ownerId = _ownerService.AddOwner(owner);
-
-                    var ownerContact = new OwnerContact()
-                    {
-                        Email = Input.Email,
-                        PhoneNumber = Input.PhoneNumber,
-                        OwnerRef = ownerId,
-                    };
-
-                    _ownerContactService.AddOwnerContact(ownerContact);
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    EmailSender.SendEmail(callbackUrl, Input.Email, Input.Name, EmailType.Confirmation);
-
-                    return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-
-
+                    isExistsConfirmedEmail = true;
                 }
-                foreach (var error in result.Errors)
+
+                if (ModelState.IsValid)
                 {
-                    switch (error.Code)
+                    var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                    var result = await _userManager.CreateAsync(user, Input.Password);
+
+                    if (result.Succeeded)
                     {
-                        case "PasswordRequiresLower":
-                            SetMessage("Hasło musi zawierać co najmniej jedną małą literę ('a' - 'z')", MessageType.Error);
-                            break;
-                        case "PasswordRequiresUpper":
-                            SetMessage("Hasło musi zawierać co najmniej jedną wielką literę ('A' - 'Z')", MessageType.Error);
-                            break;
-                        case "PasswordRequiresDigit":
-                            SetMessage("Hasło musi zawierać co najmniej jedną cyfrę ('0' - '9')", MessageType.Error);
-                            break;
-                        case "PasswordRequiresNonAlphanumeric":
-                            SetMessage("Hasło musi zawierać co najmniej jeden znak specjalny", MessageType.Error);
-                            break;
-                        case "DuplicateUserName":
-                            if (isExistsConfirmedEmail)
-                                SetMessage("Konto o podanym adresie e-mail już istnieje", MessageType.Error);
-                            else
-                                SetMessage("Na podany adres e-mail został wysłany już link aktywacyjny", MessageType.Error);
-                            break;
-                        default:
-                            SetMessage(error.Description, MessageType.Error);
-                            break;
+                        var imageName = _imageService.UploadOwnerToAzure(Input.AvatarImage);
+
+                        var owner = new Owner()
+                        {
+                            Name = StringHelper.CapitalizeFirstLetter(Input.Name),
+                            AvatarImage = imageName,
+                            SexId = Input.SexId,
+                            City = StringHelper.CapitalizeFirstLetter(Input.City),
+                            UserGuid = user.Id,
+                            CreateDate = DateTime.Now
+                        };
+                        var ownerId = _ownerService.AddOwner(owner);
+
+                        var ownerContact = new OwnerContact()
+                        {
+                            Email = Input.Email,
+                            PhoneNumber = Input.PhoneNumber,
+                            OwnerRef = ownerId,
+                        };
+
+                        _ownerContactService.AddOwnerContact(ownerContact);
+
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        var callbackUrl = Url.Page(
+                            "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+                            protocol: Request.Scheme);
+
+                        EmailSender.SendEmail(callbackUrl, Input.Email, Input.Name, EmailType.Confirmation);
+
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+
+
                     }
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    foreach (var error in result.Errors)
+                    {
+                        switch (error.Code)
+                        {
+                            case "PasswordRequiresLower":
+                                SetMessage("Hasło musi zawierać co najmniej jedną małą literę ('a' - 'z')", MessageType.Error);
+                                break;
+                            case "PasswordRequiresUpper":
+                                SetMessage("Hasło musi zawierać co najmniej jedną wielką literę ('A' - 'Z')", MessageType.Error);
+                                break;
+                            case "PasswordRequiresDigit":
+                                SetMessage("Hasło musi zawierać co najmniej jedną cyfrę ('0' - '9')", MessageType.Error);
+                                break;
+                            case "PasswordRequiresNonAlphanumeric":
+                                SetMessage("Hasło musi zawierać co najmniej jeden znak specjalny", MessageType.Error);
+                                break;
+                            case "DuplicateUserName":
+                                if (isExistsConfirmedEmail)
+                                    SetMessage("Konto o podanym adresie e-mail już istnieje", MessageType.Error);
+                                else
+                                    SetMessage("Na podany adres e-mail został wysłany już link aktywacyjny", MessageType.Error);
+                                break;
+                            default:
+                                SetMessage(error.Description, MessageType.Error);
+                                break;
+                        }
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
                 }
-            }
 
-            // If we got this far, something failed, redisplay form
-            return Page();
+                // If we got this far, something failed, redisplay form
+                return Page();
+            }
+            catch (Exception e)
+            {
+                _logger.LogInformation(String.Format("Data: {0}, Błąd: {1}", DateTime.Now, e));
+                return Redirect("Error");
+            }
         }
     }
 }

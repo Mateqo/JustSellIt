@@ -1,5 +1,8 @@
 ﻿@page
 @model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Rejestracja";
+}
 
 <div class="text-center add-title" style="margin-bottom:70px !important;">
     <h1 class="mt-5">Potwierdzenie rejestracji</h1>
@@ -7,7 +10,7 @@
     <p class="mt-4" style="font-size:18px;">
         Na adres e-mail <span style="font-weight:bold;">@Model.Email</span> została wysłana wiadomość w celu weryfikacji konta.
         Prosimy sprawdzić pocztę oraz aktywować konto aby móc w pełni korzystać z portalu.
-        Jeżeli wiadomość nie dotarła spróbuj wysłać jeszcze raz klikając 
+        Jeżeli wiadomość nie dotarła spróbuj wysłać jeszcze raz klikając
         <a href="/Identity/Account/ResendEmailConfirmation" style="font-weight:bold;">tutaj</a>.
     </p>
 </div>

@@ -21,7 +21,8 @@ namespace JustSellIt.Application.ViewModels.Product
         public string Location { get; set; }
         public string Status { get; set; }
         public string RejectionReason { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime OwnerCreateDate { get; set; }
         public string[] Images { get; set; }
         public string AvatarUrl { get; set; }
         public int SexId { get; set; }
@@ -32,6 +33,7 @@ namespace JustSellIt.Application.ViewModels.Product
                 .ForMember(s => s.Category, opt => opt.MapFrom(d => d.Category.Name))
                 .ForMember(s => s.Owner, opt => opt.MapFrom(d => d.Owner.Name))
                 .ForMember(s => s.SexId, opt => opt.MapFrom(d => d.Owner.SexId))
+                .ForMember(s => s.OwnerCreateDate, opt => opt.MapFrom(d => d.Owner.CreateDate))
                 .ForMember(s => s.AvatarUrl, opt => opt.MapFrom(d => d.Owner.AvatarImage))
                 .ForMember(s => s.Status, opt => opt.MapFrom(d => d.ProductStatus.Name));
         }

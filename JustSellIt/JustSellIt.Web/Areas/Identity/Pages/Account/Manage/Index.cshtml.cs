@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using JustSellIt.Application;
+﻿using JustSellIt.Application;
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Base;
-using JustSellIt.Domain.Model;
 using JustSellIt.Web.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
 {
@@ -22,19 +20,22 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
         private readonly IOwnerService _ownerService;
         private readonly IOwnerContactService _ownerContactService;
         private readonly IImageService _imageService;
+        private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             IOwnerContactService ownerContactService,
             IOwnerService ownerService,
-            IImageService imageService)
+            IImageService imageService,
+            ILogger<IndexModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _ownerService = ownerService;
             _ownerContactService = ownerContactService;
             _imageService = imageService;
+            _logger = logger;
         }
 
         public string Username { get; set; }
@@ -90,14 +91,22 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            try
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                }
 
-            await LoadAsync(user);
-            return Page();
+                await LoadAsync(user);
+                return Page();
+            }
+            catch (Exception e)
+            {
+                _logger.LogInformation(String.Format("Data: {0}, Błąd: {1}", DateTime.Now, e));
+                return Redirect("Error");
+            }
         }
 
         public void SetMessage(string message, MessageType type)
@@ -108,39 +117,47 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            try
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                }
 
-            if (!ModelState.IsValid)
+                if (!ModelState.IsValid)
+                {
+                    await LoadAsync(user);
+                    return Page();
+                }
+
+                var image = _imageService.UploadOwnerToAzure(Input.AvatarImage);
+                var owner = _ownerService.GetOwnerByGuid(user.Id);
+                var ownerContact = _ownerContactService.GetOwnerContactByOwner(owner.Id);
+
+                if (string.IsNullOrEmpty(Input.AvatarUrl) || image != null)
+                {
+                    _imageService.DeleteImageOwnerFromAzure(owner.AvatarImage);
+                }
+
+                ownerContact.PhoneNumber = Input.PhoneNumber;
+                _ownerContactService.UpdateOwnerContact(ownerContact);
+
+                owner.Name = StringHelper.CapitalizeFirstLetter(Input.Name);
+                owner.AvatarImage = Input.AvatarUrl == null ? image : owner.AvatarImage;
+                owner.SexId = Input.SexId;
+                owner.City = StringHelper.CapitalizeFirstLetter(Input.City);
+                _ownerService.UpdateOwner(owner);
+
+                await _signInManager.RefreshSignInAsync(user);
+                SetMessage("Profil został zaktualizowany", MessageType.Success);
+                return RedirectToPage();
+            }
+            catch (Exception e)
             {
-                await LoadAsync(user);
-                return Page();
+                _logger.LogInformation(String.Format("Data: {0}, Błąd: {1}", DateTime.Now, e));
+                return Redirect("Error");
             }
-
-            var image = _imageService.UploadOwnerToAzure(Input.AvatarImage);
-            var owner = _ownerService.GetOwnerByGuid(user.Id);
-            var ownerContact = _ownerContactService.GetOwnerContactByOwner(owner.Id);
-
-            if (string.IsNullOrEmpty(Input.AvatarUrl) || image != null)
-            {
-                _imageService.DeleteImageOwnerFromAzure(owner.AvatarImage);
-            }
-
-            ownerContact.PhoneNumber = Input.PhoneNumber;
-            _ownerContactService.UpdateOwnerContact(ownerContact);
-
-            owner.Name = StringHelper.CapitalizeFirstLetter(Input.Name);
-            owner.AvatarImage = Input.AvatarUrl == null ? image : owner.AvatarImage;
-            owner.SexId = Input.SexId;
-            owner.City = StringHelper.CapitalizeFirstLetter(Input.City);
-            _ownerService.UpdateOwner(owner);
-
-            await _signInManager.RefreshSignInAsync(user);
-            SetMessage("Profil został zaktualizowany", MessageType.Success);
-            return RedirectToPage();
         }
     }
 }

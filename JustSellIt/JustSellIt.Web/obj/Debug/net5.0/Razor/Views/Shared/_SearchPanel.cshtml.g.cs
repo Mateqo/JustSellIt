@@ -12,22 +12,8 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#nullable restore
-#line 1 "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\Views\_ViewImports.cshtml"
-using JustSellIt.Web;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "D:\Users\User\Desktop\repozytorium\JustSellIt\JustSellIt\JustSellIt.Web\Views\_ViewImports.cshtml"
-using JustSellIt.Web.Models;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d6ea4ce1f3abe7993cc127cb0c1325cc1f6df1aa", @"/Views/Shared/_SearchPanel.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8e3d01b7d06a054c7c33136c9cfabf905f146de7", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"44ef6ad91415ccde4286eb92868bf285fd165d6b", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__SearchPanel : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<JustSellIt.Application.Interfaces.ISearch>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "text", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -65,7 +51,7 @@ using JustSellIt.Web.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<div class=\"search\">\r\n    <div class=\"input-group\">\r\n        <i class=\"fas fa-search input-icon icon-border\"></i>\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d6ea4ce1f3abe7993cc127cb0c1325cc1f6df1aa6685", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d6ea4ce1f3abe7993cc127cb0c1325cc1f6df1aa6276", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -110,7 +96,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 #line hidden
 #nullable disable
             WriteLiteral("        <div class=\"input-group-append location-search\">\r\n            <i class=\"fas fa-map-marker-alt input-icon\"></i>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d6ea4ce1f3abe7993cc127cb0c1325cc1f6df1aa9455", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d6ea4ce1f3abe7993cc127cb0c1325cc1f6df1aa9046", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -154,7 +140,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 #line hidden
 #nullable disable
             WriteLiteral("        </div>\r\n        <div class=\"input-group-append search-confirm\">\r\n            <button type=\"submit\" id=\"submitSearch\" value=\"Szukaj\" class=\"btn btn-search\">Szukaj <i class=\"fas fa-search\"></i></button>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6ea4ce1f3abe7993cc127cb0c1325cc1f6df1aa12306", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6ea4ce1f3abe7993cc127cb0c1325cc1f6df1aa11897", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

@@ -3,10 +3,7 @@ using AutoMapper.QueryableExtensions;
 using JustSellIt.Application.Interfaces;
 using JustSellIt.Application.ViewModels.Product;
 using JustSellIt.Domain.Interface;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace JustSellIt.Application.Services
 {
@@ -30,7 +27,7 @@ namespace JustSellIt.Application.Services
 
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
+            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreateDate).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
 
             var productList = new ListProductForAdminListVm()
             {

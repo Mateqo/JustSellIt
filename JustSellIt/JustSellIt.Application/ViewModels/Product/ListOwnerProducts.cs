@@ -1,4 +1,5 @@
 ﻿using JustSellIt.Application.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace JustSellIt.Application.ViewModels.Product
@@ -8,7 +9,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int Id { get; set; }
         public string Owner { get; set; }
         public string Location { get; set; }
-        //public DateTime CreatedOn { get; set; } TO DO 
+        public DateTime CreateDate { get; set; }
         public List<ProductForListVm> Products { get; set; }
         public int PageSize { get; set; } 
         public int? ActualPage { get; set; }

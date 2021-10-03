@@ -1,7 +1,8 @@
 ﻿@model JustSellIt.Application.ViewModels.Product.NewOrEditProductVm
+@using JustSellIt.Application.ViewModels.Base
 
 @{
-    ViewData["Title"] = "AddProduct";
+    ViewData["Title"] = "Dodawanie ogłoszenia";
     var title = Model.Action == "AddProduct" ? "Dodaj ogłoszenie!" : "Edytuj ogłoszenie!";
 }
 
@@ -17,6 +18,7 @@
         <form asp-action="@Model.Action" asp-route-id="@Model.Id" method="post" enctype='multipart/form-data'>
 
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="UserGuid" />
 
             <div class="add-section">
                 <div class="add-subtitle mt-2 mb-2">
@@ -197,45 +199,49 @@
                     <hr />
                 </div>
                 <div class="add-user-profile">
-                    <img src="/images/sex/man.png" alt="avatar" />
+                    @if (Model.AvatarUrl != null)
+                    {
+                        <img src="@Model.AvatarUrl" class="avatar" alt="@Model.OwnerName avatar" />
+                    }
+                    else if (Model.SexId == (int)SexType.Male)
+                    {
+                        <img src="~/images/sex/man.png" class="avatar" alt="@Model.OwnerName avatar" />
+                    }
+                    else
+                    {
+                        <img src="~/images/sex/woman.png" class="avatar" alt="@Model.OwnerName avatar" />
+                    }
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
-                            <label class="control-label">Lokalizacja<span class="add-required">*</span></label>
+                            <label class="control-label">Miasto<span class="add-required">*</span></label>
                         </div>
-                        @*TO DO - pobrać deafultowe miasto od użytkownika*@
-                        @{ var locationValue = Model.Location ?? "Wrocław"; }
-                        <input asp-for="Location" value="@locationValue" class="form-control add-field" autocomplete="off" />
+                        <input asp-for="Location" class="form-control add-field" autocomplete="off" />
                         <span asp-validation-for="Location" class="text-danger"></span>
                     </div>
                     <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
                             <label class="control-label">Imię<span class="add-required">*</span></label>
                         </div>
-                        @*TO DO - na sztywno póki co*@
-                        <input value="Jan" class="form-control add-field" autocomplete="off" readonly />
+                        <input asp-for="OwnerName" class="form-control add-field" autocomplete="off" readonly />
                     </div>
                     <div class="col-md-4 offset-md-1">
                         <div class="add-caption">
                             <label class="control-label">Adres e-mail<span class="add-required">*</span></label>
                         </div>
-                        @*TO DO - na sztywno póki co*@
-                        <input value="jan99@gmail.pl" class="form-control add-field" autocomplete="off" readonly />
+                        <input asp-for="Email" class="form-control add-field" autocomplete="off" readonly />
                     </div>
                     <div class="col-md-4 offset-md-2">
                         <div class="add-caption">
                             <label class="control-label">Numer telefonu<span class="add-required">*</span></label>
                         </div>
-                        @*TO DO - pobrać deafultowy numer od użytkownika*@
-                        @{ var phoneValue = Model.PhoneContact ?? "666486954"; }
-                        <input asp-for="PhoneContact" value="@phoneValue" class="form-control add-field" autocomplete="off" />
+                        <input asp-for="PhoneContact" class="form-control add-field" autocomplete="off" />
                         <span asp-validation-for="PhoneContact" class="text-danger"></span>
                     </div>
                 </div>
             </div>
-            @*TO DO - owner na sztywno póki co*@
-            <input type="hidden" asp-for="OwnerId" value="5" />
+            <input type="hidden" asp-for="OwnerId" />
             <input type="hidden" asp-for="ProductStatusId" />
 
             @{
@@ -243,7 +249,7 @@
                 {
                     <div class="form-group form-check mt-4">
                         <label class="form-check-label" style="cursor:pointer !important;">
-                            <input class="form-check-input add-checkbox" asp-for="StorePolicy" /> <span class="add-storePolicy">Wyrażam zgodę na używanie przez Grupę JustSellIt środków komunikacji elektronicznej oraz telekomunikacyjnych urządzeń końcowych w celu przesyłania mi informacji handlowych oraz prowadzenia marketingu (np. newsletter) przez Grupę JustSellIt, podmioty powiązane i partnerów biznesowych. Moja zgoda obejmuje numery telefonów i adresy e-mail wykorzystywane podczas korzystania z usług Grupy JustSellIT. Wyrażoną zgodę można wycofać lub ograniczyć w dowolnej chwili za pomocą odpowiednich ustawień konta lub zgłaszając nam takie żądanie.</span><span class="add-required">*</span>
+                            <input class="form-check-input add-checkbox" asp-for="StorePolicy" /> <span class="add-storePolicy">Wyrażam zgodę na używanie przez Grupę JustSellIt środków komunikacji elektronicznej oraz telekomunikacyjnych urządzeń końcowych w celu przesyłania mi informacji handlowych oraz prowadzenia marketingu (np. newsletter) przez Grupę JustSellIt, podmioty powiązane i partnerów biznesowych. Moja zgoda obejmuje numery telefonów i adresy e-mail wykorzystywane podczas korzystania z usług Grupy JustSellIt. Wyrażoną zgodę można wycofać lub ograniczyć w dowolnej chwili za pomocą odpowiednich ustawień konta lub zgłaszając nam takie żądanie.</span><span class="add-required">*</span>
                         </label>
                         <span asp-validation-for="StorePolicy" class="text-danger"></span>
                     </div>

@@ -76,52 +76,60 @@ namespace JustSellIt.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return Page();
-            }
-
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
-            if (!changePasswordResult.Succeeded)
-            {
-                foreach (var error in changePasswordResult.Errors)
+                if (!ModelState.IsValid)
                 {
-                    switch (error.Code)
-                    {
-                        case "PasswordRequiresLower":
-                            SetMessage("Hasło musi zawierać co najmniej jedną małą literę ('a' - 'z')", MessageType.Error);
-                            break;
-                        case "PasswordRequiresUpper":
-                            SetMessage("Hasło musi zawierać co najmniej jedną wielką literę ('A' - 'Z')", MessageType.Error);
-                            break;
-                        case "PasswordRequiresDigit":
-                            SetMessage("Hasło musi zawierać co najmniej jedną cyfrę ('0' - '9')", MessageType.Error);
-                            break;
-                        case "PasswordRequiresNonAlphanumeric":
-                            SetMessage("Hasło musi zawierać co najmniej jeden znak specjalny", MessageType.Error);
-                            break;
-                        case "PasswordMismatch":
-                            SetMessage("Obecne hasło jest nieprawidłowe", MessageType.Error);
-                            break;
-                        default:
-                            SetMessage(error.Description, MessageType.Error);
-                            break;
-                    }
+                    return Page();
                 }
-                return Page();
+
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                }
+
+                var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
+                if (!changePasswordResult.Succeeded)
+                {
+                    foreach (var error in changePasswordResult.Errors)
+                    {
+                        switch (error.Code)
+                        {
+                            case "PasswordRequiresLower":
+                                SetMessage("Hasło musi zawierać co najmniej jedną małą literę ('a' - 'z')", MessageType.Error);
+                                break;
+                            case "PasswordRequiresUpper":
+                                SetMessage("Hasło musi zawierać co najmniej jedną wielką literę ('A' - 'Z')", MessageType.Error);
+                                break;
+                            case "PasswordRequiresDigit":
+                                SetMessage("Hasło musi zawierać co najmniej jedną cyfrę ('0' - '9')", MessageType.Error);
+                                break;
+                            case "PasswordRequiresNonAlphanumeric":
+                                SetMessage("Hasło musi zawierać co najmniej jeden znak specjalny", MessageType.Error);
+                                break;
+                            case "PasswordMismatch":
+                                SetMessage("Obecne hasło jest nieprawidłowe", MessageType.Error);
+                                break;
+                            default:
+                                SetMessage(error.Description, MessageType.Error);
+                                break;
+                        }
+                    }
+                    return Page();
+                }
+
+                await _signInManager.RefreshSignInAsync(user);
+                _logger.LogInformation("User changed their password successfully.");
+                SetMessage("Hasło zostało zmienione pomyślnie", MessageType.Success);
+
+                return RedirectToPage();
             }
-
-            await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            SetMessage("Hasło zostało zmienione pomyślnie", MessageType.Success);
-
-            return RedirectToPage();
+            catch (Exception e)
+            {
+                _logger.LogInformation(String.Format("Data: {0}, Błąd: {1}", DateTime.Now, e));
+                return Redirect("Error");
+            }
         }
     }
 }

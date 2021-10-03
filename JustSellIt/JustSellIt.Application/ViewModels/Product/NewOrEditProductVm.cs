@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using JustSellIt.Application.Mapping;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace JustSellIt.Application.ViewModels.Product
@@ -25,7 +25,7 @@ namespace JustSellIt.Application.ViewModels.Product
         public int OwnerId { get; set; }
         public int ProductStatusId { get; set; }
         public bool StorePolicy { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreateDate { get; set; }
         public List<CategoryProductVm> Categories { get; set; }
         public string MainImageName { get; set; }
         public string ImageUrl1 { get; set; }
@@ -38,6 +38,10 @@ namespace JustSellIt.Application.ViewModels.Product
         public IFormFile Image4 { get; set; }
         public string Action { get; set; }
         public string UserGuid { get; set; }
+        public string OwnerName { get; set; }
+        public string Email { get; set; }
+        public int SexId { get; set; }
+        public string AvatarUrl { get; set; }
 
         public void Mapping(MappingProfile profile)
         {
@@ -71,6 +75,7 @@ namespace JustSellIt.Application.ViewModels.Product
             RuleFor(x => x.Location).NotNull().WithMessage("Wybierz miasto");
             RuleFor(x => x.Location).MinimumLength(2).WithMessage("Minimalna długość to 2");
             RuleFor(x => x.Location).MaximumLength(25).WithMessage("Maksymalna długosć to 25");
+            RuleFor(x => x.Location).Must(BeAValidCity).WithMessage("Nieprawidłowy format miasta");
 
             RuleFor(x => x.PhoneContact).NotNull().WithMessage("Podaj numer kontaktowy");
             RuleFor(x => x.PhoneContact).Must(BeAValidPhone).WithMessage("Podano nieprawidłowy format");
@@ -107,6 +112,20 @@ namespace JustSellIt.Application.ViewModels.Product
             {
                 Regex properNumber = new Regex(@"^[0-9]{9}$");
                 if (properNumber.IsMatch(number.ToString()))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
+        private bool BeAValidCity(string location)
+        {
+            if (location != null)
+            {
+                Regex properNumber = new Regex(@"^[A-Z a-z żźćńółęąśŻŹĆĄŚĘŁÓŃ]*$");
+                if (properNumber.IsMatch(location.ToString()))
                     return true;
                 else
                     return false;

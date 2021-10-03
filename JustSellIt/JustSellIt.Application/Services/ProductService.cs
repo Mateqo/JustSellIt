@@ -40,7 +40,7 @@ namespace JustSellIt.Application.Services
             if (searchLocation is null)
                 searchLocation = String.Empty;
 
-            var products = _productRepo.GetAllProducts().Where(x => x.Title.StartsWith(searchString) && x.Location.StartsWith(searchLocation));
+            var products = _productRepo.GetAllProducts().Where(x=>x.ProductStatus.Name == "Published").Where(x => x.Title.StartsWith(searchString) && x.Location.StartsWith(searchLocation));
 
             if (searchCategory.HasValue)
                 products = products.Where(x => x.CategoryId == searchCategory);
@@ -63,7 +63,7 @@ namespace JustSellIt.Application.Services
             switch (sorting)
             {
                 case "new":
-                    products = products.OrderByDescending(x => x.CreatedOn);
+                    products = products.OrderByDescending(x => x.CreateDate);
                     break;
                 case "asc":
                     products = products.OrderBy(x => x.Price);
@@ -72,7 +72,7 @@ namespace JustSellIt.Application.Services
                     products = products.OrderByDescending(x => x.Price);
                     break;
                 default:
-                    products = products.OrderByDescending(x => x.CreatedOn);
+                    products = products.OrderByDescending(x => x.CreateDate);
                     break;
             }
 
@@ -107,7 +107,10 @@ namespace JustSellIt.Application.Services
 
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
+            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreateDate).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
+
+            if (owner == null)
+                return null;
 
             var productList = new ListOwnerProducts()
             {
@@ -120,7 +123,8 @@ namespace JustSellIt.Application.Services
                 Location = owner.City,
                 SexId = owner.SexId,
                 AvatarUrl = owner.AvatarImage,
-                UserGuid = owner.UserGuid
+                UserGuid = owner.UserGuid,
+                CreateDate = owner.CreateDate
             };
 
             return productList;
@@ -137,7 +141,7 @@ namespace JustSellIt.Application.Services
 
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreatedOn).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
+            var productToShow = productsAfterFiltrs.OrderByDescending(x => x.CreateDate).Skip((int)(pageSize * (actualPage - 1))).Take(pageSize).ToList();
 
             var productList = new ListOwnerProducts()
             {
@@ -150,7 +154,8 @@ namespace JustSellIt.Application.Services
                 Location = owner.City,
                 SexId = owner.SexId,
                 AvatarUrl = owner.AvatarImage,
-                UserGuid = owner.UserGuid
+                UserGuid = owner.UserGuid,
+                CreateDate = owner.CreateDate
             };
 
             return productList;
@@ -162,12 +167,12 @@ namespace JustSellIt.Application.Services
                 actualPage = 1;
 
             var products = _productRepo.GetAllProducts()
-                .Where(x => favouritesIds.Contains(x.Id.ToString()) && x.ProductStatus.Name != "Deleted");
+                .Where(x => favouritesIds.Contains(x.Id.ToString()) && x.ProductStatus.Name == "Published");
 
             var productsAfterFiltrs = products.ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
             var productToShow = productsAfterFiltrs
-                .OrderByDescending(x => x.CreatedOn)
+                .OrderByDescending(x => x.CreateDate)
                 .Skip((int)(pageSize * (actualPage - 1)))
                 .Take(pageSize)
                 .ToList();
@@ -185,9 +190,9 @@ namespace JustSellIt.Application.Services
 
         public ListProductForListVm GetLatesProducts()
         {
-            var products = _productRepo.GetAllProducts().ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+            var products = _productRepo.GetAllProducts().Where(x=>x.ProductStatus.Name == "Published").ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
-            var productToShow = products.OrderByDescending(x => x.CreatedOn).Take(SystemConfiguration.DefaultNumberOfLatestProduct).ToList();
+            var productToShow = products.OrderByDescending(x => x.CreateDate).Take(SystemConfiguration.DefaultNumberOfLatestProduct).ToList();
 
             var productList = new ListProductForListVm()
             {
@@ -234,7 +239,7 @@ namespace JustSellIt.Application.Services
 
         public List<string> AutoCompleteString(string text)
         {
-            var listOfProducts = _productRepo.GetAllProducts().Where(x => x.Title.StartsWith(text)).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
+            var listOfProducts = _productRepo.GetAllProducts().Where(x=>x.ProductStatus.Name == "Published").Where(x => x.Title.ToLower().StartsWith(text.ToLower())).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
             List<string> autoComplete = listOfProducts.Select(x => x.Title).Distinct().ToList();
 
             return autoComplete;
@@ -242,7 +247,7 @@ namespace JustSellIt.Application.Services
 
         public List<string> AutoCompleteLocation(string text)
         {
-            var listOfProducts = _productRepo.GetAllProducts().Where(x => x.Location.StartsWith(text)).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
+            var listOfProducts = _productRepo.GetAllProducts().Where(x => x.ProductStatus.Name == "Published").Where(x => x.Location.ToLower().StartsWith(text.ToLower())).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
             List<string> autoComplete = listOfProducts.Select(x => x.Location).Distinct().ToList();
 
             return autoComplete;

@@ -1,13 +1,15 @@
 ﻿@page
 @model ConfirmEmailModel
-
+@{
+    ViewData["Title"] = "Potwierdzenie e-mail";
+}
 
 <div class="text-center add-title" style="margin-bottom:90px !important;">
     <h1 class="mt-5">Potwierdzenie rejestracji</h1>
     <img style="height:150px;width:150px;margin-top:30px;" src="/images/other/emailConfirm.png" alt="emailConfirmation" />
     <p class="mt-4" style="font-size:18px">
         Gratulację, konto zostało prawidłowo aktywowane od teraz możesz w pełni korzystać z portalu.
-        Możesz teraz przejść do logowania klikając         
+        Możesz teraz przejść do logowania klikając
         <a href="/Identity/Account/Login" style="font-weight:bold;">tutaj</a>.
     </p>
 </div>

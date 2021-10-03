@@ -5,7 +5,7 @@
 @inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager
 @using JustSellIt.Application.ViewModels.Base
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Szczegóły ogłoszenia";
 }
 
 <div class="direction-details mt-4">
@@ -63,7 +63,7 @@
             </div>
             <div class="col-6 offset-md-0 offset-1 border-left mt-2 user-info">
                 <p class="username mb-0">@Model.Owner</p>
-                <p class="user-date">Zarejstrowany od 21.01.2021</p>
+                <p class="user-date">Zarejstrowany od @Model.OwnerCreateDate.ToString("dd/MM/yyyy")</p>
                 <p class="location"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;@Model.Location</p>
             </div>
             <div class="col-12 mt-5 mb-lg-0 mb-4 text-center user-btns">
@@ -113,7 +113,7 @@
         <p class="nameField mt-3">Opis</p>
         <p class="description">@Model.Description</p>
         <div class="col-12 data-border"></div>
-        <p class="date">Data dodania:&nbsp;&nbsp;&nbsp;@Model.CreatedOn.ToString("dd/MM/yyyy")</p>
+        <p class="date">Data dodania:&nbsp;&nbsp;&nbsp;@Model.CreateDate.ToString("dd/MM/yyyy")</p>
         @if (Model.UserGuid == _userManager.GetUserId(User))
         {
             <div class="product-manage">
@@ -141,7 +141,7 @@
                 <h4 class="modal-title">Usuwanie</h4>
             </div>
             <div class="modal-body">
-                Czy na pewno chcesz usunąć ogłoszenie <span class="font-weight-bold">@Model.Title</span>, spowoduje to nieodwracalne zdjęcie produktu z tablicy?
+                Czy na pewno chcesz usunąć ogłoszenie <span class="font-weight-bold">@Model.Title</span>, spowoduje to nieodwracalne zdjęcie ogłoszenia z tablicy?
             </div>
             <div class="modal-footer">
                 <a asp-action="DeleteProduct" asp-route-id="@Model.Id" class="btn btn-success">Potwierdź</a>
