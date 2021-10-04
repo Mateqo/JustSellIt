@@ -99,8 +99,10 @@
     .product-details-contact .avatar {
         border-radius: 50%;
         border: solid 2px var(--main-color);
-        max-width: 150px;
-        max-height: 150px;
+        width: 150px;
+        height: 150px;
+        background-color:#EFEFEF;
+        object-fit:cover;
     }
 
     .product-details-contact .username {

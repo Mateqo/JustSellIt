@@ -42,6 +42,7 @@ namespace JustSellIt.Infrastructure.Repositories
         public void DeactivateOwner(string userGuid)
         {
             var owner = _context.Owners.FirstOrDefault(x => x.UserGuid == userGuid);
+            if (owner != null)
             _context.Owners.Remove(owner);
 
             _context.SaveChanges();

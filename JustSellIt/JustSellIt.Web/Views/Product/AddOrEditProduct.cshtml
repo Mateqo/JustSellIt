@@ -102,7 +102,7 @@
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <div class="mt-4">
-                            <span class="add-text ml-3">Zdjęcia</span><p id="imageError" class="ml-3" style="color:#e02020;display:none;">Maksymalny rozmiar zdjęcia to 1MB</p>
+                            <span class="add-text ml-3">Zdjęcia</span><p id="imageError" class="ml-3" style="color:#e02020;display:none;">Maksymalny rozmiar zdjęcia to 3MB</p>
                             <div class="col-12 mt-2 row ml-0 add-images">
                                 <div id="imageDiv1" class="add-upload-main col-4">
                                     <div id="loaderImg1" class="spinner-grow image-loader-main" role="status" style="display:none;">
@@ -448,7 +448,7 @@
             }
         }
         function addImage(index, file) {
-            if (file.size <= 1048576) {
+            if (file.size <= 3145728) {
                 $('#image' + index).attr('src', window.URL.createObjectURL(file));
                 $('#imageDiv' + index).css('cursor', 'auto');
                 $('#image' + index).show();

@@ -148,6 +148,8 @@
         width: 150px;
         border-radius: 50%;
         border: 3px solid var(--main-color);
+        background-color: #EFEFEF;
+        object-fit: cover;
     }
 
     .add-user-profile p {

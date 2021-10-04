@@ -40,6 +40,7 @@ namespace JustSellIt.Infrastructure.Repositories
         public void DeactivateOwnerContact(int ownerId)
         {
             var ownerContact = _context.OwnersContact.FirstOrDefault(x => x.Id == ownerId);
+            if(ownerContact != null)
             _context.OwnersContact.Remove(ownerContact);
 
             _context.SaveChanges();

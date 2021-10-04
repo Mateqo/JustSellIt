@@ -39,7 +39,14 @@
                             <h3>@product.Title</h3>
                         </div>
                         <span>@product.Location</span><span>@product.CreateDate.ToString("dd/MM/yyyy")</span>
+                        @if (product.Price == 0)
+                        {
+                            <h4>Oddam</h4>
+                        }
+                        else
+                        {
                         <h4>@product.Price zł</h4>
+                        }
                         @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString($"favourite_{product.Id}")))
                         {
                             <i id="favourite_@product.Id" onclick="updateFavourite(@product.Id);" class="far fa-heart"></i>

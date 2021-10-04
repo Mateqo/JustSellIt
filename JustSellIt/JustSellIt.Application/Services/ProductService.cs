@@ -13,11 +13,13 @@ namespace JustSellIt.Application.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepo;
+        private readonly IImageService _imageService;
         private readonly IMapper _mapper;
 
-        public ProductService(IProductRepository productRepo, IMapper mapper)
+        public ProductService(IProductRepository productRepo, IMapper mapper, IImageService imageService)
         {
             _productRepo = productRepo;
+            _imageService = imageService;
             _mapper = mapper;
         }
         public int AddProduct(NewOrEditProductVm productVM)
@@ -40,7 +42,7 @@ namespace JustSellIt.Application.Services
             if (searchLocation is null)
                 searchLocation = String.Empty;
 
-            var products = _productRepo.GetAllProducts().Where(x=>x.ProductStatus.Name == "Published").Where(x => x.Title.StartsWith(searchString) && x.Location.StartsWith(searchLocation));
+            var products = _productRepo.GetAllProducts().Where(x => x.ProductStatus.Name == "Published").Where(x => x.Title.StartsWith(searchString) && x.Location.StartsWith(searchLocation));
 
             if (searchCategory.HasValue)
                 products = products.Where(x => x.CategoryId == searchCategory);
@@ -190,7 +192,7 @@ namespace JustSellIt.Application.Services
 
         public ListProductForListVm GetLatesProducts()
         {
-            var products = _productRepo.GetAllProducts().Where(x=>x.ProductStatus.Name == "Published").ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
+            var products = _productRepo.GetAllProducts().Where(x => x.ProductStatus.Name == "Published").ProjectTo<ProductForListVm>(_mapper.ConfigurationProvider).ToList();
 
             var productToShow = products.OrderByDescending(x => x.CreateDate).Take(SystemConfiguration.DefaultNumberOfLatestProduct).ToList();
 
@@ -239,7 +241,7 @@ namespace JustSellIt.Application.Services
 
         public List<string> AutoCompleteString(string text)
         {
-            var listOfProducts = _productRepo.GetAllProducts().Where(x=>x.ProductStatus.Name == "Published").Where(x => x.Title.ToLower().StartsWith(text.ToLower())).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
+            var listOfProducts = _productRepo.GetAllProducts().Where(x => x.ProductStatus.Name == "Published").Where(x => x.Title.ToLower().Contains(text.ToLower())).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
             List<string> autoComplete = listOfProducts.Select(x => x.Title).Distinct().ToList();
 
             return autoComplete;
@@ -247,7 +249,7 @@ namespace JustSellIt.Application.Services
 
         public List<string> AutoCompleteLocation(string text)
         {
-            var listOfProducts = _productRepo.GetAllProducts().Where(x => x.ProductStatus.Name == "Published").Where(x => x.Location.ToLower().StartsWith(text.ToLower())).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
+            var listOfProducts = _productRepo.GetAllProducts().Where(x => x.ProductStatus.Name == "Published").Where(x => x.Location.ToLower().Contains(text.ToLower())).Take(SystemConfiguration.DefaultNumberOfAutocompleteSearch);
             List<string> autoComplete = listOfProducts.Select(x => x.Location).Distinct().ToList();
 
             return autoComplete;
@@ -255,6 +257,18 @@ namespace JustSellIt.Application.Services
 
         public void DeactivateProducts(string userGuid)
         {
+            var products = GetMyProducts(userGuid, null, int.MaxValue);
+            foreach (var product in products.Products)
+            {
+                var images = _imageService.GetImages(product.Id);
+                if (images != null)
+                    _imageService.DeleteImages(product.Id);
+                foreach (var item in images)
+                {
+                    _imageService.DeleteImageProductFromAzure(item.Name);
+                }
+            }
+
             _productRepo.DeactivateProducts(userGuid);
         }
 

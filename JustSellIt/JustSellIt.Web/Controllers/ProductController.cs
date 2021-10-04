@@ -184,7 +184,11 @@ namespace JustSellIt.Web.Controllers
                 }
                 else
                 {
+                    var userGuid = _userManager.GetUserId(HttpContext.User);
+                    var owner = _ownerService.GetOwnerByGuid(userGuid);
+
                     model.Categories = _productService.GetAllCategory();
+                    model.AvatarUrl = owner.AvatarImage == null ? null : SystemConfiguration.OwnerImageUrl.Replace("{{name}}", owner.AvatarImage);
                     SetMessage("Uzupełnij wymagane pola", MessageType.Error);
                     return View("AddOrEditProduct", model);
                 }
@@ -251,8 +255,7 @@ namespace JustSellIt.Web.Controllers
                 {
                     if (model.UserGuid != _userManager.GetUserId(HttpContext.User))
                         return View("Error");
-                    if (model.ProductStatusId != _statusService.GetIdPublished())
-                        model.CreateDate = DateTime.Now;
+                    model.CreateDate = DateTime.Now;
                     model.Location = StringHelper.CapitalizeFirstLetter(model.Location);
                     model.UserGuid = _userManager.GetUserId(HttpContext.User);
                     model.ProductStatusId = businessAction == "publish" ? _statusService.GetIdForVeryfication() : _statusService.GetIdDraft();
@@ -322,6 +325,11 @@ namespace JustSellIt.Web.Controllers
                 }
                 else
                 {
+                    var userGuid = _userManager.GetUserId(HttpContext.User);
+                    var owner = _ownerService.GetOwnerByGuid(userGuid);
+
+                    model.Categories = _productService.GetAllCategory();
+                    model.AvatarUrl = owner.AvatarImage == null ? null : SystemConfiguration.OwnerImageUrl.Replace("{{name}}", owner.AvatarImage);
                     model.Categories = _productService.GetAllCategory();
                     SetMessage("Uzupełnij wymagane pola", MessageType.Error);
                     return View("AddOrEditProduct", model);

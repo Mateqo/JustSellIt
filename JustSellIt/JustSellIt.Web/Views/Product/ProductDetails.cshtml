@@ -81,48 +81,55 @@
         }
     }
 
-    <div class="col-12 pl-4 mt-3 mb-4 mb-lg-0 product-details-info order-lg-3 order-2">
-        @{
-            if (Model.Status != "Published")
+<div class="col-12 pl-4 mt-3 mb-4 mb-lg-0 product-details-info order-lg-3 order-2">
+    @{
+        if (Model.Status != "Published")
+        {
+            switch (Model.Status)
             {
-                switch (Model.Status)
-                {
-                    case "Rejected":
-                        <div class="info-rejected">Odrzucone</div>
-                        break;
-                    case "ForVeryfication":
-                        <div class="info-veryfication">W trakcie weryfikacji</div>
-                        break;
-                    case "Draft":
-                        <div class="info-draft">Wersja robocza</div>
-                        break;
-                }
+                case "Rejected":
+                    <div class="info-rejected">Odrzucone</div>
+                    break;
+                case "ForVeryfication":
+                    <div class="info-veryfication">W trakcie weryfikacji</div>
+                    break;
+                case "Draft":
+                    <div class="info-draft">Wersja robocza</div>
+                    break;
             }
         }
-        <p class="mt-4 title">@Model.Title</p>
+    }
+    <p class="mt-4 title">@Model.Title</p>
+    @if (Model.Price == 0)
+    {
+        <p class="price mt-4">Cena: Oddam</p>
+    }
+    else
+    {
         <p class="price mt-4">Cena: @Model.Price zł</p>
-        @{
-            var negotiate = @Model.IsNegotiate ? "Tak" : "Nie";
-            var state = @Model.IsNew ? "Nowe" : "Używane";
-        }
+    }
+    @{
+        var negotiate = @Model.IsNegotiate ? "Tak" : "Nie";
+        var state = @Model.IsNew ? "Nowe" : "Używane";
+    }
 
-        <p class="btn-info-details">@Model.Category</p>
-        <p class="btn-info-details">Do negocjacji: @negotiate</p>
-        <p class="btn-info-details">Stan: @state</p>
+    <p class="btn-info-details">@Model.Category</p>
+    <p class="btn-info-details">Do negocjacji: @negotiate</p>
+    <p class="btn-info-details">Stan: @state</p>
 
-        <p class="nameField mt-3">Opis</p>
-        <p class="description">@Model.Description</p>
-        <div class="col-12 data-border"></div>
-        <p class="date">Data dodania:&nbsp;&nbsp;&nbsp;@Model.CreateDate.ToString("dd/MM/yyyy")</p>
-        @if (Model.UserGuid == _userManager.GetUserId(User))
-        {
-            <div class="product-manage">
-                <h4 class="mb-3">Zarządzaj ogłoszeniem&nbsp;&nbsp;<i class="fas fa-cogs"></i></h4>
-                <a asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-edit">Edytuj</a>
-                <a data-toggle="modal" data-target="#deleteModal" class="btn btn-delete">Usuń</a>
-            </div>
-        }
-    </div>
+    <p class="nameField mt-3">Opis</p>
+    <p class="description">@Model.Description</p>
+    <div class="col-12 data-border"></div>
+    <p class="date">Data dodania:&nbsp;&nbsp;&nbsp;@Model.CreateDate.ToString("dd/MM/yyyy")</p>
+    @if (Model.UserGuid == _userManager.GetUserId(User))
+    {
+        <div class="product-manage">
+            <h4 class="mb-3">Zarządzaj ogłoszeniem&nbsp;&nbsp;<i class="fas fa-cogs"></i></h4>
+            <a asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-edit">Edytuj</a>
+            <a data-toggle="modal" data-target="#deleteModal" class="btn btn-delete">Usuń</a>
+        </div>
+    }
+</div>
 
     @if (Context.User.HasClaim("AdminManage", "AdminManage"))
     {

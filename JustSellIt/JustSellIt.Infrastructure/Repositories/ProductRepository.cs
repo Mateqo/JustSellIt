@@ -54,6 +54,7 @@ namespace JustSellIt.Infrastructure.Repositories
             {
                 item.ProductStatusId = _context.ProductStatuses.FirstOrDefault(x => x.Name == "Published").Id;
                 item.RejectionReason = null;
+                item.CreateDate = DateTime.Now;
                 _context.SaveChanges();
 
                 return true;

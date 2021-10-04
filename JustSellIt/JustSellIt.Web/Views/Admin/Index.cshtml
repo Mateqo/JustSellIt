@@ -14,12 +14,24 @@
         <img alt="admin-icon" src="~/images/other/admin.png" />
     </div>
 
-    <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Ogłoszenia do weryfikacji</h1>
+    @if (Model.Count > 0)
+    {
+        <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Ogłoszenia do weryfikacji</h1>
+    }
 
     <partial name="_ProductTile" />
 
-    <input id="submitSearch" type="submit" hidden="hidden"/>
-    <partial name="_Pagination" />
+    <input id="submitSearch" type="submit" hidden="hidden" />
+
+    @if (Model.Count > 0)
+    {
+        <partial name="_Pagination" />
+    }
+
+    @if (Model.Count == 0)
+    {
+        <h1 class="add-title mt-5 mb-5" style="font-weight:bold;text-align:center">Brak ogłoszeń do weryfikacji</h1>
+    }
 
 </form>
 
